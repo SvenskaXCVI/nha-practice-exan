@@ -630,9 +630,91 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   .mobile-version .notes-panel { max-height:calc(100dvh - var(--header-height, 150px) - 124px); }
 }
 
+
+.brand-logo { width:46px; height:46px; flex:0 0 46px; display:grid; place-items:center; color:#050505; }
+.brand-logo svg { width:100%; height:100%; display:block; fill:currentColor; }
+body.dark .brand-logo { color:#fff; }
+@media (max-width:720px) { .brand-logo { width:38px; height:38px; flex-basis:38px; } }
+.mobile-version .brand-logo { width:36px; height:36px; flex-basis:36px; }
+@media (max-width:390px) { .mobile-version .brand-logo { width:32px; height:32px; flex-basis:32px; } }
+
+
+/* Sharper modern logo */
+.brand-logo { color:#050505; }
+.brand-logo svg { fill:none; stroke:currentColor; stroke-width:7.25; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
+.brand-logo .brand-logo-ring { stroke-width:6.4; }
+.brand-logo .brand-logo-s { stroke-width:7.6; }
+.brand-logo .brand-logo-cut { stroke-width:7.1; }
+.brand-logo .brand-logo-notch { stroke-width:7.25; }
+body.dark .brand-logo { color:#fff; }
+
+
+/* Clean generated logo */
+.brand-logo { width:46px; height:46px; flex:0 0 46px; display:grid; place-items:center; color:#050505; }
+.brand-logo svg { width:100%; height:100%; display:block; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; }
+.brand-logo-circle { stroke-width:5.5; opacity:.98; }
+.brand-logo-mark { stroke-width:9; }
+body.dark .brand-logo { color:#fff; }
+@media (max-width:720px) { .brand-logo { width:38px; height:38px; flex-basis:38px; } }
+.mobile-version .brand-logo { width:36px; height:36px; flex-basis:36px; }
+@media (max-width:390px) { .mobile-version .brand-logo { width:32px; height:32px; flex-basis:32px; } }
+
+
+/* Ribbon logo */
+.brand-logo { width:46px; height:46px; flex:0 0 46px; display:grid; place-items:center; color:#050505; }
+.brand-logo svg { width:100%; height:100%; display:block; fill:currentColor; stroke:none; }
+.brand-logo-ribbon { fill:currentColor; }
+body.dark .brand-logo { color:#fff; }
+@media (max-width:720px) { .brand-logo { width:38px; height:38px; flex-basis:38px; } }
+.mobile-version .brand-logo { width:36px; height:36px; flex-basis:36px; }
+@media (max-width:390px) { .mobile-version .brand-logo { width:32px; height:32px; flex-basis:32px; } }
+
+
+/* Minimal SX logo */
+.brand-logo.sx-logo { width:48px; height:42px; flex:0 0 48px; display:grid; place-items:center; color:#050505; }
+.brand-logo.sx-logo svg { width:100%; height:100%; display:block; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; }
+.brand-logo.sx-logo .sx-s { stroke-width:7.8; }
+.brand-logo.sx-logo .sx-x { stroke-width:6.8; }
+.brand-logo.sx-logo .sx-x-b { opacity:.88; }
+body.dark .brand-logo.sx-logo { color:#fff; }
+@media (max-width:720px) { .brand-logo.sx-logo { width:42px; height:36px; flex-basis:42px; } }
+.mobile-version .brand-logo.sx-logo { width:40px; height:34px; flex-basis:40px; }
+@media (max-width:390px) { .mobile-version .brand-logo.sx-logo { width:36px; height:31px; flex-basis:36px; } }
+
+
+/* Welcome splash */
+.welcome-splash { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; padding:24px; background:color-mix(in srgb, var(--paper) 90%, rgba(0,0,0,.18)); backdrop-filter:blur(18px); }
+.welcome-splash.hidden { display:none; }
+.welcome-card { width:min(560px, 100%); border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); box-shadow:0 24px 70px var(--shadow); padding:28px; display:grid; gap:14px; text-align:left; }
+.welcome-kicker { width:max-content; max-width:100%; border:1px solid color-mix(in srgb, var(--accent), var(--line) 55%); background:var(--accent-soft); color:var(--accent-dark); border-radius:999px; padding:5px 10px; font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:0; }
+.welcome-card h2 { margin:0; font-size:36px; line-height:1; letter-spacing:0; }
+.welcome-card p { margin:0; color:var(--muted); font-size:16px; line-height:1.55; font-weight:700; }
+.welcome-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:6px; }
+.welcome-start { border:1px solid color-mix(in srgb, var(--accent), #000 18%); background:var(--accent); color:#fff; border-radius:8px; padding:12px 16px; min-height:46px; cursor:pointer; font-weight:900; }
+.welcome-start:hover { filter:brightness(1.05); box-shadow:0 0 0 3px var(--focus); }
+.welcome-repeat { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; font-weight:800; }
+.welcome-repeat input { width:18px; height:18px; accent-color:var(--accent); }
+.mobile-version .welcome-splash { padding:calc(20px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom)); align-items:start; overflow:auto; -webkit-overflow-scrolling:touch; }
+.mobile-version .welcome-card { margin-top:8vh; padding:22px; }
+.mobile-version .welcome-card h2 { font-size:30px; }
+.mobile-version .welcome-card p { font-size:15px; }
+.mobile-version .welcome-actions { display:grid; grid-template-columns:1fr; }
+.mobile-version .welcome-start { width:100%; }
+
 </style>
 </head>
 <body>
+<div class="welcome-splash" id="welcomeSplash" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-card">
+    <div class="welcome-kicker">NHA Practice Exam</div>
+    <h2 id="welcomeTitle">Welcome back</h2>
+    <p>You are ready to keep building confidence one question at a time. Take a breath, trust your work, and keep going.</p>
+    <div class="welcome-actions">
+      <button class="welcome-start" id="welcomeStart" type="button">Start studying</button>
+    </div>
+  </div>
+</div>
+</div>
 <div class="bay-side bay-side-left" aria-hidden="true"></div>
 <div class="bay-side bay-side-right" aria-hidden="true"></div>
 <header>
@@ -2799,7 +2881,11 @@ document.getElementById('retakeMissed').addEventListener('click', () => {
   for (const number of missed) state.delete(number);
   saveRetakeMissedSets();
   saveProgress();
-  render();
+  
+
+
+
+render();
   applyFilter();
   updateStats();
   setTimeout(() => scrollToCard(preferredCurrentCard()), 100);
@@ -3265,13 +3351,41 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   safeStorage.setItem(themeStorageKey, nextTheme);
   applyTheme(nextTheme);
 });
+
+const welcomeSessionKey = 'nhaPracticeWelcomeSplashSessionV1';
+const welcomeSplash = document.getElementById('welcomeSplash');
+const welcomeStart = document.getElementById('welcomeStart');
+function welcomeSessionSeen() {
+  try { return window.sessionStorage.getItem(welcomeSessionKey) === 'seen'; }
+  catch (error) { return false; }
+}
+function setWelcomeSessionSeen() {
+  try { window.sessionStorage.setItem(welcomeSessionKey, 'seen'); }
+  catch (error) {}
+}
+function hideWelcomeSplash() {
+  if (!welcomeSplash) return;
+  setWelcomeSessionSeen();
+  welcomeSplash.classList.add('hidden');
+}
+function initWelcomeSplash() {
+  if (!welcomeSplash) return;
+  welcomeSplash.classList.toggle('hidden', welcomeSessionSeen());
+}
+if (welcomeStart) welcomeStart.addEventListener('click', hideWelcomeSplash);
+if (welcomeSplash) welcomeSplash.addEventListener('click', function(event) {
+  if (event.target === welcomeSplash) hideWelcomeSplash();
+});
+initWelcomeSplash();
 render();
 let startupFilter = currentActiveExam || savedProgress.filter;
 if (startupFilter && !filterEl.querySelector('option[value="' + startupFilter + '"]')) startupFilter = 'all';
 if (startupFilter) filterEl.value = startupFilter;
 applyFilter();
+updateStats();
 updateExamOptionLabels();
 updateMenuState();
+updateActionStates();
 setCurrentQuestion(preferredCurrentCard());
 if (savedProgress.answers && savedProgress.answers.length) {
   setTimeout(() => scrollToCard(preferredCurrentCard()), 250);
