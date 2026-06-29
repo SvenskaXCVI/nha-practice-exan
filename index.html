@@ -595,6 +595,41 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .menu-close { min-width:42px; min-height:42px; }
 .mobile-version .header-inner { position:relative; }
 
+
+/* Mobile overflow and scrolling fixes */
+.mobile-version,
+.mobile-version body { min-height:100%; overflow-x:hidden; }
+.mobile-version body { overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.mobile-version html.flashcard-lock,
+.mobile-version html.flashcard-lock body { height:auto; min-height:100%; overflow-y:auto; }
+.mobile-version body.slideshow-mode { overflow-y:auto; }
+.mobile-version body.slideshow-mode main { height:auto; min-height:calc(100vh - var(--header-height, 154px)); overflow:visible; }
+.mobile-version body.slideshow-mode .exam { height:auto; min-height:0; display:grid; align-items:stretch; justify-content:stretch; overflow:visible; }
+.mobile-version body.slideshow-mode .question-card,
+.mobile-version body.slideshow-mode .common-card { max-height:none; overflow:visible; margin-bottom:18px; }
+.mobile-version .side-menu { max-height:100dvh; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-bottom:calc(28px + env(safe-area-inset-bottom)); }
+.mobile-version .dict-panel,
+.mobile-version .dict-quiz-panel,
+.mobile-version .notes-panel { max-height:min(76dvh, calc(100vh - 132px)); overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.mobile-version .notes-editor { max-height:52dvh; overflow:auto; -webkit-overflow-scrolling:touch; }
+.mobile-version .stats-dashboard,
+.mobile-version .order-draw-panel,
+.mobile-version .common-panel { overflow:visible; }
+.mobile-version .dashboard-table,
+.mobile-version .order-sort-list,
+.mobile-version .order-draw-card { max-width:100%; overflow-x:hidden; }
+.mobile-version .exam-finish-overlay { position:fixed; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; align-items:flex-start; padding:calc(24px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom)); }
+.mobile-version .exam-finish-card,
+.mobile-version .dict-quiz-complete-box { max-height:none; overflow:visible; }
+.mobile-version .definition-frame { max-height:52dvh; }
+.mobile-version .question-card,
+.mobile-version .common-card { scroll-margin-top:calc(var(--header-height, 140px) + 12px); }
+@supports (height: 100dvh) {
+  .mobile-version .dict-panel,
+  .mobile-version .dict-quiz-panel,
+  .mobile-version .notes-panel { max-height:calc(100dvh - var(--header-height, 150px) - 124px); }
+}
+
 </style>
 </head>
 <body>

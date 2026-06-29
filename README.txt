@@ -1,14 +1,1 @@
-NHA Mobile Web App
-
-Upload every file in this folder to a static website host. Open the hosted index.html link on iPhone Safari, then use Share > Add to Home Screen.
-
-Files:
-- index.html: the mobile practice exam app
-- manifest.webmanifest: app install metadata
-- service-worker.js: offline cache for hosted HTTPS use
-- icons/: home screen icons
-
-Important:
-- Offline install/caching requires HTTPS hosting.
-- Local Files app previews on iPhone may not run all app features correctly.
-- Use the exam menu Export/Import Save Data buttons to move saved progress between devices.
+Upload all files in this folder to GitHub Pages or another static host. Open the HTTPS link in iPhone Safari and use Share > Add to Home Screen. Updating files on GitHub will not erase user progress because progress is stored in the browser on each device.
