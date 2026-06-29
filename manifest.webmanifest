@@ -71,12 +71,20 @@ h1 { margin:0; font-size:21px; line-height:1.15; letter-spacing:0; font-weight:8
 .header-action:hover { border-color:var(--accent); box-shadow:0 0 0 3px var(--focus), 0 3px 14px var(--shadow); }
 .header-action:disabled, .header-action.disabled { cursor:not-allowed; opacity:.42; filter:grayscale(.35); box-shadow:none; }
 .header-action:disabled:hover, .header-action.disabled:hover { border-color:var(--line); box-shadow:none; }
+.purple-btn { background:#7c3aed; border-color:#6d28d9; color:#fff; }
+.purple-btn:hover { border-color:#5b21b6; box-shadow:0 0 0 3px rgba(124,58,237,.22), 0 3px 14px var(--shadow); }
 body.stats-dashboard-mode .header-progress { display:none; }
 body.stats-dashboard-mode .stats .stat:not(.dict-prof-stat) { display:none; }
 .stats { display:flex; gap:7px; flex-wrap:wrap; justify-content:flex-end; }
 .stat { border:1px solid var(--line); background:color-mix(in srgb, var(--panel) 86%, transparent); border-radius:8px; padding:5px 10px; min-width:78px; min-height:38px; text-align:center; box-shadow:0 3px 14px var(--shadow); display:grid; align-content:center; }
 .stat strong { display:block; font-size:15px; line-height:1; }
 .stat span { display:block; color:var(--muted); font-size:10px; margin-top:1px; }
+.stat.stat-gold { border-color:#86efac; background:linear-gradient(180deg, rgba(220,252,231,.95), rgba(187,247,208,.62)); box-shadow:0 3px 14px var(--shadow); }
+.stat.stat-gold strong { color:#166534; }
+.stat.stat-red { border-color:var(--bad); background:var(--bad-bg); box-shadow:0 0 0 2px color-mix(in srgb, var(--bad), transparent 78%), 0 3px 14px var(--shadow); }
+.stat.stat-red strong { color:var(--bad); }
+body.dark .stat.stat-gold { background:linear-gradient(180deg, rgba(20,83,45,.62), rgba(22,101,52,.42)); border-color:#86efac; }
+body.dark .stat.stat-gold strong { color:#bbf7d0; }
 .grade-stat strong { transition:color .2s ease; }
 .grade-a strong { color:#15803d; }
 .grade-b strong { color:#0f766e; }
@@ -207,6 +215,38 @@ body.dark .dict-prof-low strong { color:#fca5a5; }
 .order-final-stat { border:1px solid var(--line); border-radius:8px; padding:12px; background:color-mix(in srgb, var(--panel) 86%, var(--accent-soft)); }
 .order-final-stat strong { display:block; font-size:22px; line-height:1; }
 .order-final-stat span { color:var(--muted); font-size:12px; font-weight:800; }
+.study-guide-panel.hidden { display:none; }
+.study-guide-panel { display:grid; gap:14px; }
+.study-guide-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+.study-guide-card { border:1px solid var(--line); border-radius:8px; background:var(--panel); box-shadow:0 8px 24px var(--shadow); padding:16px; display:grid; gap:8px; }
+.study-guide-card strong { color:var(--accent-dark); font-size:18px; line-height:1.15; }
+.study-guide-card p { margin:0; color:var(--ink); line-height:1.5; font-weight:750; }
+.study-guide-note { border:1px solid var(--line); border-radius:8px; background:var(--accent-soft); color:var(--accent-dark); padding:12px 14px; font-weight:900; }
+@media (max-width: 760px) { .study-guide-grid { grid-template-columns:1fr; } .study-guide-card { padding:14px; } }
+.order-practice-tabs { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px; }
+.order-practice-tab { min-height:96px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); box-shadow:0 8px 20px var(--shadow); padding:14px; cursor:pointer; display:grid; align-content:center; gap:6px; text-align:left; font-weight:900; }
+.order-practice-tab strong { font-size:18px; line-height:1.05; }
+.order-practice-tab span { color:var(--muted); font-size:12px; font-weight:800; }
+.order-practice-tab.active { border-color:var(--accent); background:var(--accent-soft); color:var(--accent-dark); }
+.inversion-quiz-card { border:1px solid var(--line); border-radius:8px; background:var(--panel); box-shadow:0 8px 24px var(--shadow); padding:18px; display:grid; gap:16px; }
+.inversion-quiz-top { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.inversion-progress { color:var(--muted); font-weight:900; font-size:12px; }
+.inversion-question { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12px; font-size:22px; font-weight:900; line-height:1.2; }
+.inversion-choices { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
+.inversion-choice { min-height:66px; border:1px solid var(--line); border-radius:8px; background:var(--choice); color:var(--ink); box-shadow:0 6px 18px var(--shadow); padding:12px; cursor:pointer; font-weight:900; }
+.inversion-choice:hover:not(:disabled) { border-color:var(--accent); background:var(--accent-soft); box-shadow:0 0 0 3px var(--focus), 0 6px 18px var(--shadow); }
+.inversion-choice.correct { border-color:var(--good); background:var(--good-bg); color:var(--good); }
+.inversion-choice.wrong { border-color:var(--bad); background:var(--bad-bg); color:var(--bad); }
+.inversion-choice:disabled { cursor:default; }
+.inversion-feedback { min-height:24px; color:var(--muted); font-weight:900; }
+.inversion-feedback.good { color:var(--good); }
+.inversion-feedback.review { color:var(--bad); }
+.extra-quiz-countdown .advance-countdown-fill { animation-duration:3s; }
+.inversion-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.inversion-next, .inversion-restart { border:1px solid var(--line); border-radius:8px; padding:10px 13px; cursor:pointer; font-weight:900; }
+.inversion-next { background:var(--accent); color:white; }
+.inversion-restart { background:var(--choice); color:var(--ink); }
+@media (max-width: 760px) { .order-practice-tabs, .inversion-choices { grid-template-columns:1fr; } .order-practice-tab { min-height:78px; } .inversion-question { font-size:18px; } }
 @media (max-width: 760px) { .order-match-row { grid-template-columns:1fr; } .match-result { min-height:44px; } }
 @media (max-width: 860px) { .dashboard-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } .dashboard-wide { grid-column:span 2; } }
 @media (max-width: 560px) { .theme-swatches { grid-template-columns:repeat(4, 1fr); } .dashboard-grid { grid-template-columns:1fr; } .dashboard-wide { grid-column:span 1; } .dashboard-head { display:grid; } .dashboard-row { grid-template-columns:1fr; } }
@@ -320,6 +360,10 @@ body.slideshow-mode .question-card.slide-back, body.slideshow-mode .common-card.
 .notes-toggle { position:fixed; left:18px; top:50%; transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid var(--line); background:var(--accent); color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); }
 .notes-toggle svg { width:23px; height:23px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
 .notes-toggle:hover { box-shadow:0 0 0 3px var(--focus), 0 10px 24px var(--shadow); }
+.google-toggle { position:fixed; left:18px; top:calc(50% + 58px); transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid #0d8f70; background:#10a37f; color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); }
+.google-toggle svg { width:25px; height:25px; stroke:currentColor; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+.google-toggle:hover { box-shadow:0 0 0 3px rgba(16,163,127,.22), 0 10px 24px var(--shadow); }
+.google-toggle.offline { background:color-mix(in srgb, var(--panel) 86%, transparent); border-color:var(--line); color:var(--muted); cursor:not-allowed; }
 .notes-panel { position:fixed; left:74px; top:50%; transform:translateY(-50%); z-index:32; width:min(420px, calc(100vw - 98px)); background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:8px; box-shadow:0 18px 48px var(--shadow); padding:14px; display:grid; gap:10px; }
 .notes-panel.hidden { display:none; }
 .notes-head { display:flex; justify-content:space-between; gap:10px; align-items:center; }
@@ -334,7 +378,7 @@ body.slideshow-mode .question-card.slide-back, body.slideshow-mode .common-card.
 .notes-editor:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus); }
 .notes-editor:empty::before { content:attr(data-placeholder); color:var(--muted); }
 .notes-status { color:var(--muted); font-size:12px; font-weight:800; min-height:18px; }
-@media (max-width: 640px) { .notes-toggle { left:8px; width:42px; height:42px; } .notes-panel { left:56px; width:calc(100vw - 66px); } .notes-editor { min-height:440px; max-height:70vh; } }
+@media (max-width: 640px) { .notes-toggle { left:8px; width:42px; height:42px; } .google-toggle { left:8px; top:calc(50% + 52px); width:42px; height:42px; } .notes-panel { left:56px; width:calc(100vw - 66px); } .notes-editor { min-height:440px; max-height:70vh; } }
 .dict-toggle { position:fixed; right:18px; top:50%; transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid var(--line); background:var(--accent); color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); }
 .dict-test-toggle { position:fixed; right:18px; top:calc(50% + 58px); transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid var(--line); background:var(--accent); color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:0; }
 .dict-test-toggle:hover { box-shadow:0 0 0 3px var(--focus), 0 10px 24px var(--shadow); }
@@ -392,6 +436,14 @@ body.slideshow-mode .question-card.slide-back, body.slideshow-mode .common-card.
 .dict-add-button { justify-self:end; border:1px solid color-mix(in srgb, var(--accent) 72%, #000); background:var(--accent); color:#fff; border-radius:8px; padding:9px 13px; cursor:pointer; font-weight:900; font-size:12px; }
 .dict-add-button:hover { filter:brightness(1.05); }
 .dict-custom-row .dict-abbr::after { content:' custom'; margin-left:6px; color:var(--accent); font-size:10px; font-weight:900; text-transform:uppercase; }
+.dict-definition-cell { display:grid; gap:8px; }
+.dict-entry-actions { display:flex; flex-wrap:wrap; gap:6px; }
+.dict-entry-edit, .dict-entry-delete { border:1px solid var(--line); border-radius:8px; padding:6px 9px; cursor:pointer; font-size:11px; font-weight:900; }
+.dict-entry-edit { background:var(--accent-soft); color:var(--accent-dark); }
+.dict-entry-delete { background:var(--bad-bg); color:var(--bad); border-color:color-mix(in srgb, var(--bad), var(--line) 45%); }
+.dict-entry-edit:hover, .dict-entry-delete:hover { box-shadow:0 0 0 3px var(--focus); }
+.dict-meaning-cell { display:grid; gap:7px; }
+.dict-manual-badge { display:inline-flex; width:max-content; max-width:100%; border:1px solid color-mix(in srgb, var(--accent), var(--line) 45%); background:var(--accent-soft); color:var(--accent-dark); border-radius:999px; padding:3px 8px; font-size:10px; line-height:1.2; font-weight:900; text-transform:uppercase; }
 @media (max-width: 760px) { .dict-toggle { right:8px; width:42px; height:42px; } .dict-test-toggle { right:8px; width:42px; height:42px; top:calc(50% + 54px); } .dict-panel, .dict-quiz-panel { right:56px; width:calc(100vw - 66px); max-height:76vh; } .dict-row { grid-template-columns:1fr; } .dict-add-grid { grid-template-columns:1fr; } .dict-cell { border-right:0; border-bottom:1px solid var(--line); } .dict-cell:last-child { border-bottom:0; } }
 .love-note { position:fixed; left:70px; bottom:70px; z-index:20; max-width:330px; border:1px solid var(--line); background:color-mix(in srgb, var(--panel) 92%, transparent); color:var(--ink); border-radius:8px; padding:12px 13px; box-shadow:0 10px 24px var(--shadow); display:flex; gap:9px; align-items:flex-start; font-size:13px; line-height:1.35; font-weight:700; backdrop-filter:blur(12px); }
 .love-toggle { position:fixed; left:18px; bottom:70px; z-index:21; width:42px; height:42px; border:1px solid var(--line); background:var(--panel); color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.45); border-radius:999px; cursor:pointer; font-size:18px; font-weight:900; box-shadow:0 10px 24px var(--shadow); }
@@ -436,7 +488,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .header-action { min-width:0; min-height:36px; padding:5px 4px; border-radius:8px; }
 .mobile-version .header-action strong { font-size:12px; }
 .mobile-version .header-action span { font-size:9px; }
-.mobile-version #retakeMissed:not(.hidden) { grid-column:1 / -1; }
+.mobile-version #retakeMissed:not(.hidden), .mobile-version #nextMissed:not(.hidden) { grid-column:1 / -1; }
 .mobile-version .stats { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:6px; justify-content:stretch; }
 .mobile-version .stat { min-width:0; min-height:34px; padding:5px 4px; border-radius:8px; box-shadow:0 2px 10px var(--shadow); }
 .mobile-version .stat strong { font-size:13px; }
@@ -480,6 +532,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .dict-quiz-choice { min-height:46px; }
 .mobile-version .dict-quiz-complete-actions { grid-template-columns:1fr; }
 .mobile-version .notes-toggle { left:max(8px, env(safe-area-inset-left)); width:42px; height:42px; }
+.mobile-version .google-toggle { left:max(8px, env(safe-area-inset-left)); top:calc(50% + 52px); width:42px; height:42px; }
 .mobile-version .notes-panel { left:58px; right:max(8px, env(safe-area-inset-right)); top:50%; width:auto; max-height:78vh; }
 .mobile-version .notes-editor { min-height:420px; max-height:58vh; }
 .mobile-version .love-toggle { left:max(8px, env(safe-area-inset-left)); bottom:calc(58px + env(safe-area-inset-bottom)); width:40px; height:40px; }
@@ -807,6 +860,109 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 .mobile-version .dict-quiz-complete { padding:12px; }
 .mobile-version .dict-quiz-complete-box { width:100%; }
 
+
+/* In-exam Google Search panel */
+.google-toggle.active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.28);
+}
+.google-panel {
+  position: fixed;
+  left: 74px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 35;
+  width: min(540px, calc(100vw - 104px));
+  height: min(720px, 82vh);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--shadow-strong);
+}
+.google-panel.hidden { display: none; }
+.google-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--text);
+}
+.google-head strong { font-size: 14px; letter-spacing: 0; }
+.google-actions { display: flex; align-items: center; gap: 8px; }
+.google-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--choice);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+.google-close {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--choice);
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.google-frame-wrap {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.google-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--choice);
+}
+.google-fallback {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+.mobile-version .google-panel {
+  left: 10px;
+  right: 10px;
+  top: calc(var(--header-height, 150px) + 10px);
+  bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  width: auto;
+  height: auto;
+  transform: none;
+  padding: 10px;
+}
+@media (max-width: 720px) {
+  .google-panel {
+    left: 10px;
+    right: 10px;
+    top: calc(var(--header-height, 150px) + 10px);
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    height: auto;
+    transform: none;
+    padding: 10px;
+  }
+  .google-frame { min-height: 260px; }
+}
+
 </style>
 </head>
 <body>
@@ -822,6 +978,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
     <div class="header-right">
       <div class="header-actions">
         <button class="header-action nav-blue" id="nextUnanswered" type="button"><strong>Next</strong><span>unanswered</span></button>
+        <button class="header-action purple-btn hidden" id="nextMissed" type="button"><strong>Next</strong><span>missed</span></button>
         <button class="header-action warning-btn" id="showAnswers" type="button"><strong>Show</strong><span>answers</span></button>
         <button class="header-action danger-btn" id="reset" type="button"><strong>Reset</strong><span>exam</span></button>
         <button class="header-action nav-blue hidden" id="retakeMissed" type="button"><strong>Retake</strong><span>missed</span></button>
@@ -848,7 +1005,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
   <select id="filter" class="sr-only" aria-label="Question filter">
     <option value="all">All questions</option>
     <option value="fullstats">Full exam statistics</option>
-    <option value="orderdraw">Order of draw review</option>
+    <option value="orderdraw">Extra Exams</option>
     <option value="exam1">Practice Exam 1: Questions 1-150</option>
     <option value="exam2">Practice Exam 2: Questions 151-300</option>
     <option value="exam3">Practice Exam 3: Questions 301-450</option>
@@ -859,7 +1016,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
   <nav class="menu-options" id="menuOptions" aria-label="Exam views">
     <button type="button" data-filter="all">All questions</button>
     <button type="button" data-filter="fullstats">Full exam statistics</button>
-    <button type="button" data-filter="orderdraw">Order of draw review <span>Tube color matching</span></button>
+    <button type="button" data-filter="orderdraw">Extra Exams <span>Matching, inversions, consent</span></button>
     <button type="button" data-filter="exam1">Practice Exam 1 <span>Questions 1-150</span></button>
     <button type="button" data-filter="exam2">Practice Exam 2 <span>Questions 151-300</span></button>
     <button type="button" data-filter="exam3">Practice Exam 3 <span>Questions 301-450</span></button>
@@ -901,6 +1058,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
   </section>
   <section class="stats-dashboard hidden" id="statsDashboard" aria-live="polite"></section>
   <section class="order-draw-panel hidden" id="orderDrawPanel" aria-live="polite"></section>
+  <section class="study-guide-panel hidden" id="consentGuidePanel" aria-live="polite"></section>
   <div id="exam" class="exam"></div>
 </main>
 <button class="dict-toggle" id="dictToggle" type="button" aria-label="Open dictionary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H8a4 4 0 0 0-4 4V5.5Z"></path><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20"></path><path d="M4 21.5A3.5 3.5 0 0 1 7.5 18H20"></path><path d="M12 6h4"></path><path d="M12 10h4"></path></svg></button>
@@ -946,6 +1104,22 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 </div>
 
 <button class="notes-toggle" id="notesToggle" type="button" aria-label="Open notes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h9a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2Z"></path><path d="M8 21V7a2 2 0 0 1 2-2h8"></path><path d="M11 10h5"></path><path d="M11 14h4"></path></svg></button>
+<button class="google-toggle" id="googleButton" type="button" aria-label="Open Google Search" title="Open Google Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M10.7 4.2a6.5 6.5 0 0 1 5.16 10.45l3.47 3.48a1.05 1.05 0 0 1-1.48 1.48l-3.48-3.47A6.5 6.5 0 1 1 10.7 4.2zm0 2.1a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8z" fill="currentColor"></path>
+  </svg></button>
+<div class="google-panel hidden" id="googlePanel" aria-label="Google Search assistant panel" aria-hidden="true">
+  <div class="google-head">
+    <strong>Google Search</strong>
+    <div class="google-actions">
+      <a class="google-open" id="googleOpenExternal" href="https://www.google.com/search?igu=1" target="_blank" rel="noopener">Open full</a>
+      <button class="google-close" id="googleClose" type="button" aria-label="Close Google Search">&times;</button>
+    </div>
+  </div>
+  <div class="google-frame-wrap">
+    <iframe class="google-frame" id="googleFrame" title="Google Search" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-read; clipboard-write"></iframe>
+    <div class="google-fallback">If Google does not load in this panel, use Open full.</div>
+  </div>
+</div>
 <div class="notes-panel hidden" id="notesPanel" aria-label="Practice notes">
   <div class="notes-head"><strong>Notes</strong><button class="notes-close" id="notesClose" type="button" aria-label="Close notes">&times;</button></div>
   <div class="notes-toolbar" aria-label="Note formatting tools">
@@ -1035,6 +1209,7 @@ const commonPanelEl = document.getElementById('commonPanel');
 const commonPracticeEl = document.getElementById('commonPractice');
 const statsDashboardEl = document.getElementById('statsDashboard');
 const orderDrawPanelEl = document.getElementById('orderDrawPanel');
+const consentGuidePanelEl = document.getElementById('consentGuidePanel');
 const statStorageKey = 'nhaPracticeQuestionStatsV1';
 const progressStorageKey = 'nhaPracticeAnswerProgressV1';
 const shuffleStorageKey = 'nhaPracticeExamShufflesV1';
@@ -1075,6 +1250,12 @@ const progressEl = document.getElementById('progress');
 const progressPercentEl = document.getElementById('progressPercent');
 const filterEl = document.getElementById('filter');
 const retakeMissedBtn = document.getElementById('retakeMissed');
+const googleButton = document.getElementById('googleButton');
+const googlePanel = document.getElementById('googlePanel');
+const googleFrame = document.getElementById('googleFrame');
+const googleClose = document.getElementById('googleClose');
+const googleOpenExternal = document.getElementById('googleOpenExternal');
+const nextMissedBtn = document.getElementById('nextMissed');
 const menuToggle = document.getElementById('menuToggle');
 const sideMenu = document.getElementById('sideMenu');
 const menuBackdrop = document.getElementById('menuBackdrop');
@@ -1193,7 +1374,7 @@ function filterLabel(value) {
   const labels = {
     all: 'All questions',
     fullstats: 'Full exam statistics',
-    orderdraw: 'Order of draw review',
+    orderdraw: 'Extra Exams',
     exam1: 'Practice Exam 1',
     exam2: 'Practice Exam 2',
     exam3: 'Practice Exam 3',
@@ -1213,17 +1394,21 @@ function updateMenuState() {
     const range = examRange(value);
     button.classList.toggle('active', value === filterEl.value);
     button.classList.toggle('started', !!range && examStarted(value));
-    var oldBadges = button.querySelector('.menu-badges'); if (oldBadges) oldBadges.remove();
+    const oldBadges = button.querySelector('.menu-badges');
+    if (oldBadges) oldBadges.remove();
     if (!range) return;
     const badges = document.createElement('span');
     badges.className = 'menu-badges';
     const completion = examCompletionFor(value);
-    const hideStarted = completion.perfectCounted && !completion.needsReview;
+    const reviewCleared = examReviewCleared(value);
+    const needsReview = completion.needsReview && !reviewCleared;
+    const finished = completion.runRecorded && !needsReview;
+    const hideStarted = finished;
     if (examStarted(value) && !hideStarted) badges.appendChild(makeMenuBadge('Started', 'started'));
     badges.appendChild(makeMenuBadge('✓ ' + (Number(completion.finishedCount) || 0), 'perfect-count', (Number(completion.finishedCount) || 0) + ' perfect completion(s)'));
-    if (completion.finishedCount > 0 && !completion.needsReview) {
+    if (finished) {
       badges.appendChild(makeMenuBadge('Finished', 'finished'));
-    } else if (completion.needsReview) {
+    } else if (needsReview) {
       badges.appendChild(makeMenuBadge('Needs review', 'needs-review'));
     }
     if (badges.children.length) button.appendChild(badges);
@@ -1342,12 +1527,16 @@ function examCompletionFor(filter) {
 function updateExamCompletionStatus() {
   let changed = false;
   for (const filter of ['exam1', 'exam2', 'exam3']) {
-    const range = examRange(filter);
+    let numbers = examNumbers(filter);
+    if (filterEl && filterEl.value === filter) {
+      const activeNumbers = selectedNumberScope();
+      if (activeNumbers.length) numbers = activeNumbers;
+    }
     const completion = examCompletionFor(filter);
     let answered = 0;
     let correct = 0;
-    const total = range[1] - range[0] + 1;
-    for (let number = range[0]; number <= range[1]; number++) {
+    const total = numbers.length;
+    for (const number of numbers) {
       const result = state.get(number);
       if (result) {
         answered += 1;
@@ -1358,32 +1547,25 @@ function updateExamCompletionStatus() {
     const perfect = complete && correct === total;
     const needsReview = complete && correct < total;
     const accuracy = complete ? Math.round((correct / total) * 100) : 0;
-    if (complete) {
+    if (complete && !completion.runRecorded) {
       const attempt = { completedAt: new Date().toISOString(), accuracy, correct, total, perfect };
-      if (!completion.runRecorded) {
-        completion.attempts.push(attempt);
-        completion.runRecorded = true;
-        changed = true;
-      } else if (completion.attempts.length) {
-        const last = completion.attempts[completion.attempts.length - 1];
-        if (last.accuracy !== accuracy || last.correct !== correct || last.perfect !== perfect) {
-          Object.assign(last, attempt);
-          changed = true;
-        }
-      }
-    }
-    if (perfect && !completion.perfectCounted) {
-      completion.finishedCount = (Number(completion.finishedCount) || 0) + 1;
-      completion.perfectCounted = true;
-      changed = true;
-    }
-    if (!perfect && completion.perfectCounted && !complete) {
-      completion.perfectCounted = false;
-      changed = true;
-    }
-    if (completion.needsReview !== needsReview) {
+      completion.attempts.push(attempt);
+      completion.runRecorded = true;
       completion.needsReview = needsReview;
+      if (perfect && !completion.perfectCounted) {
+        completion.finishedCount = (Number(completion.finishedCount) || 0) + 1;
+        completion.perfectCounted = true;
+      }
       changed = true;
+    } else if (!completion.runRecorded) {
+      if (completion.needsReview !== false) {
+        completion.needsReview = false;
+        changed = true;
+      }
+      if (!complete && completion.perfectCounted) {
+        completion.perfectCounted = false;
+        changed = true;
+      }
     }
   }
   if (changed) saveExamCompletion();
@@ -1419,6 +1601,24 @@ function loggedMissedNumbersForReview(filter) {
     .map(Number)
     .filter(number => Number.isFinite(number) && number >= range[0] && number <= range[1])
     .sort((a, b) => a - b);
+}
+function reviewFilterForExam(filter) {
+  if (filter === 'exam1') return 'review1';
+  if (filter === 'exam2') return 'review2';
+  if (filter === 'exam3') return 'review3';
+  return null;
+}
+function examReviewCleared(filter) {
+  const completion = examCompletionFor(filter);
+  if (!completion.runRecorded) return false;
+  const reviewFilter = reviewFilterForExam(filter);
+  if (!reviewFilter) return false;
+  const missed = loggedMissedNumbersForReview(reviewFilter);
+  if (!missed.length) return !!completion.perfectCounted;
+  return missed.every(number => {
+    const result = state.get(number);
+    return result && result.correct;
+  });
 }
 function loadExamShuffles() {
   try {
@@ -2192,6 +2392,31 @@ function firstVisibleQuestionCard() {
 function preferredCurrentCard() {
   return firstAnswerableQuestionCard() || firstVisibleQuestionCard();
 }
+function visibleIncorrectReviewCards() {
+  if (!filterEl || !missedReviewRange(filterEl.value)) return [];
+  return Array.from(exam.querySelectorAll('.question-card')).filter(card => {
+    if (card.classList.contains('hidden')) return false;
+    const result = state.get(Number(card.dataset.number));
+    return !!result && !result.correct;
+  });
+}
+function jumpToNextMissed() {
+  const cards = visibleIncorrectReviewCards();
+  if (!cards.length) return;
+  const current = exam.querySelector('.question-card.current-question');
+  let target = null;
+  if (current) {
+    const currentIndex = cards.indexOf(current);
+    if (currentIndex >= 0) target = cards[currentIndex + 1] || cards[0];
+  }
+  if (!target) {
+    const viewportLine = Math.min(window.innerHeight * 0.35, 260);
+    target = cards.find(card => card.getBoundingClientRect().top > viewportLine) || cards[0];
+  }
+  scrollToCard(target, 'forward');
+  target.classList.add('review-target');
+  setTimeout(() => target.classList.remove('review-target'), 1600);
+}
 function jumpToNextUnanswered() {
   const cards = visibleUnansweredCards();
   if (!cards.length) return;
@@ -2267,7 +2492,10 @@ function scheduleAutoAdvance(currentCard, mode = 'main') {
   }, 5000);
 }
 function choose(q, letter, card) {
-  if (state.has(q.number)) return;
+  const currentFilter = filterEl ? filterEl.value : 'all';
+  const isMissedReview = !!missedReviewRange(currentFilter);
+  const previous = state.get(q.number);
+  if (previous && !(isMissedReview && !previous.correct)) return;
   const activeExamFilter = filterEl && examRange(filterEl.value) ? filterEl.value : null;
   const wasCompleteBefore = activeExamFilter ? examSummary(activeExamFilter).complete : false;
   const correct = letter === q.answer;
@@ -2277,8 +2505,8 @@ function choose(q, letter, card) {
     launchConfetti(card);
   }
   const reviewFilter = reviewFilterForNumber(q.number);
-  if (reviewFilter && filterEl && filterEl.value === reviewFilter) removeFromRetakeSet(reviewFilter, q.number);
-  if (!correct) {
+  if (reviewFilter && filterEl && filterEl.value === reviewFilter && correct) removeFromRetakeSet(reviewFilter, q.number);
+  if (!correct && !isMissedReview) {
     logMissedQuestion(q.number);
     const stats = statsFor(q.number);
     stats.misses += 1;
@@ -2293,20 +2521,23 @@ function choose(q, letter, card) {
   applyFilter();
   if (!document.body.classList.contains('slideshow-mode')) setCurrentQuestion(nextAnswerableQuestionCard(card));
   if (activeExamFilter) maybeShowExamFinishSplash(activeExamFilter, wasCompleteBefore);
-  scheduleAutoAdvance(card, 'main');
+  if (!(isMissedReview && !correct)) scheduleAutoAdvance(card, 'main');
 }
 function applyResult(q, card, revealOnly = false) {
   const result = state.get(q.number);
   const feedback = card.querySelector('.feedback');
+  const isMissedReview = !!missedReviewRange(filterEl ? filterEl.value : 'all');
+  const allowCorrection = isMissedReview && result && !result.correct && !revealOnly;
   for (const btn of card.querySelectorAll('.choice')) {
     const letter = btn.dataset.letter;
-    if (letter === q.answer) btn.classList.add('correct');
+    btn.classList.remove('correct', 'wrong');
+    if (letter === q.answer && (revealOnly || (result && (!allowCorrection || result.correct)))) btn.classList.add('correct');
     if (result && letter === result.selected && letter !== q.answer) btn.classList.add('wrong');
-    if (result || revealOnly) btn.disabled = true;
+    btn.disabled = allowCorrection ? false : !!(result || revealOnly);
   }
   if (result) {
     feedback.className = 'feedback ' + (result.correct ? 'correct' : 'wrong');
-    feedback.textContent = result.correct ? 'Correct' : 'Wrong. Correct answer: ' + q.answer;
+    feedback.textContent = result.correct ? 'Correct' : (allowCorrection ? 'Incorrect. Try again.' : 'Wrong. Correct answer: ' + q.answer);
   } else if (revealOnly) {
     feedback.className = 'feedback correct';
     feedback.textContent = 'Correct answer: ' + q.answer;
@@ -2430,16 +2661,18 @@ function currentQuestionNumbers() {
   return selectedNumberScope();
 }
 function updateProgressPercent() {
-  if (filterEl && (filterEl.value === 'fullstats' || filterEl.value === 'orderdraw')) {
+  if (filterEl && (filterEl.value === 'fullstats' || filterEl.value === 'orderdraw' || filterEl.value === 'consent')) {
     if (progressPercentEl) progressPercentEl.textContent = '';
     progressEl.style.width = '0%';
     progressEl.classList.remove('perfect-glow');
     return;
   }
+  const filter = filterEl ? filterEl.value : 'all';
+  const locked = lockedCompletedSummary(filter);
   const numbers = currentQuestionNumbers();
-  const answeredInScope = numbers.filter(number => state.has(number)).length;
-  const percent = numbers.length ? Math.round((answeredInScope / numbers.length) * 100) : 0;
-  const perfect = numbers.length > 0 && numbers.every(number => { const result = state.get(number); return result && result.correct; });
+  const answeredInScope = locked ? locked.total : numbers.filter(number => state.has(number)).length;
+  const percent = locked ? 100 : (numbers.length ? Math.round((answeredInScope / numbers.length) * 100) : 0);
+  const perfect = locked ? (locked.perfect || examReviewCleared(filter)) : (numbers.length > 0 && numbers.every(number => { const result = state.get(number); return result && result.correct; }));
   if (progressPercentEl) progressPercentEl.textContent = percent + '%';
   progressEl.style.width = percent + '%';
   progressEl.classList.toggle('perfect-glow', percent === 100 && perfect);
@@ -2472,6 +2705,7 @@ function gradeForPercent(percent) {
 function selectedNumberScope() {
   const filter = filterEl ? filterEl.value : 'all';
   if (filter === 'fullstats') return questions.map(q => q.number);
+  if (filter === 'orderdraw' || filter === 'consent') return [];
   if (exam && exam.children && exam.children.length) {
     const visible = Array.from(exam.querySelectorAll('.question-card'))
       .filter(card => !card.classList.contains('hidden'))
@@ -2480,29 +2714,38 @@ function selectedNumberScope() {
     if (visible.length || ['review1', 'review2', 'review3'].includes(filterEl ? filterEl.value : '')) return visible;
   }
   const reviewRange = missedReviewRange(filter);
-  const range = reviewRange || examRange(filter);
-  if (range) {
-    const numbers = [];
-    for (let n = range[0]; n <= range[1]; n++) numbers.push(n);
-    return numbers;
-  }
+  if (reviewRange) return questions.filter(q => q.number >= reviewRange[0] && q.number <= reviewRange[1]).map(q => q.number);
+  if (examRange(filter)) return examNumbers(filter);
   return questions.map(q => q.number);
 }
 function currentScoreScope() {
   const scope = new Set(selectedNumberScope());
   return Array.from(state.entries()).filter(([number]) => scope.has(number)).map(([, result]) => result);
 }
-function updateLetterGrade() {
+function lockedCompletedSummary(filter) {
+  if (!examRange(filter)) return null;
+  const completion = examCompletionFor(filter);
+  if (!completion.runRecorded || !completion.attempts.length) return null;
+  const attempt = completion.attempts[completion.attempts.length - 1];
+  const total = Number(attempt.total) || examNumbers(filter).length || 150;
+  const correct = Number(attempt.correct) || 0;
+  const percent = Number.isFinite(Number(attempt.accuracy)) ? Number(attempt.accuracy) : Math.round((correct / total) * 100);
+  return { answered: total, correct, missed: total - correct, total, percent, perfect: !!attempt.perfect };
+}
+function updateLetterGrade(percentOverride = null) {
   if (!letterGradeEl) return;
-  const results = currentScoreScope();
   const stat = letterGradeEl.closest('.stat');
   stat.classList.remove('grade-a', 'grade-b', 'grade-c', 'grade-d', 'grade-f');
-  if (!results.length) {
-    letterGradeEl.textContent = '--';
-    return;
+  let percent = percentOverride;
+  if (percent === null || percent === undefined) {
+    const results = currentScoreScope();
+    if (!results.length) {
+      letterGradeEl.textContent = '--';
+      return;
+    }
+    const correct = results.filter(result => result.correct).length;
+    percent = Math.round((correct / results.length) * 100);
   }
-  const correct = results.filter(result => result.correct).length;
-  const percent = Math.round((correct / results.length) * 100);
   const [letter, className] = gradeForPercent(percent);
   letterGradeEl.textContent = letter;
   stat.classList.add(className);
@@ -2510,10 +2753,12 @@ function updateLetterGrade() {
 function updateStats() {
   updateExamCompletionStatus();
   renderStatsDashboard();
-  if (filterEl && (filterEl.value === 'fullstats' || filterEl.value === 'orderdraw')) {
+  if (filterEl && (filterEl.value === 'fullstats' || filterEl.value === 'orderdraw' || filterEl.value === 'consent')) {
     answeredEl.textContent = '';
     correctEl.textContent = '';
     missedEl.textContent = '';
+    if (correctEl && correctEl.closest('.stat')) correctEl.closest('.stat').classList.remove('stat-gold');
+    if (missedEl && missedEl.closest('.stat')) missedEl.closest('.stat').classList.remove('stat-red');
     commonCountEl.textContent = '';
     scoreEl.textContent = '';
     letterGradeEl.textContent = '';
@@ -2523,16 +2768,21 @@ function updateStats() {
     updateActionStates();
     return;
   }
+  const locked = lockedCompletedSummary(filterEl ? filterEl.value : 'all');
   const scopedNumbers = selectedNumberScope();
   const scopedResults = scopedNumbers.map(number => state.get(number)).filter(Boolean);
-  const answered = scopedResults.length;
-  const correct = scopedResults.filter(result => result.correct).length;
-  const missed = answered - correct;
-  answeredEl.textContent = answered;
+  const answered = locked ? locked.answered : scopedResults.length;
+  const correct = locked ? locked.correct : scopedResults.filter(result => result.correct).length;
+  const missed = locked ? locked.missed : answered - correct;
+  const percent = locked ? locked.percent : (answered ? Math.round((correct / answered) * 100) : 0);
+  answeredEl.textContent = answered + '/' + scopedNumbers.length;
   correctEl.textContent = correct;
   missedEl.textContent = missed;
-  scoreEl.textContent = answered ? Math.round((correct / answered) * 100) + '%' : '0%';
-  updateLetterGrade();
+  scoreEl.textContent = percent + '%';
+  const completeStats = locked || (scopedNumbers.length > 0 && answered === scopedNumbers.length);
+  if (correctEl && correctEl.closest('.stat')) correctEl.closest('.stat').classList.toggle('stat-gold', !!completeStats);
+  if (missedEl && missedEl.closest('.stat')) missedEl.closest('.stat').classList.toggle('stat-red', !!completeStats && missed > 0);
+  updateLetterGrade(locked ? locked.percent : null);
   updateProgressPercent();
   updateReviewList();
   renderCommonPractice();
@@ -2552,9 +2802,7 @@ function accuracyForNumbers(numbers) {
 function examNumbers(filter) {
   const range = examRange(filter);
   if (!range) return questions.map(q => q.number);
-  const numbers = [];
-  for (let n = range[0]; n <= range[1]; n++) numbers.push(n);
-  return numbers;
+  return questions.filter(q => q.number >= range[0] && q.number <= range[1]).map(q => q.number);
 }
 function countLoggedMisses() {
   return ['review1', 'review2', 'review3'].reduce((total, filter) => total + loggedMissedNumbersForReview(filter).length, 0);
@@ -2581,10 +2829,13 @@ function renderStatsDashboard() {
   const rows = ['exam1', 'exam2', 'exam3'].map((filter, index) => {
     const completion = examCompletionFor(filter);
     const nums = examNumbers(filter);
-    const answered = nums.filter(number => state.has(number)).length;
-    const acc = accuracyForNumbers(nums);
+    const locked = lockedCompletedSummary(filter);
+    const total = locked ? locked.total : nums.length;
+    const answered = locked ? locked.answered : nums.filter(number => state.has(number)).length;
+    const acc = locked ? locked.percent : accuracyForNumbers(nums);
+    const scoreLabel = locked ? ' submitted' : ' current';
     const best = completion.attempts.length ? Math.max(...completion.attempts.map(item => Number(item.accuracy) || 0)) : 0;
-    return '<div class="dashboard-row"><strong>Exam ' + (index + 1) + '</strong><span>' + answered + '/150 answered</span><span>' + acc + '% current</span><span>' + best + '% best</span></div>';
+    return '<div class="dashboard-row"><strong>Exam ' + (index + 1) + '</strong><span>' + answered + '/' + total + ' answered</span><span>' + acc + '%' + scoreLabel + '</span><span>' + best + '% best</span></div>';
   }).join('');
   statsDashboardEl.innerHTML = '<div class="dashboard-head"><div><h2 class="dashboard-title">Full exam statistics</h2><p class="dashboard-subtitle">Lifetime progress, review work, timing, and improvement across all practice exams.</p></div></div>' +
     '<div class="dashboard-grid">' +
@@ -2666,17 +2917,21 @@ function maybeShowExamFinishSplash(filter, wasCompleteBefore) {
 }
 function updateActionStates() {
   const nextBtn = document.getElementById('nextUnanswered');
+  const nextMissedButton = document.getElementById('nextMissed');
   const showBtn = document.getElementById('showAnswers');
   const resetBtn = document.getElementById('reset');
   const filter = filterEl ? filterEl.value : 'all';
   const fullStats = filter === 'fullstats';
   const orderDraw = filter === 'orderdraw';
-  const numbers = (fullStats || orderDraw) ? [] : selectedNumberScope();
-  const answeredAll = numbers.length > 0 && numbers.every(number => state.has(number));
-  const allCorrect = numbers.length > 0 && numbers.every(number => { const result = state.get(number); return result && result.correct; });
-  if (nextBtn) nextBtn.disabled = fullStats || orderDraw || answeredAll;
-  if (showBtn) showBtn.disabled = fullStats || orderDraw || allCorrect;
-  if (resetBtn) resetBtn.disabled = fullStats || orderDraw;
+  const studyGuide = filter === 'consent';
+  const locked = lockedCompletedSummary(filter);
+  const numbers = (fullStats || orderDraw || studyGuide) ? [] : selectedNumberScope();
+  const answeredAll = locked ? true : numbers.length > 0 && numbers.every(number => state.has(number));
+  const allCorrect = locked ? locked.perfect : numbers.length > 0 && numbers.every(number => { const result = state.get(number); return result && result.correct; });
+  if (nextBtn) nextBtn.disabled = fullStats || orderDraw || studyGuide || answeredAll;
+  if (nextMissedButton) nextMissedButton.disabled = !missedReviewRange(filter) || visibleIncorrectReviewCards().length === 0;
+  if (showBtn) showBtn.disabled = fullStats || orderDraw || studyGuide || allCorrect;
+  if (resetBtn) resetBtn.disabled = fullStats || orderDraw || studyGuide || !!missedReviewRange(filter);
 }
 const orderDrawItems = [
   { id: 'yellow', color: 'Yellow top', swatch: 'yellow', purpose: 'Blood cultures - Nutrient Broth (SPS)', order: 1 },
@@ -2693,10 +2948,66 @@ const orderDrawItems = [
   { id: 'royal-lavender', color: 'Royal blue/lavender stripe top', swatch: 'royal-lavender', purpose: 'EDTA - Lead/Heavy metal toxicology', order: 12 },
   { id: 'black', color: 'Black top', swatch: 'black', purpose: '(ESR) Sodium Citrate', order: 13 }
 ];
+const inversionQuizItems = [
+  { id: 'light-blue', color: 'Light blue cap', swatch: 'light-blue', answer: '3-4 times' },
+  { id: 'red', color: 'Red cap', swatch: 'red', answer: '4-5 times' },
+  { id: 'gold', color: 'Gold cap / tiger top', swatch: 'gold', answer: '4-5 times' },
+  { id: 'green', color: 'Green top', swatch: 'light-green', answer: '8-10 times' },
+  { id: 'lavender', color: 'Lavender top', swatch: 'lavender', answer: '8-10 times' },
+  { id: 'gray', color: 'Gray top', swatch: 'gray', answer: '8-10 times' }
+];
+const inversionChoicePool = ['0 times', '1-2 times', '2-3 times', '3-4 times', '4-5 times', '5-6 times', '6-8 times', '8-10 times', '10-12 times', '12-15 times'];
+let orderDrawActiveTab = 'matching';
 let orderDrawColorOrder = [];
 let orderDrawPurposeOrder = [];
 let orderDrawSortOrder = [];
 let orderDrawStats = { matchAttempts: 0, dragMoves: 0, startedAt: Date.now(), complete: false, matched: {} };
+let inversionQuizOrder = [];
+let inversionQuizIndex = 0;
+let inversionQuizScore = 0;
+let inversionQuizAnswered = false;
+let inversionQuizChoices = [];
+let inversionQuizResults = [];
+let inversionAutoAdvanceTimer = null;
+const consentQuizItems = [
+  { id: 'informed-definition', mode: 'definition', type: 'Informed consent', prompt: 'Informed consent', answer: 'A competent person gives voluntary permission for a medical procedure after receiving adequate information about the risk of the procedure, methods, and consequences.' },
+  { id: 'expressed-definition', mode: 'definition', type: 'Expressed consent', prompt: 'Expressed consent', answer: 'Permission is given by the patient verbally or in writing for a procedure.' },
+  { id: 'implied-definition', mode: 'definition', type: 'Implied consent', prompt: 'Implied consent', answer: 'The patient’s actions permit the procedure without verbal or written consent, such as going to the emergency room or holding out an arm when told blood needs to be drawn.' },
+  { id: 'special-testing-definition', mode: 'definition', type: 'HIV testing consent', prompt: 'HIV testing consent', answer: 'Special permission is needed before administering a specific sensitive blood test.' },
+  { id: 'parental-definition', mode: 'definition', type: 'Parental consent for minors', prompt: 'Parental consent for minors', answer: 'A parent or legal guardian must permit procedures administered to underage patients depending on state law, ranging from 18 to 21 years old.' },
+  { id: 'informed-scenario', mode: 'scenario', type: 'Informed consent', prompt: 'Informed consent', answer: 'Before a procedure, the provider explains what will happen, the possible risks, the benefits, and the consequences, then the competent patient agrees voluntarily.' },
+  { id: 'expressed-scenario', mode: 'scenario', type: 'Expressed consent', prompt: 'Expressed consent', answer: 'A patient signs the lab form or clearly says, “Yes, you can draw my blood,” before the procedure begins.' },
+  { id: 'implied-scenario', mode: 'scenario', type: 'Implied consent', prompt: 'Implied consent', answer: 'A patient sits in the draw chair, rolls up their sleeve, and extends their arm after being told a blood sample is needed.' },
+  { id: 'special-testing-scenario', mode: 'scenario', type: 'HIV testing consent', prompt: 'HIV testing consent', answer: 'Before collecting a sample for a sensitive screening test, the patient gives specific permission for that test in addition to routine blood work.' },
+  { id: 'parental-scenario', mode: 'scenario', type: 'Parental consent for minors', prompt: 'Parental consent for minors', answer: 'A legal guardian gives permission for an underage patient to have a procedure, following the rules for that state.' },
+  { id: 'billy-implied', mode: 'identify', type: 'Implied consent', prompt: 'Billy walks into the blood draw clinic, sits in the chair, rolls up his sleeve, and presents his arm after you explain that his provider ordered labs. What type of consent is this?', answer: 'Implied consent' },
+  { id: 'sandra-expressed', mode: 'identify', type: 'Expressed consent', prompt: 'Sandra says, “Yes, you can draw my blood today,” after you ask for permission before beginning the venipuncture. What type of consent is this?', answer: 'Expressed consent' },
+  { id: 'miguel-informed', mode: 'identify', type: 'Informed consent', prompt: 'Miguel is told why a procedure is needed, how it will be performed, the possible risks, and what could happen afterward. He understands and agrees. What type of consent is this?', answer: 'Informed consent' },
+  { id: 'minor-parental', mode: 'identify', type: 'Parental consent for minors', prompt: 'A 15-year-old patient needs a procedure, and the clinic waits for the patient’s legal guardian to give permission according to state rules. What type of consent is this?', answer: 'Parental consent for minors' },
+  { id: 'emergency-implied', mode: 'identify', type: 'Implied consent', prompt: 'A patient arrives at the emergency department seeking urgent care and cooperates with the care team even though they do not sign a separate form before the first basic assessment. What type of consent is this?', answer: 'Implied consent' },
+  { id: 'form-expressed', mode: 'identify', type: 'Expressed consent', prompt: 'A patient reads a clinic authorization form and signs their name to allow the ordered procedure. What type of consent is this?', answer: 'Expressed consent' }
+];
+let consentQuizOrder = [];
+let consentQuizIndex = 0;
+let consentQuizScore = 0;
+let consentQuizChoices = [];
+let consentQuizResults = [];
+function clearInversionAutoAdvance() {
+  if (inversionAutoAdvanceTimer) {
+    clearTimeout(inversionAutoAdvanceTimer);
+    inversionAutoAdvanceTimer = null;
+  }
+}
+function scheduleInversionAutoAdvance(nextFn = nextInversionQuestion) {
+  clearInversionAutoAdvance();
+  inversionAutoAdvanceTimer = setTimeout(() => {
+    inversionAutoAdvanceTimer = null;
+    nextFn();
+  }, 3000);
+}
+function extraQuizCountdownMarkup(answered) {
+  return answered ? '<div class="advance-countdown extra-quiz-countdown"><span>Next question in <strong>3</strong>s</span><span class="advance-countdown-bar" aria-hidden="true"><span class="advance-countdown-fill"></span></span></div>' : '';
+}
 function shuffleList(list) {
   const copy = list.slice();
   for (let i = copy.length - 1; i > 0; i--) {
@@ -2705,11 +3016,37 @@ function shuffleList(list) {
   }
   return copy;
 }
+function buildOrderDrawTabs() {
+  return '<div class="order-practice-tabs" role="tablist" aria-label="Order of draw practice options">'
+    + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'matching' ? 'active' : '') + '" type="button" data-order-tab="matching"><strong>Matching exercise</strong><span>Match tube colors to purpose, then sort the order of draw.</span></button>'
+    + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'inversions' ? 'active' : '') + '" type="button" data-order-tab="inversions"><strong>Inversion quiz</strong><span>Choose how many times each tube cap should be inverted.</span></button>'
+    + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'consentquiz' ? 'active' : '') + '" type="button" data-order-tab="consentquiz"><strong>Types of consent</strong><span>Match each consent type to the correct definition.</span></button>'
+    + '</div>';
+}
+function wireOrderDrawTabs() {
+  if (!orderDrawPanelEl) return;
+  orderDrawPanelEl.querySelectorAll('[data-order-tab]').forEach(button => button.addEventListener('click', () => {
+    orderDrawActiveTab = button.dataset.orderTab || 'matching';
+    renderOrderDraw();
+  }));
+}
 function resetOrderDraw() {
   orderDrawColorOrder = shuffleList(orderDrawItems);
   orderDrawPurposeOrder = shuffleList(orderDrawItems);
   orderDrawSortOrder = shuffleList(orderDrawItems);
   orderDrawStats = { matchAttempts: 0, dragMoves: 0, startedAt: Date.now(), complete: false, matched: {} };
+  orderDrawActiveTab = 'matching';
+  renderOrderDraw();
+}
+function resetInversionQuiz() {
+  clearInversionAutoAdvance();
+  inversionQuizOrder = shuffleList(inversionQuizItems);
+  inversionQuizIndex = 0;
+  inversionQuizScore = 0;
+  inversionQuizAnswered = false;
+  inversionQuizResults = [];
+  inversionQuizChoices = [];
+  orderDrawActiveTab = 'inversions';
   renderOrderDraw();
 }
 function orderDrawElapsedMs() {
@@ -2717,16 +3054,30 @@ function orderDrawElapsedMs() {
 }
 function renderOrderDraw() {
   if (!orderDrawPanelEl) return;
+  if (orderDrawActiveTab === 'inversions') {
+    renderInversionQuiz();
+    return;
+  }
+  if (orderDrawActiveTab === 'consentquiz') {
+    renderConsentQuiz();
+    return;
+  }
   if (!orderDrawColorOrder.length || !orderDrawPurposeOrder.length || !orderDrawSortOrder.length) {
     orderDrawColorOrder = shuffleList(orderDrawItems);
     orderDrawPurposeOrder = shuffleList(orderDrawItems);
     orderDrawSortOrder = shuffleList(orderDrawItems);
   }
-  const options = '<option value="">Choose matching purpose</option>' + orderDrawPurposeOrder.map(item => '<option value="' + item.id + '">' + item.purpose + '</option>').join('');
-  const rows = orderDrawColorOrder.map(item => '<div class="order-match-row"><div class="tube-row-card"><span class="tube-swatch ' + item.swatch + '"></span><span>' + item.color + '</span></div><select class="purpose-select" data-order-select data-answer="' + item.id + '">' + options + '</select><div class="match-result"></div></div>').join('');
-  orderDrawPanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Order of draw review</h2><p class="order-draw-subtitle">Select the matching purpose for each tube, then drag the combined bars into order.</p></div><button class="order-draw-reset" type="button" id="orderDrawReset">Reset and shuffle</button></div><div class="order-match-board"><p class="order-match-heading">Tube top color and purpose matching</p>' + rows + '</div><div class="order-draw-feedback">0 of ' + orderDrawItems.length + ' matched correctly.</div><section class="order-stage hidden" id="orderSortStage"></section>';
+  const rows = orderDrawColorOrder.map(item => {
+    const isMatched = !!orderDrawStats.matched[item.id];
+    const options = '<option value="">Choose matching purpose</option>' + orderDrawPurposeOrder.map(purpose => '<option value="' + purpose.id + '" ' + (isMatched && purpose.id === item.id ? 'selected' : '') + '>' + purpose.purpose + '</option>').join('');
+    return '<div class="order-match-row"><div class="tube-row-card"><span class="tube-swatch ' + item.swatch + '"></span><span>' + item.color + '</span></div><select class="purpose-select ' + (isMatched ? 'correct-choice' : '') + '" data-order-select data-answer="' + item.id + '" ' + (isMatched ? 'disabled' : '') + '>' + options + '</select><div class="match-result ' + (isMatched ? 'correct' : '') + '">' + (isMatched ? 'Correct' : '') + '</div></div>';
+  }).join('');
+  orderDrawPanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Extra Exams</h2><p class="order-draw-subtitle">Choose a focused practice type below.</p></div></div>' + buildOrderDrawTabs() + '<div class="order-match-board"><div class="order-draw-head"><p class="order-match-heading">Tube top color and purpose matching</p><button class="order-draw-reset" type="button" id="orderDrawReset">Reset and shuffle</button></div>' + rows + '</div><div class="order-draw-feedback">0 of ' + orderDrawItems.length + ' matched correctly.</div><section class="order-stage hidden" id="orderSortStage"></section>';
+  wireOrderDrawTabs();
   orderDrawPanelEl.querySelectorAll('[data-order-select]').forEach(select => select.addEventListener('change', handleOrderSelectChange));
-  var orderDrawResetButton = orderDrawPanelEl.querySelector('#orderDrawReset'); if (orderDrawResetButton) orderDrawResetButton.addEventListener('click', resetOrderDraw);
+  const orderDrawResetButton = orderDrawPanelEl.querySelector('#orderDrawReset');
+  if (orderDrawResetButton) orderDrawResetButton.addEventListener('click', resetOrderDraw);
+  updateOrderDrawMatchProgress();
 }
 function handleOrderSelectChange(event) {
   const select = event.currentTarget;
@@ -2769,19 +3120,6 @@ function renderOrderSortStage() {
   wireOrderSortDrag();
   checkOrderSort(false);
 }
-function commitOrderSortMove(list) {
-  orderDrawSortOrder = Array.from(list.querySelectorAll('[data-order-id]')).map(node => orderDrawItems.find(item => item.id === node.dataset.orderId)).filter(Boolean);
-  orderDrawStats.dragMoves += 1;
-  const count = document.getElementById('orderMoveCount');
-  if (count) count.textContent = 'Moves: ' + orderDrawStats.dragMoves;
-  checkOrderSort(true);
-}
-function moveOrderSortItem(list, dragging, y) {
-  const after = getDragAfterElement(list, y);
-  if (!dragging) return;
-  if (after == null) list.appendChild(dragging);
-  else list.insertBefore(dragging, after);
-}
 function wireOrderSortDrag() {
   const list = document.getElementById('orderSortList');
   if (!list) return;
@@ -2792,39 +3130,22 @@ function wireOrderSortDrag() {
       event.dataTransfer.setData('text/plain', item.dataset.orderId);
     });
     item.addEventListener('dragend', () => item.classList.remove('dragging'));
-    item.addEventListener('touchstart', event => {
-      item.classList.add('dragging');
-      list.dataset.touchDragging = item.dataset.orderId;
-      event.preventDefault();
-    }, { passive: false });
-    item.addEventListener('touchmove', event => {
-      const touch = event.touches && event.touches[0];
-      const dragging = list.querySelector('.dragging');
-      if (!touch || !dragging) return;
-      moveOrderSortItem(list, dragging, touch.clientY);
-      event.preventDefault();
-    }, { passive: false });
-    item.addEventListener('touchend', () => {
-      const dragging = list.querySelector('.dragging');
-      if (dragging) dragging.classList.remove('dragging');
-      if (list.dataset.touchDragging) {
-        delete list.dataset.touchDragging;
-        commitOrderSortMove(list);
-      }
-    });
-    item.addEventListener('touchcancel', () => {
-      const dragging = list.querySelector('.dragging');
-      if (dragging) dragging.classList.remove('dragging');
-      delete list.dataset.touchDragging;
-    });
   });
   list.addEventListener('dragover', event => {
     event.preventDefault();
-    moveOrderSortItem(list, list.querySelector('.dragging'), event.clientY);
+    const dragging = list.querySelector('.dragging');
+    const after = getDragAfterElement(list, event.clientY);
+    if (!dragging) return;
+    if (after == null) list.appendChild(dragging);
+    else list.insertBefore(dragging, after);
   });
   list.addEventListener('drop', event => {
     event.preventDefault();
-    commitOrderSortMove(list);
+    orderDrawSortOrder = Array.from(list.querySelectorAll('[data-order-id]')).map(node => orderDrawItems.find(item => item.id === node.dataset.orderId)).filter(Boolean);
+    orderDrawStats.dragMoves += 1;
+    const count = document.getElementById('orderMoveCount');
+    if (count) count.textContent = 'Moves: ' + orderDrawStats.dragMoves;
+    checkOrderSort(true);
   });
 }
 function getDragAfterElement(container, y) {
@@ -2881,27 +3202,191 @@ function showOrderDrawFinalSplash() {
   });
   document.body.appendChild(overlay);
 }
+function scrollExtraQuizIntoView() {
+  const card = orderDrawPanelEl ? orderDrawPanelEl.querySelector('.inversion-quiz-card') : null;
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function makeInversionChoices(item) {
+  const wrong = shuffleList(inversionChoicePool.filter(choice => choice !== item.answer)).slice(0, 3);
+  return shuffleList([item.answer].concat(wrong));
+}
+function renderInversionQuiz() {
+  if (!orderDrawPanelEl) return;
+  if (!inversionQuizOrder.length) resetInversionQuiz();
+  const item = inversionQuizOrder[inversionQuizIndex];
+  if (!item) return;
+  if (!inversionQuizChoices.length) inversionQuizChoices = makeInversionChoices(item);
+  const answeredResult = inversionQuizResults[inversionQuizIndex];
+  const choices = inversionQuizChoices.map(choice => {
+    const className = answeredResult ? (choice === item.answer ? ' correct' : (choice === answeredResult.selected ? ' wrong' : '')) : '';
+    return '<button class="inversion-choice' + className + '" type="button" data-inversion-choice="' + escapeHtml(choice) + '" ' + (answeredResult ? 'disabled' : '') + '>' + escapeHtml(choice) + '</button>';
+  }).join('');
+  const feedbackClass = answeredResult ? (answeredResult.correct ? ' good' : ' review') : '';
+  const feedbackText = answeredResult ? (answeredResult.correct ? 'Correct. Auto advances in 3 seconds.' : 'Incorrect. Correct answer: ' + item.answer + '. Auto advances in 3 seconds.') : 'Select the correct number of inversions.';
+  orderDrawPanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Extra Exams</h2><p class="order-draw-subtitle">Choose a focused practice type below.</p></div></div>' + buildOrderDrawTabs() + '<section class="inversion-quiz-card"><div class="inversion-quiz-top"><p class="order-match-heading">Tube inversion multiple choice</p><span class="inversion-progress">Question ' + (inversionQuizIndex + 1) + ' of ' + inversionQuizOrder.length + ' • Score ' + inversionQuizScore + '/' + inversionQuizOrder.length + '</span></div><div class="inversion-question"><span class="tube-swatch ' + item.swatch + '"></span><span>How many times should the ' + escapeHtml(item.color) + ' be inverted?</span></div><div class="inversion-choices">' + choices + '</div><div class="inversion-feedback' + feedbackClass + '">' + escapeHtml(feedbackText) + '</div>' + extraQuizCountdownMarkup(answeredResult) + '<div class="inversion-actions"><button class="inversion-next" type="button" id="inversionNext" ' + (answeredResult ? '' : 'disabled') + '>' + (inversionQuizIndex === inversionQuizOrder.length - 1 ? 'Finish quiz' : 'Next question') + '</button><button class="inversion-restart" type="button" id="inversionRestart">Restart and shuffle</button></div></section>';
+  wireOrderDrawTabs();
+  orderDrawPanelEl.querySelectorAll('[data-inversion-choice]').forEach(button => button.addEventListener('click', handleInversionChoice));
+  const nextButton = orderDrawPanelEl.querySelector('#inversionNext');
+  if (nextButton) nextButton.addEventListener('click', nextInversionQuestion);
+  const restartButton = orderDrawPanelEl.querySelector('#inversionRestart');
+  if (restartButton) restartButton.addEventListener('click', resetInversionQuiz);
+}
+function handleInversionChoice(event) {
+  if (inversionQuizResults[inversionQuizIndex]) return;
+  const item = inversionQuizOrder[inversionQuizIndex];
+  const selected = event.currentTarget.dataset.inversionChoice;
+  const correct = selected === item.answer;
+  if (correct) inversionQuizScore += 1;
+  inversionQuizResults[inversionQuizIndex] = { id: item.id, selected, correct };
+  renderInversionQuiz();
+  scheduleInversionAutoAdvance();
+}
+function nextInversionQuestion() {
+  clearInversionAutoAdvance();
+  if (!inversionQuizResults[inversionQuizIndex]) return;
+  if (inversionQuizIndex >= inversionQuizOrder.length - 1) {
+    showInversionQuizFinalSplash();
+    return;
+  }
+  inversionQuizIndex += 1;
+  inversionQuizChoices = [];
+  renderInversionQuiz();
+  scrollExtraQuizIntoView();
+}
+function showInversionQuizFinalSplash() {
+  const total = inversionQuizOrder.length;
+  const percent = total ? Math.round((inversionQuizScore / total) * 100) : 0;
+  const grade = orderDrawGrade(percent);
+  const overlay = document.createElement('div');
+  overlay.className = 'exam-finish-overlay';
+  overlay.innerHTML = '<div class="exam-finish-card ' + (percent >= 80 ? 'good' : (percent >= 70 ? 'review' : 'failed')) + '" role="dialog" aria-modal="true" aria-label="Tube inversion quiz results"><h2>Complete</h2><p>You finished the tube inversion quiz.</p><div class="order-final-grid"><div class="order-final-stat"><strong>' + percent + '%</strong><span>overall score</span></div><div class="order-final-stat"><strong>' + inversionQuizScore + '/' + total + '</strong><span>correct</span></div><div class="order-final-stat"><strong>' + grade + '</strong><span>grade</span></div><div class="order-final-stat"><strong>' + (total - inversionQuizScore) + '</strong><span>missed</span></div></div><p>Restarting will shuffle the cap colors into a new random order.</p><div class="finish-actions"><button class="secondary" type="button" data-close-inversion-results>Close</button><button type="button" data-restart-inversion-results>Restart test</button></div></div>';
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay || event.target.closest('[data-close-inversion-results]')) overlay.remove();
+    if (event.target.closest('[data-restart-inversion-results]')) {
+      overlay.remove();
+      resetInversionQuiz();
+    }
+  });
+  document.body.appendChild(overlay);
+}
+
+function renderConsentGuide() {
+  if (!consentGuidePanelEl) return;
+  const items = [
+    ['Informed consent', 'A competent person gives voluntary permission for a medical procedure after receiving adequate information about the risk of the procedure, methods, and consequences.'],
+    ['Expressed consent', 'Permission is given by the patient verbally or in writing for a procedure.'],
+    ['Implied consent', 'The patient’s actions permit the procedure without verbal or written consent. For example, this includes a patient going to the emergency room or holding out an arm when told they need blood drawn.'],
+    ['HIV testing consent', 'Special permission is needed to administer a test that detects HIV.'],
+    ['Parental consent for minors', 'A parent or legal guardian must permit procedures administered to underage patients depending on state law, ranging from 18 to 21 years old.']
+  ];
+  consentGuidePanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Types of consent</h2><p class="order-draw-subtitle">Quick study guide for consent terms used in phlebotomy and medical procedures.</p></div></div><div class="study-guide-note">Review the differences between permission given by words, writing, actions, special testing rules, and guardian permission.</div><div class="study-guide-grid">' + items.map(item => '<article class="study-guide-card"><strong>' + escapeHtml(item[0]) + '</strong><p>' + escapeHtml(item[1]) + '</p></article>').join('') + '</div>';
+}
+function resetConsentQuiz() {
+  clearInversionAutoAdvance();
+  consentQuizOrder = shuffleList(consentQuizItems);
+  consentQuizIndex = 0;
+  consentQuizScore = 0;
+  consentQuizChoices = [];
+  consentQuizResults = [];
+  orderDrawActiveTab = 'consentquiz';
+  renderOrderDraw();
+}
+function makeConsentChoices(item) {
+  if (item.mode === 'identify') {
+    const typePool = ['Informed consent', 'Expressed consent', 'Implied consent', 'HIV testing consent', 'Parental consent for minors'];
+    return shuffleList([item.answer].concat(shuffleList(typePool.filter(type => type !== item.answer)).slice(0, 3)));
+  }
+  let pool = consentQuizItems.filter(choice => choice.id !== item.id && choice.mode === item.mode).map(choice => choice.answer);
+  if (pool.length < 3) pool = consentQuizItems.filter(choice => choice.id !== item.id).map(choice => choice.answer);
+  const wrong = shuffleList(pool).slice(0, 3);
+  return shuffleList([item.answer].concat(wrong));
+}
+function renderConsentQuiz() {
+  if (!orderDrawPanelEl) return;
+  if (!consentQuizOrder.length) resetConsentQuiz();
+  const item = consentQuizOrder[consentQuizIndex];
+  if (!item) return;
+  if (!consentQuizChoices.length) consentQuizChoices = makeConsentChoices(item);
+  const answeredResult = consentQuizResults[consentQuizIndex];
+  const choices = consentQuizChoices.map(choice => {
+    const className = answeredResult ? (choice === item.answer ? ' correct' : (choice === answeredResult.selected ? ' wrong' : '')) : '';
+    return '<button class="inversion-choice' + className + '" type="button" data-consent-choice="' + escapeHtml(choice) + '" ' + (answeredResult ? 'disabled' : '') + '>' + escapeHtml(choice) + '</button>';
+  }).join('');
+  const feedbackClass = answeredResult ? (answeredResult.correct ? ' good' : ' review') : '';
+  const promptText = item.mode === 'identify' ? item.prompt : item.type;
+  const helperText = item.mode === 'identify' ? 'Read the situation and choose the type of consent.' : (item.mode === 'scenario' ? 'Which real-world situation correctly matches this type of consent?' : 'Which definition correctly matches this type of consent?');
+  const feedbackText = answeredResult ? (answeredResult.correct ? 'Correct. Auto advances in 3 seconds.' : 'Incorrect. Review the highlighted answer before moving on. Auto advances in 3 seconds.') : 'Select the best answer.';
+  orderDrawPanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Extra Exams</h2><p class="order-draw-subtitle">Choose a focused practice type below.</p></div></div>' + buildOrderDrawTabs() + '<section class="inversion-quiz-card"><div class="inversion-quiz-top"><p class="order-match-heading">Types of consent multiple choice</p><span class="inversion-progress">Question ' + (consentQuizIndex + 1) + ' of ' + consentQuizOrder.length + ' • Score ' + consentQuizScore + '/' + consentQuizOrder.length + '</span></div><div class="inversion-question"><span>' + escapeHtml(promptText) + '</span></div><div class="inversion-feedback">' + escapeHtml(helperText) + '</div><div class="inversion-choices">' + choices + '</div><div class="inversion-feedback' + feedbackClass + '">' + escapeHtml(feedbackText) + '</div>' + extraQuizCountdownMarkup(answeredResult) + '<div class="inversion-actions"><button class="inversion-next" type="button" id="consentNext" ' + (answeredResult ? '' : 'disabled') + '>' + (consentQuizIndex === consentQuizOrder.length - 1 ? 'Finish quiz' : 'Next question') + '</button><button class="inversion-restart" type="button" id="consentRestart">Restart and shuffle</button></div></section>';
+  wireOrderDrawTabs();
+  orderDrawPanelEl.querySelectorAll('[data-consent-choice]').forEach(button => button.addEventListener('click', handleConsentChoice));
+  const nextButton = orderDrawPanelEl.querySelector('#consentNext');
+  if (nextButton) nextButton.addEventListener('click', nextConsentQuestion);
+  const restartButton = orderDrawPanelEl.querySelector('#consentRestart');
+  if (restartButton) restartButton.addEventListener('click', resetConsentQuiz);
+}
+function handleConsentChoice(event) {
+  if (consentQuizResults[consentQuizIndex]) return;
+  const item = consentQuizOrder[consentQuizIndex];
+  const selected = event.currentTarget.dataset.consentChoice;
+  const correct = selected === item.answer;
+  if (correct) consentQuizScore += 1;
+  consentQuizResults[consentQuizIndex] = { id: item.id, selected, correct };
+  renderConsentQuiz();
+  scheduleInversionAutoAdvance(nextConsentQuestion);
+}
+function nextConsentQuestion() {
+  clearInversionAutoAdvance();
+  if (!consentQuizResults[consentQuizIndex]) return;
+  if (consentQuizIndex >= consentQuizOrder.length - 1) {
+    showConsentQuizFinalSplash();
+    return;
+  }
+  consentQuizIndex += 1;
+  consentQuizChoices = [];
+  renderConsentQuiz();
+  scrollExtraQuizIntoView();
+}
+function showConsentQuizFinalSplash() {
+  const total = consentQuizOrder.length;
+  const percent = total ? Math.round((consentQuizScore / total) * 100) : 0;
+  const grade = orderDrawGrade(percent);
+  const overlay = document.createElement('div');
+  overlay.className = 'exam-finish-overlay';
+  overlay.innerHTML = '<div class="exam-finish-card ' + (percent >= 80 ? 'good' : (percent >= 70 ? 'review' : 'failed')) + '" role="dialog" aria-modal="true" aria-label="Types of consent quiz results"><h2>Complete</h2><p>You finished the types of consent quiz.</p><div class="order-final-grid"><div class="order-final-stat"><strong>' + percent + '%</strong><span>overall score</span></div><div class="order-final-stat"><strong>' + consentQuizScore + '/' + total + '</strong><span>correct</span></div><div class="order-final-stat"><strong>' + grade + '</strong><span>grade</span></div><div class="order-final-stat"><strong>' + (total - consentQuizScore) + '</strong><span>missed</span></div></div><p>Restarting will shuffle the consent types into a new random order.</p><div class="finish-actions"><button class="secondary" type="button" data-close-consent-results>Close</button><button type="button" data-restart-consent-results>Restart test</button></div></div>';
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay || event.target.closest('[data-close-consent-results]')) overlay.remove();
+    if (event.target.closest('[data-restart-consent-results]')) {
+      overlay.remove();
+      resetConsentQuiz();
+    }
+  });
+  document.body.appendChild(overlay);
+}
 function updateToolbarMode() {
-  if (!retakeMissedBtn || !filterEl) return;
+  if (!filterEl) return;
   const isReview = !!missedReviewRange(filterEl.value);
-  retakeMissedBtn.classList.toggle('hidden', !isReview);
+  if (retakeMissedBtn) retakeMissedBtn.classList.toggle('hidden', !isReview);
+  if (nextMissedBtn) nextMissedBtn.classList.toggle('hidden', !isReview);
 }
 function applyFilter() {
   const filter = filterEl.value;
   applyExamOrder(filter);
   const fullStats = filter === 'fullstats';
   const orderDraw = filter === 'orderdraw';
-  document.body.classList.toggle('stats-dashboard-mode', fullStats || orderDraw);
-  document.body.classList.toggle('order-draw-mode', orderDraw);
+  const studyGuide = filter === 'consent';
+  document.body.classList.toggle('stats-dashboard-mode', fullStats || orderDraw || studyGuide);
+  document.body.classList.toggle('order-draw-mode', orderDraw || studyGuide);
   if (statsDashboardEl) statsDashboardEl.classList.toggle('hidden', !fullStats);
   if (orderDrawPanelEl) orderDrawPanelEl.classList.toggle('hidden', !orderDraw);
-  if (commonPanelEl) commonPanelEl.classList.toggle('hidden', fullStats || orderDraw);
-  exam.classList.toggle('hidden', fullStats || orderDraw);
+  if (consentGuidePanelEl) consentGuidePanelEl.classList.toggle('hidden', !studyGuide);
+  if (commonPanelEl) commonPanelEl.classList.toggle('hidden', fullStats || orderDraw || studyGuide);
+  exam.classList.toggle('hidden', fullStats || orderDraw || studyGuide);
   if (orderDraw) renderOrderDraw();
+  if (studyGuide) renderConsentGuide();
   for (const card of exam.children) {
     const num = Number(card.dataset.number);
     const result = state.get(num);
-    let show = !(fullStats || orderDraw);
+    let show = !(fullStats || orderDraw || studyGuide);
     if (filter === 'exam1') show = num >= 1 && num <= 150;
     if (filter === 'exam2') show = num >= 151 && num <= 300;
     if (filter === 'exam3') show = num >= 301 && num <= 450;
@@ -2912,9 +3397,11 @@ function applyFilter() {
     if (filter === 'wrong') show = !!result && !result.correct;
     if (filter === 'correct') show = !!result && result.correct;
     card.classList.toggle('hidden', !show);
+    const q = questions.find(item => item.number === num);
+    if (q && result) applyResult(q, card);
   }
   renderStatsDashboard();
-  if (fullStats || orderDraw) {
+  if (fullStats || orderDraw || studyGuide) {
     setCurrentQuestion(null);
     updateToolbarMode();
     updateSectionLabel();
@@ -3053,8 +3540,54 @@ filterEl.addEventListener('change', () => {
   updateStats();
   saveProgress();
 });
+function setGoogleSearchOpen(open) {
+  if (!googlePanel) {
+    if (open) window.open('https://www.google.com/search?igu=1', '_blank', 'noopener');
+    return;
+  }
+  if (open && navigator.onLine === false) {
+    alert('Internet access is not available right now.');
+    updateGoogleSearchButtonStatus();
+    return;
+  }
+  googlePanel.classList.toggle('hidden', !open);
+  googlePanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (googleButton) googleButton.classList.toggle('active', open);
+  if (open && googleFrame && !googleFrame.src) {
+    googleFrame.src = 'https://www.google.com/search?igu=1';
+  }
+}
+
+function updateGoogleSearchButtonStatus() {
+  if (!googleButton) return;
+  const online = navigator.onLine !== false;
+  googleButton.disabled = !online;
+  googleButton.classList.toggle('offline', !online);
+  googleButton.setAttribute('aria-label', online ? 'Open Google Search inside the exam' : 'Google Search unavailable offline');
+  googleButton.title = online ? 'Open Google Search inside the exam' : 'Internet connection is unavailable';
+  if (!online) setGoogleSearchOpen(false);
+}
+
+if (googleButton) {
+  googleButton.addEventListener('click', () => {
+    const open = !googlePanel || googlePanel.classList.contains('hidden');
+    setGoogleSearchOpen(open);
+  });
+  window.addEventListener('online', updateGoogleSearchButtonStatus);
+  window.addEventListener('offline', updateGoogleSearchButtonStatus);
+  updateGoogleSearchButtonStatus();
+}
+if (googleClose) {
+  googleClose.addEventListener('click', () => setGoogleSearchOpen(false));
+}
+if (googleOpenExternal) {
+  googleOpenExternal.addEventListener('click', () => setGoogleSearchOpen(false));
+}
 document.getElementById('nextUnanswered').addEventListener('click', () => {
   scrollToCard(highlightedQuestionCard(), 'forward');
+});
+if (nextMissedBtn) nextMissedBtn.addEventListener('click', () => {
+  jumpToNextMissed();
 });
 document.getElementById('topButton').addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3297,6 +3830,7 @@ function setDictAddOpen(open) {
   dictAddForm.classList.toggle('hidden', !open);
   dictAddToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   dictAddToggle.textContent = open ? 'Hide add definition' : '+ Add definition';
+  if (!open && dictAddButton) dictAddButton.textContent = 'Add definition';
 }
 
 if (dictAddToggle) dictAddToggle.addEventListener('click', () => {
@@ -3327,6 +3861,55 @@ function createDictionaryCell(text, extraClass = '') {
   return cell;
 }
 
+function createDictionaryMeaningCell(entry) {
+  const cell = createDictionaryCell(entry.meaning);
+  cell.classList.add('dict-meaning-cell');
+  const badge = document.createElement('span');
+  badge.className = 'dict-manual-badge';
+  badge.textContent = 'Added manually';
+  cell.appendChild(badge);
+  return cell;
+}
+function createDictionaryActionCell(entry) {
+  const cell = createDictionaryCell(entry.definition);
+  cell.classList.add('dict-definition-cell');
+  const actions = document.createElement('div');
+  actions.className = 'dict-entry-actions';
+  const editButton = document.createElement('button');
+  editButton.type = 'button';
+  editButton.className = 'dict-entry-edit';
+  editButton.textContent = 'Edit';
+  editButton.addEventListener('click', () => editCustomDictionaryEntry(entry.abbr));
+  const deleteButton = document.createElement('button');
+  deleteButton.type = 'button';
+  deleteButton.className = 'dict-entry-delete';
+  deleteButton.textContent = 'Delete';
+  deleteButton.addEventListener('click', () => removeCustomDictionaryEntry(entry.abbr));
+  actions.append(editButton, deleteButton);
+  cell.appendChild(actions);
+  return cell;
+}
+function editCustomDictionaryEntry(abbr) {
+  const entry = customDictionaryEntries.find(item => item.abbr.toLowerCase() === String(abbr || '').toLowerCase());
+  if (!entry) return;
+  setDictAddOpen(true);
+  if (dictAbbrInput) dictAbbrInput.value = entry.abbr;
+  if (dictMeaningInput) dictMeaningInput.value = entry.meaning || '';
+  if (dictDefinitionInput) dictDefinitionInput.value = entry.definition || '';
+  if (dictAddButton) dictAddButton.textContent = 'Save definition';
+  if (dictAddStatus) dictAddStatus.textContent = 'Editing saved definition';
+  if (dictDefinitionInput) dictDefinitionInput.focus();
+}
+function removeCustomDictionaryEntry(abbr) {
+  const entry = customDictionaryEntries.find(item => item.abbr.toLowerCase() === String(abbr || '').toLowerCase());
+  if (!entry) return;
+  if (!confirm('Delete "' + entry.abbr + '" from your custom dictionary?')) return;
+  customDictionaryEntries = customDictionaryEntries.filter(item => item.abbr.toLowerCase() !== entry.abbr.toLowerCase());
+  saveCustomDictionaryEntries();
+  renderCustomDictionaryRows();
+  if (dictAddStatus) dictAddStatus.textContent = 'Definition deleted';
+  updateDictionaryProficiency();
+}
 function renderCustomDictionaryRows() {
   if (!dictTable) return;
   dictTable.querySelectorAll('.dict-custom-row').forEach(row => row.remove());
@@ -3335,8 +3918,8 @@ function renderCustomDictionaryRows() {
     row.className = 'dict-row dict-custom-row';
     row.append(
       createDictionaryCell(entry.abbr, 'dict-abbr'),
-      createDictionaryCell(entry.meaning),
-      createDictionaryCell(entry.definition)
+      createDictionaryMeaningCell(entry),
+      createDictionaryActionCell(entry)
     );
     dictTable.appendChild(row);
   });
@@ -3374,7 +3957,8 @@ if (dictAddButton) dictAddButton.addEventListener('click', () => {
   if (dictAbbrInput) dictAbbrInput.value = '';
   if (dictMeaningInput) dictMeaningInput.value = '';
   if (dictDefinitionInput) dictDefinitionInput.value = '';
-  if (dictAddStatus) dictAddStatus.textContent = 'Definition added';
+  if (dictAddStatus) dictAddStatus.textContent = 'Definition saved';
+  if (dictAddButton) dictAddButton.textContent = 'Add definition';
   setDictAddOpen(false);
   if (dictAbbrInput) dictAbbrInput.focus();
 });
