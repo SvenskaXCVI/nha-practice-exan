@@ -2,7 +2,7 @@
   "name": "NHA Mobile Practice Exam",
   "short_name": "NHA Practice",
   "description": "Interactive NHA practice exam with progress, review, notes, dictionary, and quizzes.",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -21,5 +21,6 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "./"
 }
