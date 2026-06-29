@@ -701,6 +701,11 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 .mobile-version .welcome-actions { display:grid; grid-template-columns:1fr; }
 .mobile-version .welcome-start { width:100%; }
 
+
+/* Welcome splash fade */
+.welcome-splash { opacity:1; transition:opacity .3s ease, transform .3s ease; }
+.welcome-splash.is-dismissing { opacity:0; transform:scale(1.012); pointer-events:none; }
+
 </style>
 </head>
 <body>
@@ -3354,6 +3359,7 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 
 
 
+
 const welcomeSplash = document.getElementById('welcomeSplash');
 const welcomeStart = document.getElementById('welcomeStart');
 function welcomeNavigationType() {
@@ -3364,14 +3370,21 @@ function welcomeNavigationType() {
   } catch (error) {}
   return 'navigate';
 }
-function hideWelcomeSplash() {
+function finishWelcomeHide() {
   if (!welcomeSplash) return;
   welcomeSplash.classList.add('hidden');
+  welcomeSplash.classList.remove('is-dismissing');
+}
+function hideWelcomeSplash() {
+  if (!welcomeSplash) return;
+  welcomeSplash.classList.add('is-dismissing');
+  window.setTimeout(finishWelcomeHide, 320);
 }
 function initWelcomeSplash() {
   if (!welcomeSplash) return;
   const isRefresh = welcomeNavigationType() === 'reload';
   welcomeSplash.classList.toggle('hidden', isRefresh);
+  welcomeSplash.classList.remove('is-dismissing');
 }
 if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
   event.preventDefault();
