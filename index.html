@@ -682,18 +682,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 @media (max-width:390px) { .mobile-version .brand-logo.sx-logo { width:36px; height:31px; flex-basis:36px; } }
 
 
-/* Welcome splash */
-.welcome-splash { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; padding:24px; background:color-mix(in srgb, var(--paper) 90%, rgba(0,0,0,.18)); backdrop-filter:blur(18px); }
-.welcome-splash.hidden { display:none; }
-.welcome-card { width:min(560px, 100%); border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); box-shadow:0 24px 70px var(--shadow); padding:28px; display:grid; gap:14px; text-align:left; }
-.welcome-kicker { width:max-content; max-width:100%; border:1px solid color-mix(in srgb, var(--accent), var(--line) 55%); background:var(--accent-soft); color:var(--accent-dark); border-radius:999px; padding:5px 10px; font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:0; }
-.welcome-card h2 { margin:0; font-size:36px; line-height:1; letter-spacing:0; }
-.welcome-card p { margin:0; color:var(--muted); font-size:16px; line-height:1.55; font-weight:700; }
-.welcome-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:6px; }
-.welcome-start { border:1px solid color-mix(in srgb, var(--accent), #000 18%); background:var(--accent); color:#fff; border-radius:8px; padding:12px 16px; min-height:46px; cursor:pointer; font-weight:900; }
-.welcome-start:hover { filter:brightness(1.05); box-shadow:0 0 0 3px var(--focus); }
-.welcome-repeat { display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; font-weight:800; }
-.welcome-repeat input { width:18px; height:18px; accent-color:var(--accent); }
+
 .mobile-version .welcome-splash { padding:calc(20px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom)); align-items:start; overflow:auto; -webkit-overflow-scrolling:touch; }
 .mobile-version .welcome-card { margin-top:8vh; padding:22px; }
 .mobile-version .welcome-card h2 { font-size:30px; }
@@ -702,48 +691,10 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 .mobile-version .welcome-start { width:100%; }
 
 
-/* Welcome splash fade */
-.welcome-splash { opacity:1; transition:opacity .3s ease, transform .3s ease; }
-.welcome-splash.is-dismissing { opacity:0; transform:scale(1.012); pointer-events:none; }
 
 </style>
 </head>
 <body>
-<div class="welcome-splash" id="welcomeSplash" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-  <div class="welcome-card">
-    <div class="welcome-kicker">NHA Practice Exam</div>
-    <h2 id="welcomeTitle">Welcome back</h2>
-    <p>You are ready to keep building confidence one question at a time. Take a breath, trust your work, and keep going.</p>
-    <div class="welcome-actions">
-      <button class="welcome-start" id="welcomeStart" type="button">Start studying</button>
-    </div>
-  </div>
-<div class="bay-side bay-side-left" aria-hidden="true"></div>
-<div class="bay-side bay-side-right" aria-hidden="true"></div>
-<header>
-  <div class="header-inner">
-    <div class="header-left">
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open exam menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <div class="title-block"><h1>NHA Mobile Practice Exam</h1><div class="creator-credit">made by Daddy Nathan</div><div class="section-label" id="sectionLabel">All questions</div></div>
-      <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
-    </div>
-    <div class="header-right">
-      <div class="header-actions">
-        <button class="header-action nav-blue" id="nextUnanswered" type="button"><strong>Next</strong><span>unanswered</span></button>
-        <button class="header-action warning-btn" id="showAnswers" type="button"><strong>Show</strong><span>answers</span></button>
-        <button class="header-action danger-btn" id="reset" type="button"><strong>Reset</strong><span>exam</span></button>
-        <button class="header-action nav-blue hidden" id="retakeMissed" type="button"><strong>Retake</strong><span>missed</span></button>
-      </div>
-      <div class="stats" aria-live="polite">
-        <div class="stat"><strong id="answered">0</strong><span>answered</span></div>
-        <div class="stat"><strong id="correct">0</strong><span>correct</span></div>
-        <div class="stat"><strong id="missed">0</strong><span>missed</span></div>
-        <div class="stat"><strong id="commonCount">0</strong><span>3x missed</span></div>
-        <div class="stat"><strong id="score">0%</strong><span>score</span></div>
-        <div class="stat grade-stat"><strong id="letterGrade">--</strong><span>grade</span></div>
-        <div class="stat dict-prof-stat"><strong id="dictProficiency">--</strong><span>dict</span></div>
-      </div>
-    </div>
     <div class="header-progress"><div class="progress-row"><div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div><div class="progress-percent" id="progressPercent">0%</div></div></div>
   </div>
 </header>
@@ -3360,46 +3311,6 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 
 
 
-const welcomeSplash = document.getElementById('welcomeSplash');
-const welcomeStart = document.getElementById('welcomeStart');
-const welcomeUnloadKey = 'nhaPracticeWelcomePagehideV4';
-function recentPageRefresh() {
-  try {
-    const previousHide = Number(window.sessionStorage.getItem(welcomeUnloadKey) || 0);
-    return previousHide && Date.now() - previousHide < 5000;
-  } catch (error) {
-    return false;
-  }
-}
-function rememberPageHide() {
-  try { window.sessionStorage.setItem(welcomeUnloadKey, String(Date.now())); }
-  catch (error) {}
-}
-function finishWelcomeHide() {
-  if (!welcomeSplash) return;
-  welcomeSplash.classList.add('hidden');
-  welcomeSplash.classList.remove('is-dismissing');
-}
-function hideWelcomeSplash() {
-  if (!welcomeSplash) return;
-  welcomeSplash.classList.add('is-dismissing');
-  window.setTimeout(finishWelcomeHide, 320);
-}
-function initWelcomeSplash() {
-  if (!welcomeSplash) return;
-  const hideForImmediateRefresh = recentPageRefresh();
-  welcomeSplash.classList.toggle('hidden', Boolean(hideForImmediateRefresh));
-  welcomeSplash.classList.remove('is-dismissing');
-}
-if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
-  event.preventDefault();
-  hideWelcomeSplash();
-});
-if (welcomeSplash) welcomeSplash.addEventListener('click', function(event) {
-  if (event.target === welcomeSplash) hideWelcomeSplash();
-});
-window.addEventListener('pagehide', rememberPageHide);
-initWelcomeSplash();
 render();
 let startupFilter = currentActiveExam || savedProgress.filter;
 if (startupFilter && !filterEl.querySelector('option[value="' + startupFilter + '"]')) startupFilter = 'all';
