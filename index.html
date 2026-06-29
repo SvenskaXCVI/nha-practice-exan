@@ -718,8 +718,6 @@ body.dark .brand-logo.sx-logo { color:#fff; }
       <button class="welcome-start" id="welcomeStart" type="button">Start studying</button>
     </div>
   </div>
-</div>
-</div>
 <div class="bay-side bay-side-left" aria-hidden="true"></div>
 <div class="bay-side bay-side-right" aria-hidden="true"></div>
 <header>
@@ -3361,27 +3359,20 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 
 
 
+
 const welcomeSplash = document.getElementById('welcomeSplash');
 const welcomeStart = document.getElementById('welcomeStart');
-const welcomeDismissedAtKey = 'nhaPracticeWelcomeDismissedAtV3';
-function welcomeNavigationType() {
+const welcomeUnloadKey = 'nhaPracticeWelcomePagehideV4';
+function recentPageRefresh() {
   try {
-    const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-    if (nav && nav.type) return nav.type;
-    if (performance.navigation && performance.navigation.type === 1) return 'reload';
-  } catch (error) {}
-  return 'navigate';
-}
-function recentWelcomeDismissal() {
-  try {
-    const dismissedAt = Number(window.sessionStorage.getItem(welcomeDismissedAtKey) || 0);
-    return dismissedAt && Date.now() - dismissedAt < 15000;
+    const previousHide = Number(window.sessionStorage.getItem(welcomeUnloadKey) || 0);
+    return previousHide && Date.now() - previousHide < 5000;
   } catch (error) {
     return false;
   }
 }
-function rememberWelcomeDismissal() {
-  try { window.sessionStorage.setItem(welcomeDismissedAtKey, String(Date.now())); }
+function rememberPageHide() {
+  try { window.sessionStorage.setItem(welcomeUnloadKey, String(Date.now())); }
   catch (error) {}
 }
 function finishWelcomeHide() {
@@ -3391,14 +3382,13 @@ function finishWelcomeHide() {
 }
 function hideWelcomeSplash() {
   if (!welcomeSplash) return;
-  rememberWelcomeDismissal();
   welcomeSplash.classList.add('is-dismissing');
   window.setTimeout(finishWelcomeHide, 320);
 }
 function initWelcomeSplash() {
   if (!welcomeSplash) return;
-  const shouldHideForImmediateRefresh = welcomeNavigationType() === 'reload' && recentWelcomeDismissal();
-  welcomeSplash.classList.toggle('hidden', shouldHideForImmediateRefresh);
+  const hideForImmediateRefresh = recentPageRefresh();
+  welcomeSplash.classList.toggle('hidden', Boolean(hideForImmediateRefresh));
   welcomeSplash.classList.remove('is-dismissing');
 }
 if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
@@ -3408,6 +3398,7 @@ if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
 if (welcomeSplash) welcomeSplash.addEventListener('click', function(event) {
   if (event.target === welcomeSplash) hideWelcomeSplash();
 });
+window.addEventListener('pagehide', rememberPageHide);
 initWelcomeSplash();
 render();
 let startupFilter = currentActiveExam || savedProgress.filter;
