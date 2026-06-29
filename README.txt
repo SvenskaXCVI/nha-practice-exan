@@ -1,1 +1,1 @@
-Upload all files in this folder to GitHub Pages or another static host. Open the HTTPS link in iPhone Safari and use Share > Add to Home Screen. Updating files on GitHub will not erase user progress because progress is stored in the browser on each device.
+Upload all files in this folder to GitHub Pages. Service worker caching is disabled in this version to prevent stale blank pages.

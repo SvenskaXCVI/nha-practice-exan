@@ -695,6 +695,32 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 </style>
 </head>
 <body>
+<div class="bay-side bay-side-left" aria-hidden="true"></div>
+<div class="bay-side bay-side-right" aria-hidden="true"></div>
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open exam menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="title-block"><h1>NHA Mobile Practice Exam</h1><div class="creator-credit">made by Daddy Nathan</div><div class="section-label" id="sectionLabel">All questions</div></div>
+      <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
+    </div>
+    <div class="header-right">
+      <div class="header-actions">
+        <button class="header-action nav-blue" id="nextUnanswered" type="button"><strong>Next</strong><span>unanswered</span></button>
+        <button class="header-action warning-btn" id="showAnswers" type="button"><strong>Show</strong><span>answers</span></button>
+        <button class="header-action danger-btn" id="reset" type="button"><strong>Reset</strong><span>exam</span></button>
+        <button class="header-action nav-blue hidden" id="retakeMissed" type="button"><strong>Retake</strong><span>missed</span></button>
+      </div>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><strong id="answered">0</strong><span>answered</span></div>
+        <div class="stat"><strong id="correct">0</strong><span>correct</span></div>
+        <div class="stat"><strong id="missed">0</strong><span>missed</span></div>
+        <div class="stat"><strong id="commonCount">0</strong><span>3x missed</span></div>
+        <div class="stat"><strong id="score">0%</strong><span>score</span></div>
+        <div class="stat grade-stat"><strong id="letterGrade">--</strong><span>grade</span></div>
+        <div class="stat dict-prof-stat"><strong id="dictProficiency">--</strong><span>dict</span></div>
+      </div>
+    </div>
     <div class="header-progress"><div class="progress-row"><div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div><div class="progress-percent" id="progressPercent">0%</div></div></div>
   </div>
 </header>
@@ -3325,11 +3351,6 @@ if (savedProgress.answers && savedProgress.answers.length) {
   setTimeout(() => scrollToCard(preferredCurrentCard()), 250);
 }
 
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./service-worker.js').catch(function() {});
-  });
-}
 </script>
 </body>
 </html>
