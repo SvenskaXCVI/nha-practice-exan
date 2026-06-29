@@ -3352,27 +3352,31 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   applyTheme(nextTheme);
 });
 
-const welcomeSessionKey = 'nhaPracticeWelcomeSplashSessionV1';
+
+
 const welcomeSplash = document.getElementById('welcomeSplash');
 const welcomeStart = document.getElementById('welcomeStart');
-function welcomeSessionSeen() {
-  try { return window.sessionStorage.getItem(welcomeSessionKey) === 'seen'; }
-  catch (error) { return false; }
-}
-function setWelcomeSessionSeen() {
-  try { window.sessionStorage.setItem(welcomeSessionKey, 'seen'); }
-  catch (error) {}
+function welcomeNavigationType() {
+  try {
+    const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (nav && nav.type) return nav.type;
+    if (performance.navigation && performance.navigation.type === 1) return 'reload';
+  } catch (error) {}
+  return 'navigate';
 }
 function hideWelcomeSplash() {
   if (!welcomeSplash) return;
-  setWelcomeSessionSeen();
   welcomeSplash.classList.add('hidden');
 }
 function initWelcomeSplash() {
   if (!welcomeSplash) return;
-  welcomeSplash.classList.toggle('hidden', welcomeSessionSeen());
+  const isRefresh = welcomeNavigationType() === 'reload';
+  welcomeSplash.classList.toggle('hidden', isRefresh);
 }
-if (welcomeStart) welcomeStart.addEventListener('click', hideWelcomeSplash);
+if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
+  event.preventDefault();
+  hideWelcomeSplash();
+});
 if (welcomeSplash) welcomeSplash.addEventListener('click', function(event) {
   if (event.target === welcomeSplash) hideWelcomeSplash();
 });
