@@ -3360,8 +3360,10 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 
 
 
+
 const welcomeSplash = document.getElementById('welcomeSplash');
 const welcomeStart = document.getElementById('welcomeStart');
+const welcomeDismissedAtKey = 'nhaPracticeWelcomeDismissedAtV3';
 function welcomeNavigationType() {
   try {
     const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
@@ -3370,6 +3372,18 @@ function welcomeNavigationType() {
   } catch (error) {}
   return 'navigate';
 }
+function recentWelcomeDismissal() {
+  try {
+    const dismissedAt = Number(window.sessionStorage.getItem(welcomeDismissedAtKey) || 0);
+    return dismissedAt && Date.now() - dismissedAt < 15000;
+  } catch (error) {
+    return false;
+  }
+}
+function rememberWelcomeDismissal() {
+  try { window.sessionStorage.setItem(welcomeDismissedAtKey, String(Date.now())); }
+  catch (error) {}
+}
 function finishWelcomeHide() {
   if (!welcomeSplash) return;
   welcomeSplash.classList.add('hidden');
@@ -3377,13 +3391,14 @@ function finishWelcomeHide() {
 }
 function hideWelcomeSplash() {
   if (!welcomeSplash) return;
+  rememberWelcomeDismissal();
   welcomeSplash.classList.add('is-dismissing');
   window.setTimeout(finishWelcomeHide, 320);
 }
 function initWelcomeSplash() {
   if (!welcomeSplash) return;
-  const isRefresh = welcomeNavigationType() === 'reload';
-  welcomeSplash.classList.toggle('hidden', isRefresh);
+  const shouldHideForImmediateRefresh = welcomeNavigationType() === 'reload' && recentWelcomeDismissal();
+  welcomeSplash.classList.toggle('hidden', shouldHideForImmediateRefresh);
   welcomeSplash.classList.remove('is-dismissing');
 }
 if (welcomeStart) welcomeStart.addEventListener('click', function(event) {
