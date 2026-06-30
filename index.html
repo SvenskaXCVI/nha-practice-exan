@@ -1109,6 +1109,103 @@ body.dark .brand-logo.sx-logo { color:#fff; }
   }
 }
 
+
+
+/* Absolute final mobile bottom controls lock */
+html.mobile-version body .theme-toggle,
+html.mobile-version body .mode-toggle,
+html.mobile-version body .top-toggle,
+html.mobile-version body .notes-toggle,
+html.mobile-version body .google-toggle,
+html.mobile-version body .dict-toggle,
+html.mobile-version body .dict-test-toggle,
+html.mobile-version body .love-toggle {
+  position:fixed !important;
+  top:auto !important;
+  transform:none !important;
+  z-index:90 !important;
+  margin:0 !important;
+}
+html.mobile-version body .theme-toggle,
+html.mobile-version body.slideshow-mode .theme-toggle {
+  left:10px !important;
+  right:auto !important;
+  bottom:8px !important;
+  inset-block-end:8px !important;
+}
+html.mobile-version body .mode-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle {
+  left:50% !important;
+  right:auto !important;
+  bottom:8px !important;
+  inset-block-end:8px !important;
+  transform:translateX(-50%) !important;
+}
+html.mobile-version body .google-toggle,
+html.mobile-version body.slideshow-mode .google-toggle {
+  left:auto !important;
+  right:58px !important;
+  bottom:8px !important;
+  inset-block-end:8px !important;
+  width:42px !important;
+  min-width:42px !important;
+  height:42px !important;
+  min-height:42px !important;
+  display:grid !important;
+  place-items:center !important;
+  padding:0 !important;
+}
+html.mobile-version body .top-toggle,
+html.mobile-version body.slideshow-mode .top-toggle {
+  left:auto !important;
+  right:10px !important;
+  bottom:8px !important;
+  inset-block-end:8px !important;
+}
+html.mobile-version body .notes-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle {
+  left:10px !important;
+  right:auto !important;
+  bottom:58px !important;
+  inset-block-end:58px !important;
+}
+html.mobile-version body .love-toggle,
+html.mobile-version body.slideshow-mode .love-toggle {
+  left:62px !important;
+  right:auto !important;
+  bottom:58px !important;
+  inset-block-end:58px !important;
+}
+html.mobile-version body .dict-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle {
+  left:auto !important;
+  right:62px !important;
+  bottom:58px !important;
+  inset-block-end:58px !important;
+}
+html.mobile-version body .dict-test-toggle,
+html.mobile-version body.slideshow-mode .dict-test-toggle {
+  left:auto !important;
+  right:10px !important;
+  bottom:58px !important;
+  inset-block-end:58px !important;
+}
+html.mobile-version body .love-note {
+  bottom:106px !important;
+  inset-block-end:106px !important;
+}
+html.mobile-version body .notes-panel,
+html.mobile-version body .dict-panel,
+html.mobile-version body .dict-quiz-panel,
+html.mobile-version body .google-panel {
+  bottom:108px !important;
+  inset-block-end:108px !important;
+}
+@media (max-width:360px) {
+  html.mobile-version body .google-toggle,
+  html.mobile-version body.slideshow-mode .google-toggle { right:54px !important; }
+}
+
 </style>
 </head>
 <body>
