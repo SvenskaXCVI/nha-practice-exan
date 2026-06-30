@@ -600,6 +600,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .mode-toggle,
 .mobile-version .top-toggle,
 .mobile-version .notes-toggle,
+.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -612,6 +613,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   z-index:35;
 }
 .mobile-version .notes-toggle,
+.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -621,6 +623,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 }
 .mobile-version .notes-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .love-toggle { left:calc(max(10px, env(safe-area-inset-left)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
+.mobile-version .google-toggle { left:auto; right:calc(max(10px, env(safe-area-inset-right)) + 58px); bottom:calc(10px + env(safe-area-inset-bottom)); top:auto; transform:none; width:42px; height:42px; }
 .mobile-version .dict-toggle { right:calc(max(10px, env(safe-area-inset-right)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .dict-test-toggle { right:max(10px, env(safe-area-inset-right)); bottom:calc(60px + env(safe-area-inset-bottom)); font-size:11px; }
 .mobile-version .theme-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(10px + env(safe-area-inset-bottom)); }
@@ -641,6 +644,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   .mobile-version .mode-toggle,
   .mobile-version .top-toggle { font-size:11px; padding:8px 9px; }
   .mobile-version .notes-toggle,
+  .mobile-version .google-toggle,
   .mobile-version .dict-toggle,
   .mobile-version .dict-test-toggle,
   .mobile-version .love-toggle { min-width:40px; width:40px; height:40px; min-height:40px; }
