@@ -1044,190 +1044,6 @@ body.dark .brand-logo.sx-logo { color:#fff; }
 
 
 
-/* Final mobile bottom controls pin */
-.mobile-version .theme-toggle,
-.mobile-version .mode-toggle,
-.mobile-version .top-toggle,
-.mobile-version .notes-toggle,
-.mobile-version .google-toggle,
-.mobile-version .dict-toggle,
-.mobile-version .dict-test-toggle,
-.mobile-version .love-toggle,
-.mobile-version body.slideshow-mode .theme-toggle,
-.mobile-version body.slideshow-mode .mode-toggle,
-.mobile-version body.slideshow-mode .top-toggle,
-.mobile-version body.slideshow-mode .notes-toggle,
-.mobile-version body.slideshow-mode .google-toggle,
-.mobile-version body.slideshow-mode .dict-toggle,
-.mobile-version body.slideshow-mode .dict-test-toggle,
-.mobile-version body.slideshow-mode .love-toggle {
-  position:fixed !important;
-  top:auto !important;
-  transform:none !important;
-  z-index:76 !important;
-}
-.mobile-version .notes-toggle,
-.mobile-version body.slideshow-mode .notes-toggle {
-  left:max(10px, env(safe-area-inset-left)) !important;
-  right:auto !important;
-  bottom:calc(60px + env(safe-area-inset-bottom)) !important;
-}
-.mobile-version .love-toggle,
-.mobile-version body.slideshow-mode .love-toggle {
-  left:calc(max(10px, env(safe-area-inset-left)) + 52px) !important;
-  right:auto !important;
-  bottom:calc(60px + env(safe-area-inset-bottom)) !important;
-}
-.mobile-version .dict-toggle,
-.mobile-version body.slideshow-mode .dict-toggle {
-  left:auto !important;
-  right:calc(max(10px, env(safe-area-inset-right)) + 52px) !important;
-  bottom:calc(60px + env(safe-area-inset-bottom)) !important;
-}
-.mobile-version .dict-test-toggle,
-.mobile-version body.slideshow-mode .dict-test-toggle {
-  left:auto !important;
-  right:max(10px, env(safe-area-inset-right)) !important;
-  bottom:calc(60px + env(safe-area-inset-bottom)) !important;
-}
-.mobile-version .theme-toggle,
-.mobile-version body.slideshow-mode .theme-toggle {
-  left:max(10px, env(safe-area-inset-left)) !important;
-  right:auto !important;
-  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
-}
-.mobile-version .mode-toggle,
-.mobile-version body.slideshow-mode .mode-toggle {
-  left:50% !important;
-  right:auto !important;
-  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
-  transform:translateX(-50%) !important;
-}
-.mobile-version .google-toggle,
-.mobile-version body.slideshow-mode .google-toggle {
-  left:auto !important;
-  right:calc(max(10px, env(safe-area-inset-right)) + 58px) !important;
-  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
-  width:42px !important;
-  height:42px !important;
-  min-width:42px !important;
-  min-height:42px !important;
-  display:grid !important;
-  place-items:center !important;
-  padding:0 !important;
-}
-.mobile-version .top-toggle,
-.mobile-version body.slideshow-mode .top-toggle {
-  left:auto !important;
-  right:max(10px, env(safe-area-inset-right)) !important;
-  bottom:calc(10px + env(safe-area-inset-bottom)) !important;
-}
-@media (max-width:360px) {
-  .mobile-version .google-toggle,
-  .mobile-version body.slideshow-mode .google-toggle {
-    right:calc(max(10px, env(safe-area-inset-right)) + 54px) !important;
-  }
-}
-
-
-
-/* Absolute final mobile bottom controls lock */
-html.mobile-version body .theme-toggle,
-html.mobile-version body .mode-toggle,
-html.mobile-version body .top-toggle,
-html.mobile-version body .notes-toggle,
-html.mobile-version body .google-toggle,
-html.mobile-version body .dict-toggle,
-html.mobile-version body .dict-test-toggle,
-html.mobile-version body .love-toggle {
-  position:fixed !important;
-  top:auto !important;
-  transform:none !important;
-  z-index:90 !important;
-  margin:0 !important;
-}
-html.mobile-version body .theme-toggle,
-html.mobile-version body.slideshow-mode .theme-toggle {
-  left:10px !important;
-  right:auto !important;
-  bottom:26px !important;
-  inset-block-end:26px !important;
-}
-html.mobile-version body .mode-toggle,
-html.mobile-version body.slideshow-mode .mode-toggle {
-  left:50% !important;
-  right:auto !important;
-  bottom:26px !important;
-  inset-block-end:26px !important;
-  transform:translateX(-50%) !important;
-}
-html.mobile-version body .google-toggle,
-html.mobile-version body.slideshow-mode .google-toggle {
-  left:auto !important;
-  right:58px !important;
-  bottom:26px !important;
-  inset-block-end:26px !important;
-  width:42px !important;
-  min-width:42px !important;
-  height:42px !important;
-  min-height:42px !important;
-  display:grid !important;
-  place-items:center !important;
-  padding:0 !important;
-}
-html.mobile-version body .top-toggle,
-html.mobile-version body.slideshow-mode .top-toggle {
-  left:auto !important;
-  right:10px !important;
-  bottom:26px !important;
-  inset-block-end:26px !important;
-}
-html.mobile-version body .notes-toggle,
-html.mobile-version body.slideshow-mode .notes-toggle {
-  left:10px !important;
-  right:auto !important;
-  bottom:76px !important;
-  inset-block-end:76px !important;
-}
-html.mobile-version body .love-toggle,
-html.mobile-version body.slideshow-mode .love-toggle {
-  left:62px !important;
-  right:auto !important;
-  bottom:76px !important;
-  inset-block-end:76px !important;
-}
-html.mobile-version body .dict-toggle,
-html.mobile-version body.slideshow-mode .dict-toggle {
-  left:auto !important;
-  right:62px !important;
-  bottom:76px !important;
-  inset-block-end:76px !important;
-}
-html.mobile-version body .dict-test-toggle,
-html.mobile-version body.slideshow-mode .dict-test-toggle {
-  left:auto !important;
-  right:10px !important;
-  bottom:76px !important;
-  inset-block-end:76px !important;
-}
-html.mobile-version body .love-note {
-  bottom:124px !important;
-  inset-block-end:124px !important;
-}
-html.mobile-version body .notes-panel,
-html.mobile-version body .dict-panel,
-html.mobile-version body .dict-quiz-panel,
-html.mobile-version body .google-panel {
-  bottom:126px !important;
-  inset-block-end:126px !important;
-}
-@media (max-width:360px) {
-  html.mobile-version body .google-toggle,
-  html.mobile-version body.slideshow-mode .google-toggle { right:54px !important; }
-}
-
-
-
 /* Hide floating controls while exam menu is open */
 html.mobile-version body.menu-open .theme-toggle,
 html.mobile-version body.menu-open .mode-toggle,
@@ -1235,13 +1051,205 @@ html.mobile-version body.menu-open .top-toggle,
 html.mobile-version body.menu-open .notes-toggle,
 html.mobile-version body.menu-open .google-toggle,
 html.mobile-version body.menu-open .dict-toggle,
-html.mobile-version body.menu-open .dict-test-toggle,
 html.mobile-version body.menu-open .love-toggle,
 html.mobile-version body.menu-open .love-note {
   opacity:0 !important;
   pointer-events:none !important;
   visibility:hidden !important;
 }
+
+
+
+/* Dictionary test button retired */
+.dict-test-toggle { display:none !important; }
+
+/* Mobile floating tool dock */
+html.mobile-version body::after {
+  content:"";
+  position:fixed;
+  left:50%;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  width:min(94vw, 392px);
+  height:64px;
+  z-index:88;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow:0 16px 42px var(--shadow);
+  backdrop-filter:blur(18px) saturate(1.25);
+  pointer-events:none;
+}
+html.mobile-version body .theme-toggle,
+html.mobile-version body .mode-toggle,
+html.mobile-version body .google-toggle,
+html.mobile-version body .notes-toggle,
+html.mobile-version body .dict-toggle,
+html.mobile-version body .top-toggle,
+html.mobile-version body.slideshow-mode .theme-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle,
+html.mobile-version body.slideshow-mode .google-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle,
+html.mobile-version body.slideshow-mode .top-toggle {
+  position:fixed !important;
+  top:auto !important;
+  bottom:calc(22px + env(safe-area-inset-bottom)) !important;
+  transform:translateX(-50%) !important;
+  z-index:91 !important;
+  width:44px !important;
+  min-width:44px !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:transparent !important;
+  color:var(--ink) !important;
+  box-shadow:none !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:11px !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  text-shadow:none !important;
+  overflow:visible !important;
+}
+html.mobile-version body .theme-toggle,
+html.mobile-version body.slideshow-mode .theme-toggle { left:calc(50% - min(36vw, 150px)) !important; right:auto !important; }
+html.mobile-version body .mode-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle { left:calc(50% - min(21.6vw, 90px)) !important; right:auto !important; }
+html.mobile-version body .google-toggle,
+html.mobile-version body.slideshow-mode .google-toggle { left:calc(50% - min(7.2vw, 30px)) !important; right:auto !important; }
+html.mobile-version body .notes-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle { left:calc(50% + min(7.2vw, 30px)) !important; right:auto !important; }
+html.mobile-version body .dict-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle { left:calc(50% + min(21.6vw, 90px)) !important; right:auto !important; }
+html.mobile-version body .top-toggle,
+html.mobile-version body.slideshow-mode .top-toggle { left:calc(50% + min(36vw, 150px)) !important; right:auto !important; }
+html.mobile-version body .love-toggle,
+html.mobile-version body.slideshow-mode .love-toggle { display:none !important; }
+
+/* Flashcard dock priority lock */
+html.mobile-version body.slideshow-mode .theme-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle,
+html.mobile-version body.slideshow-mode .google-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle,
+html.mobile-version body.slideshow-mode .top-toggle {
+  position:fixed !important;
+  top:auto !important;
+  bottom:calc(22px + env(safe-area-inset-bottom)) !important;
+  inset-block-end:calc(22px + env(safe-area-inset-bottom)) !important;
+  transform:translateX(-50%) !important;
+  z-index:91 !important;
+}
+
+html.mobile-version body .dock-icon,
+html.mobile-version body .notes-toggle svg,
+html.mobile-version body .dict-toggle svg,
+html.mobile-version body .google-toggle svg {
+  width:23px !important;
+  height:23px !important;
+  stroke:currentColor !important;
+  fill:none !important;
+  stroke-width:2.15 !important;
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+}
+html.mobile-version body .theme-toggle.is-light .dock-bulb .bulb-fill { fill:#facc15 !important; stroke:#f59e0b !important; }
+html.mobile-version body .theme-toggle.is-light .dock-bulb { color:#f59e0b !important; }
+html.mobile-version body .theme-toggle.is-dark .dock-bulb .bulb-fill { fill:none !important; }
+html.mobile-version body .mode-toggle .mode-text { display:none !important; }
+html.mobile-version body .mode-toggle.is-flashcard .mode-card-b { transform:translate(1px, -1px); }
+html.mobile-version body .theme-toggle::after,
+html.mobile-version body .mode-toggle::after,
+html.mobile-version body .google-toggle::after::after,
+html.mobile-version body .notes-toggle::after,
+html.mobile-version body .dict-toggle::after,
+html.mobile-version body .top-toggle::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:2px;
+  width:18px;
+  height:3px;
+  border-radius:999px;
+  background:var(--accent);
+  transform:translateX(-50%) scaleX(0);
+  opacity:0;
+  transition:transform .18s ease, opacity .18s ease;
+}
+html.mobile-version body .theme-toggle.active::after,
+html.mobile-version body .mode-toggle.active::after,
+html.mobile-version body .google-toggle.active::after,
+html.mobile-version body .notes-toggle.active::after,
+html.mobile-version body .dict-toggle.active::after,
+html.mobile-version body .top-toggle.active::after {
+  transform:translateX(-50%) scaleX(1);
+  opacity:1;
+}
+html.mobile-version body .theme-toggle:hover,
+html.mobile-version body .mode-toggle:hover,
+html.mobile-version body .google-toggle:hover,
+html.mobile-version body .notes-toggle:hover,
+html.mobile-version body .dict-toggle:hover,
+html.mobile-version body .top-toggle:hover,
+html.mobile-version body .theme-toggle.active,
+html.mobile-version body .mode-toggle.active,
+html.mobile-version body .google-toggle.active,
+html.mobile-version body .notes-toggle.active,
+html.mobile-version body .dict-toggle.active,
+html.mobile-version body .top-toggle.active {
+  background:var(--accent-soft) !important;
+  color:var(--accent-dark) !important;
+}
+html.mobile-version body.menu-open::after { opacity:0 !important; visibility:hidden !important; }
+html.mobile-version body .love-note { bottom:calc(88px + env(safe-area-inset-bottom)) !important; inset-block-end:calc(88px + env(safe-area-inset-bottom)) !important; }
+html.mobile-version body .notes-panel,
+html.mobile-version body .dict-panel,
+html.mobile-version body .dict-quiz-panel,
+html.mobile-version body .google-panel {
+  bottom:calc(88px + env(safe-area-inset-bottom)) !important;
+  inset-block-end:calc(88px + env(safe-area-inset-bottom)) !important;
+}
+@media (max-width:360px) {
+  html.mobile-version body::after { width:min(96vw, 336px); height:60px; }
+  html.mobile-version body .theme-toggle,
+  html.mobile-version body .mode-toggle,
+  html.mobile-version body .google-toggle,
+  html.mobile-version body .notes-toggle,
+  html.mobile-version body .dict-toggle,
+  html.mobile-version body .top-toggle { width:38px !important; min-width:38px !important; height:38px !important; min-height:38px !important; }
+  html.mobile-version body .dock-icon,
+  html.mobile-version body .notes-toggle svg,
+  html.mobile-version body .dict-toggle svg,
+  html.mobile-version body .google-toggle svg { width:20px !important; height:20px !important; }
+}
+
+/* Dictionary quiz Extra Exams tab */
+html body .dict-quiz-panel.is-extra-quiz,
+html.mobile-version body .dict-quiz-panel.is-extra-quiz {
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  inset:auto !important;
+  transform:none !important;
+  z-index:1 !important;
+  width:100% !important;
+  max-width:none !important;
+  max-height:none !important;
+  overflow:visible !important;
+  display:grid;
+  box-sizing:border-box;
+}
+html body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-close,
+html.mobile-version body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-close { display:none !important; }
+.dict-extra-mount { display:grid; gap:14px; }
 
 </style>
 </head>
@@ -1301,7 +1309,7 @@ html.mobile-version body.menu-open .love-note {
     <div class="menu-group menu-group-general" aria-label="General sections">
       <button type="button" data-filter="all">All questions</button>
       <button type="button" data-filter="fullstats">Full exam statistics</button>
-      <button type="button" data-filter="orderdraw">Extra Exams <span>Matching, inversions, consent</span></button>
+      <button type="button" data-filter="orderdraw">Extra Exams <span>Matching, inversions, consent, dictionary</span></button>
       <button type="button" data-filter="medterms">Medical terminology <span>Search terms and abbreviations</span></button>
     </div>
     <div class="menu-group menu-group-exams" aria-label="Practice exams">
@@ -1357,7 +1365,6 @@ html.mobile-version body.menu-open .love-note {
   <div id="exam" class="exam"></div>
 </main>
 <button class="dict-toggle" id="dictToggle" type="button" aria-label="Open dictionary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H8a4 4 0 0 0-4 4V5.5Z"></path><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20"></path><path d="M4 21.5A3.5 3.5 0 0 1 7.5 18H20"></path><path d="M12 6h4"></path><path d="M12 10h4"></path></svg></button>
-<button class="dict-test-toggle" id="dictQuizToggle" type="button" aria-label="Open dictionary test">Test</button>
 <div class="dict-panel hidden" id="dictPanel" aria-label="Abbreviation dictionary">
   <div class="dict-head"><strong>Dictionary</strong><button class="dict-close" id="dictClose" type="button" aria-label="Close dictionary">&times;</button></div>
   <div class="dict-table" id="dictTable"><div class="dict-row dict-header"><div class="dict-cell">Abbreviation</div><div class="dict-cell">Meaning</div><div class="dict-cell">Simple definition</div></div><div class="dict-row"><div class="dict-cell dict-abbr">Pt</div><div class="dict-cell">Patient or Prothrombin Time depending on context</div><div class="dict-cell">In charting, Pt often means patient. In coagulation labs, PT means prothrombin time.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">PTT</div><div class="dict-cell">Partial Thromboplastin Time</div><div class="dict-cell">A blood clotting test that checks part of the clotting pathway.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">aPTT</div><div class="dict-cell">Activated Partial Thromboplastin Time</div><div class="dict-cell">A more standardized version of PTT; often used to monitor heparin therapy.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">D-Dimer</div><div class="dict-cell">D-dimer test</div><div class="dict-cell">Checks for clot breakdown products; can help evaluate possible blood clots.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">CMP</div><div class="dict-cell">Comprehensive Metabolic Panel</div><div class="dict-cell">Blood test panel checking electrolytes, kidney function, liver function, glucose, and proteins.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">BMP</div><div class="dict-cell">Basic Metabolic Panel</div><div class="dict-cell">Smaller panel checking electrolytes, kidney function, glucose, calcium, etc.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">HCG</div><div class="dict-cell">Human Chorionic Gonadotropin</div><div class="dict-cell">Pregnancy hormone test.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">CBC</div><div class="dict-cell">Complete Blood Count</div><div class="dict-cell">Measures red cells, white cells, hemoglobin, hematocrit, and platelets.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">Hematocrit</div><div class="dict-cell">Hct</div><div class="dict-cell">Percentage of blood made up of red blood cells.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">Hemoglobin</div><div class="dict-cell">Hgb / Hb</div><div class="dict-cell">Protein in red blood cells that carries oxygen.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">Platelets</div><div class="dict-cell">Plt</div><div class="dict-cell">Cell fragments that help blood clot.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">ESR</div><div class="dict-cell">Erythrocyte Sedimentation Rate</div><div class="dict-cell">Measures inflammation by seeing how fast red blood cells settle.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">HGA1C / HbA1c</div><div class="dict-cell">Hemoglobin A1c</div><div class="dict-cell">Shows average blood sugar over about 2-3 months.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">OGTT</div><div class="dict-cell">Oral Glucose Tolerance Test</div><div class="dict-cell">Checks how the body handles sugar after drinking glucose.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">EDTA</div><div class="dict-cell">Ethylenediaminetetraacetic Acid</div><div class="dict-cell">Anticoagulant in lavender/purple-top tubes; prevents clotting.</div></div><div class="dict-row"><div class="dict-cell dict-abbr">SPS</div><div class="dict-cell">Sodium Polyanethol Sulfonate</div><div class="dict-cell">Anticoagulant used mainly in blood culture bottles/tubes; helps preserve bacteria for testing.</div></div></div>
@@ -1433,9 +1440,9 @@ html.mobile-version body.menu-open .love-note {
 </div>
 <div class="love-note hidden" id="loveNote" aria-label="Encouragement note"><span>I love you with all my heart baby, and i know you will do amazing things. Keep trying, keep pushing, give it your all and i'm sure you will succeed.</span></div>
 <button class="love-toggle" id="loveToggle" type="button" aria-label="Show encouragement note">♥</button>
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">Dark mode</button>
-<button class="top-toggle nav-blue" id="topButton" type="button" aria-label="Scroll to top">Top</button>
-<button class="mode-toggle nav-blue" id="modeToggle" type="button" aria-label="Switch to flashcard mode"><span class="mode-icon">▣</span><span class="mode-text">Flashcard</span></button>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Light / dark mode"><svg class="dock-icon dock-bulb" viewBox="0 0 24 24" aria-hidden="true"><path class="bulb-fill" d="M9 18h6"></path><path d="M10 22h4"></path><path d="M8.5 14.5c-1.6-1.1-2.5-2.9-2.5-4.8A6 6 0 0 1 18 9.7c0 1.9-.9 3.7-2.5 4.8-.7.5-1 1.1-1 2v.5h-5v-.5c0-.9-.3-1.5-1-2Z"></path></svg></button>
+<button class="top-toggle nav-blue" id="topButton" type="button" aria-label="Scroll to top" title="Top"><svg class="dock-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></button>
+<button class="mode-toggle nav-blue" id="modeToggle" type="button" aria-label="Switch to flashcard mode" title="Flashcard mode"><svg class="dock-icon dock-mode-icon" viewBox="0 0 24 24" aria-hidden="true"><rect class="mode-card-a" x="4" y="5" width="11" height="14" rx="2.2"></rect><rect class="mode-card-b" x="9" y="3" width="11" height="14" rx="2.2"></rect><path d="M12 9h5"></path><path d="M12 12h4"></path></svg><span class="mode-text">Flashcard</span></button>
 <script>
 var safeStorage = (function() {
   var memory = {};
@@ -1462,8 +1469,11 @@ function applyTheme(theme) {
   document.body.classList.toggle('dark', dark);
   const btn = document.getElementById('themeToggle');
   if (btn) {
-    btn.textContent = dark ? 'Light mode' : 'Dark mode';
+    btn.classList.toggle('active', dark);
+    btn.classList.toggle('is-light', !dark);
+    btn.classList.toggle('is-dark', dark);
     btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
   }
 }
 applyTheme(safeStorage.getItem(themeStorageKey) || 'light');
@@ -1482,8 +1492,10 @@ function applyDisplayMode(mode) {
   if (header) document.documentElement.style.setProperty('--header-height', Math.ceil(header.getBoundingClientRect().height) + 'px');
   const btn = document.getElementById('modeToggle');
   if (btn) {
-    btn.querySelector('.mode-icon').textContent = slideshow ? '▤' : '▣';
-    btn.querySelector('.mode-text').textContent = slideshow ? 'Standard' : 'Flashcard';
+    const modeText = btn.querySelector('.mode-text');
+    if (modeText) modeText.textContent = slideshow ? 'Standard' : 'Flashcard';
+    btn.classList.toggle('active', slideshow);
+    btn.classList.toggle('is-flashcard', slideshow);
     btn.setAttribute('aria-label', slideshow ? 'Switch to standard mode' : 'Switch to flashcard mode');
   }
 }
@@ -3456,6 +3468,7 @@ function buildOrderDrawTabs() {
     + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'matching' ? 'active' : '') + '" type="button" data-order-tab="matching"><strong>Matching exercise</strong><span>Match tube colors to purpose, then sort the order of draw.</span></button>'
     + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'inversions' ? 'active' : '') + '" type="button" data-order-tab="inversions"><strong>Inversion quiz</strong><span>Choose how many times each tube cap should be inverted.</span></button>'
     + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'consentquiz' ? 'active' : '') + '" type="button" data-order-tab="consentquiz"><strong>Types of consent</strong><span>Match each consent type to the correct definition.</span></button>'
+    + '<button class="order-practice-tab ' + (orderDrawActiveTab === 'dictionaryquiz' ? 'active' : '') + '" type="button" data-order-tab="dictionaryquiz"><strong>Dictionary quiz</strong><span>Review abbreviations, meanings, and saved definitions.</span></button>'
     + '</div>';
 }
 function wireOrderDrawTabs() {
@@ -3495,6 +3508,10 @@ function renderOrderDraw() {
   }
   if (orderDrawActiveTab === 'consentquiz') {
     renderConsentQuiz();
+    return;
+  }
+  if (orderDrawActiveTab === 'dictionaryquiz') {
+    renderDictionaryExtraQuiz();
     return;
   }
   if (!orderDrawColorOrder.length || !orderDrawPurposeOrder.length || !orderDrawSortOrder.length) {
@@ -4093,6 +4110,7 @@ const dictClose = document.getElementById('dictClose');
 function setDictOpen(open) {
   if (!dictPanel || !dictToggle) return;
   dictPanel.classList.toggle('hidden', !open);
+  dictToggle.classList.toggle('active', open);
   dictToggle.setAttribute('aria-label', open ? 'Close dictionary' : 'Open dictionary');
 }
 if (dictToggle) dictToggle.addEventListener('click', () => setDictOpen(dictPanel.classList.contains('hidden')));
@@ -4144,13 +4162,30 @@ function updateDictionaryProficiencyStat() {
 }
 
 function setDictQuizOpen(open) {
-  if (!dictQuizPanel || !dictQuizToggle) return;
+  if (!dictQuizPanel) return;
   dictQuizPanel.classList.toggle('hidden', !open);
-  dictQuizToggle.setAttribute('aria-label', open ? 'Close dictionary test' : 'Open dictionary test');
+  if (dictQuizToggle) {
+    dictQuizToggle.classList.toggle('active', open);
+    dictQuizToggle.setAttribute('aria-label', open ? 'Close dictionary test' : 'Open dictionary test');
+  }
   if (open) {
     setDictOpen(false);
     startDictionaryQuiz();
   }
+}
+
+function renderDictionaryExtraQuiz() {
+  if (!orderDrawPanelEl || !dictQuizPanel) return;
+  orderDrawPanelEl.innerHTML = '<div class="order-draw-head"><div><h2 class="order-draw-title">Extra Exams</h2><p class="order-draw-subtitle">Choose a focused practice type below.</p></div></div>' + buildOrderDrawTabs() + '<div class="dict-extra-mount" id="dictQuizMount"></div>';
+  wireOrderDrawTabs();
+  const mount = orderDrawPanelEl.querySelector('#dictQuizMount');
+  if (!mount) return;
+  mount.appendChild(dictQuizPanel);
+  dictQuizPanel.classList.add('is-extra-quiz');
+  dictQuizPanel.classList.remove('hidden');
+  setDictOpen(false);
+  if (!dictQuizItems.length) startDictionaryQuiz();
+  else renderDictionaryQuizCard();
 }
 
 function dictionaryQuizEntries() {
@@ -4292,7 +4327,10 @@ function answerDictionaryQuiz(choice, current) {
 if (dictQuizToggle) dictQuizToggle.addEventListener('click', () => setDictQuizOpen(dictQuizPanel ? dictQuizPanel.classList.contains('hidden') : false));
 if (dictQuizClose) dictQuizClose.addEventListener('click', () => setDictQuizOpen(false));
 if (dictQuizRestart) dictQuizRestart.addEventListener('click', () => startDictionaryQuiz());
-if (dictQuizCloseDone) dictQuizCloseDone.addEventListener('click', () => setDictQuizOpen(false));
+if (dictQuizCloseDone) dictQuizCloseDone.addEventListener('click', () => {
+  if (dictQuizPanel && dictQuizPanel.classList.contains('is-extra-quiz')) hideDictionaryQuizComplete();
+  else setDictQuizOpen(false);
+});
 if (dictQuizNext) dictQuizNext.addEventListener('click', () => {
   if (!dictQuizItems.length) {
     startDictionaryQuiz();
@@ -4518,6 +4556,7 @@ function saveNotesSoon() {
 function setNotesOpen(open) {
   if (!notesPanel || !notesToggle) return;
   notesPanel.classList.toggle('hidden', !open);
+  notesToggle.classList.toggle('active', open);
   notesToggle.setAttribute('aria-label', open ? 'Close notes' : 'Open notes');
   if (open && notesText) notesText.focus();
 }
@@ -4540,6 +4579,7 @@ document.getElementById('loveToggle').addEventListener('click', () => {
   const note = document.getElementById('loveNote');
   const btn = document.getElementById('loveToggle');
   const hidden = note.classList.toggle('hidden');
+  btn.classList.toggle('active', !hidden);
   btn.setAttribute('aria-label', hidden ? 'Show encouragement note' : 'Hide encouragement note');
 });
 const mobileStatsToggle = document.getElementById('mobileStatsToggle');
