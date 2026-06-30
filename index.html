@@ -1064,6 +1064,7 @@ body.dark .brand-logo.sx-logo { color:#fff; }
     <div class="save-transfer-actions">
       <button class="save-transfer-btn" id="exportSaveData" type="button">Export save data</button>
       <button class="save-transfer-btn" id="importSaveData" type="button">Import save data</button>
+      <button class="save-transfer-btn" id="updateFromGithub" type="button">Update app from GitHub</button>
       <input class="sr-only" id="importSaveFile" type="file" accept="application/json,.json">
     </div>
     <div class="save-transfer-status" id="saveTransferStatus" aria-live="polite"></div>
@@ -1303,6 +1304,7 @@ const menuOptions = document.getElementById('menuOptions');
 const sectionLabelEl = document.getElementById('sectionLabel');
 const exportSaveDataBtn = document.getElementById('exportSaveData');
 const importSaveDataBtn = document.getElementById('importSaveData');
+const updateFromGithubBtn = document.getElementById('updateFromGithub');
 const importSaveFileInput = document.getElementById('importSaveFile');
 const saveTransferStatus = document.getElementById('saveTransferStatus');
 function openMenu() {
@@ -1401,6 +1403,37 @@ function importSaveDataFromFile(file) {
     }
   };
   reader.readAsText(file);
+}
+
+async function updateAppFromGithub() {
+  if (location.protocol === 'file:') {
+    if (saveTransferStatus) saveTransferStatus.textContent = 'The GitHub updater only works from the hosted GitHub Pages app.';
+    return;
+  }
+  if (navigator.onLine === false) {
+    if (saveTransferStatus) saveTransferStatus.textContent = 'Connect to the internet, then try updating again.';
+    return;
+  }
+  if (saveTransferStatus) saveTransferStatus.textContent = 'Checking GitHub for the newest app...';
+  if (updateFromGithubBtn) updateFromGithubBtn.disabled = true;
+  try {
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(registrations.map(registration => registration.unregister()));
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(key => caches.delete(key)));
+    }
+    const url = new URL(location.href);
+    url.searchParams.set('fresh', Date.now().toString());
+    url.hash = '';
+    if (saveTransferStatus) saveTransferStatus.textContent = 'Loading the newest GitHub version...';
+    location.replace(url.toString());
+  } catch (error) {
+    if (saveTransferStatus) saveTransferStatus.textContent = 'Update could not finish. Try refreshing Safari/Chrome, then press Update app again.';
+    if (updateFromGithubBtn) updateFromGithubBtn.disabled = false;
+  }
 }
 
 function chooseFilter(value) {
@@ -3601,6 +3634,7 @@ menuClose.addEventListener('click', closeMenu);
 menuBackdrop.addEventListener('click', closeMenu);
 if (exportSaveDataBtn) exportSaveDataBtn.addEventListener('click', () => exportSaveData());
 if (importSaveDataBtn) importSaveDataBtn.addEventListener('click', () => { if (importSaveFileInput) importSaveFileInput.click(); });
+if (updateFromGithubBtn) updateFromGithubBtn.addEventListener('click', () => updateAppFromGithub());
 if (importSaveFileInput) importSaveFileInput.addEventListener('change', event => importSaveDataFromFile(event.target.files && event.target.files[0]));
 menuOptions.addEventListener('click', event => {
   const button = event.target.closest('[data-filter]');
