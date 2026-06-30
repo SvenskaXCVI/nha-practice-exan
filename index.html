@@ -2613,6 +2613,61 @@ html.mobile-version body.mobile-stats-open .stats {
   }
 }
 
+
+/* Fixed mobile dock and header clearance polish */
+html.mobile-version {
+  --mobile-dock-bottom:calc(22px + env(safe-area-inset-bottom));
+  --mobile-dock-shell-bottom:calc(12px + env(safe-area-inset-bottom));
+}
+html.mobile-version body::after,
+html.mobile-version body.slideshow-mode::after {
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:var(--mobile-dock-shell-bottom) !important;
+  inset-block-end:var(--mobile-dock-shell-bottom) !important;
+  transform:translate3d(-50%,0,0) !important;
+  contain:layout paint;
+}
+html.mobile-version body .theme-toggle,
+html.mobile-version body .mode-toggle,
+html.mobile-version body .google-toggle,
+html.mobile-version body .notes-toggle,
+html.mobile-version body .dict-toggle,
+html.mobile-version body .top-toggle,
+html.mobile-version body.slideshow-mode .theme-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle,
+html.mobile-version body.slideshow-mode .google-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle,
+html.mobile-version body.slideshow-mode .top-toggle {
+  position:fixed !important;
+  top:auto !important;
+  bottom:var(--mobile-dock-bottom) !important;
+  inset-block-end:var(--mobile-dock-bottom) !important;
+  transform:translate3d(-50%,0,0) !important;
+  margin:0 !important;
+  contain:layout paint;
+}
+html.mobile-version main {
+  padding-top:calc(var(--header-height, 78px) + 18px) !important;
+  scroll-padding-top:calc(var(--header-height, 78px) + 18px) !important;
+}
+html.mobile-version body.slideshow-mode main {
+  padding-top:calc(var(--header-height, 78px) + 12px) !important;
+}
+html.mobile-version .exam,
+html.mobile-version .stats-dashboard,
+html.mobile-version .order-draw-panel,
+html.mobile-version .med-term-panel,
+html.mobile-version .common-panel {
+  scroll-margin-top:calc(var(--header-height, 78px) + 18px) !important;
+}
+html.mobile-version body.header-actions-open main {
+  padding-top:calc(var(--header-height, 132px) + 18px) !important;
+}
+
 </style>
 </head>
 <body>
@@ -5489,7 +5544,10 @@ if (nextMissedBtn) nextMissedBtn.addEventListener('click', () => {
   jumpToNextMissed();
 });
 document.getElementById('topButton').addEventListener('click', () => {
+  const topBtn = document.getElementById('topButton');
+  if (topBtn) topBtn.classList.remove('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => { if (topBtn) topBtn.classList.remove('active'); }, 250);
 });
 document.getElementById('modeToggle').addEventListener('click', () => {
   const nextMode = document.body.classList.contains('slideshow-mode') ? 'standard' : 'slideshow';
