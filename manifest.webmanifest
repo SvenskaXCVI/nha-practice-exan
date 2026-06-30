@@ -2905,6 +2905,42 @@ html.mobile-version body .google-toggle svg path[fill="currentColor"] {
   fill:currentColor !important;
 }
 
+
+/* Mobile rubber-band overscroll guard */
+html.mobile-version,
+html.mobile-version body {
+  overscroll-behavior-y:none !important;
+  overscroll-behavior-x:none !important;
+}
+html.mobile-version main,
+html.mobile-version .side-menu,
+html.mobile-version .notes-panel,
+html.mobile-version .dict-panel,
+html.mobile-version .dict-quiz-panel,
+html.mobile-version .google-panel,
+html.mobile-version .stats {
+  overscroll-behavior:contain !important;
+}
+
+
+/* Hard-stop scroll containers */
+html.mobile-version .side-menu,
+html.mobile-version .notes-panel,
+html.mobile-version .notes-editor,
+html.mobile-version .dict-panel,
+html.mobile-version .dict-quiz-panel,
+html.mobile-version .google-panel,
+html.mobile-version .stats,
+html.mobile-version .question-card.current-question,
+html.mobile-version .definition-bubble,
+html.mobile-version .define-panel,
+html.mobile-version .stats-dashboard,
+html.mobile-version .order-draw-panel,
+html.mobile-version .med-term-panel {
+  overscroll-behavior:none !important;
+  -webkit-overflow-scrolling:auto !important;
+}
+
 </style>
 </head>
 <body>
@@ -5806,6 +5842,55 @@ if (window.visualViewport) {
 }
 new MutationObserver(() => requestAnimationFrame(updateAdaptiveMobileLayout)).observe(document.body, { attributes:true, attributeFilter:['class'] });
 requestAnimationFrame(updateAdaptiveMobileLayout);
+(function installMobileOverscrollGuard(){
+  if (!document.documentElement.classList.contains('mobile-version')) return;
+  let startY = 0;
+  function scrollableAncestor(target) {
+    let node = target;
+    while (node && node !== document.body && node !== document.documentElement) {
+      const style = getComputedStyle(node);
+      const canScroll = /(auto|scroll)/.test(style.overflowY) && node.scrollHeight > node.clientHeight + 1;
+      if (canScroll) return node;
+      node = node.parentElement;
+    }
+    return document.scrollingElement || document.documentElement;
+  }
+  function maxScrollFor(node) {
+    if (node === document.scrollingElement || node === document.documentElement || node === document.body) {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    return Math.max(0, node.scrollHeight - node.clientHeight);
+  }
+  function currentScrollFor(node) {
+    if (node === document.scrollingElement || node === document.documentElement || node === document.body) {
+      return window.scrollY || document.documentElement.scrollTop || 0;
+    }
+    return node.scrollTop;
+  }
+  document.addEventListener('touchstart', event => {
+    if (!event.touches || event.touches.length !== 1) return;
+    startY = event.touches[0].clientY;
+  }, { passive:true });
+  document.addEventListener('touchmove', event => {
+    if (!event.touches || event.touches.length !== 1) return;
+    if (event.target.closest('input, textarea, [contenteditable="true"], iframe')) return;
+    const y = event.touches[0].clientY;
+    const deltaY = y - startY;
+    const scroller = scrollableAncestor(event.target);
+    const current = currentScrollFor(scroller);
+    const max = maxScrollFor(scroller);
+    const pullingPastTop = current <= 0 && deltaY > 0;
+    const pullingPastBottom = current >= max - 1 && deltaY < 0;
+    if (pullingPastTop || pullingPastBottom || max <= 0) {
+      event.preventDefault();
+      if (scroller && scroller !== document.scrollingElement && scroller !== document.documentElement && scroller !== document.body) {
+        scroller.scrollTop = Math.min(Math.max(scroller.scrollTop, 0), max);
+      } else if (window.scrollY < 0 || window.scrollY > max) {
+        window.scrollTo(0, Math.min(Math.max(window.scrollY, 0), max));
+      }
+    }
+  }, { passive:false });
+})();
 document.getElementById('topButton').addEventListener('click', () => {
   const topBtn = document.getElementById('topButton');
   if (topBtn) {
