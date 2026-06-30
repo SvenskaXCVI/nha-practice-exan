@@ -532,7 +532,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .dict-quiz-choice { min-height:46px; }
 .mobile-version .dict-quiz-complete-actions { grid-template-columns:1fr; }
 .mobile-version .notes-toggle { left:max(8px, env(safe-area-inset-left)); width:42px; height:42px; }
-.mobile-version .google-toggle { left:max(8px, env(safe-area-inset-left)); top:calc(50% + 52px); width:42px; height:42px; }
+.mobile-version .google-toggle { left:auto; right:calc(max(8px, env(safe-area-inset-right)) + 156px); top:auto; bottom:calc(60px + env(safe-area-inset-bottom)); width:42px; height:42px; transform:none; }
 .mobile-version .notes-panel { left:58px; right:max(8px, env(safe-area-inset-right)); top:50%; width:auto; max-height:78vh; }
 .mobile-version .notes-editor { min-height:420px; max-height:58vh; }
 .mobile-version .love-toggle { left:max(8px, env(safe-area-inset-left)); bottom:calc(58px + env(safe-area-inset-bottom)); width:40px; height:40px; }
@@ -577,6 +577,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .mode-toggle,
 .mobile-version .top-toggle,
 .mobile-version .notes-toggle,
+.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -589,6 +590,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   z-index:35;
 }
 .mobile-version .notes-toggle,
+.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -598,6 +600,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 }
 .mobile-version .notes-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .love-toggle { left:calc(max(10px, env(safe-area-inset-left)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
+.mobile-version .google-toggle { left:auto; right:calc(max(10px, env(safe-area-inset-right)) + 156px); top:auto; bottom:calc(60px + env(safe-area-inset-bottom)); transform:none; width:42px; height:42px; }
 .mobile-version .dict-toggle { right:calc(max(10px, env(safe-area-inset-right)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .dict-test-toggle { right:max(10px, env(safe-area-inset-right)); bottom:calc(60px + env(safe-area-inset-bottom)); font-size:11px; }
 .mobile-version .theme-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(10px + env(safe-area-inset-bottom)); }
@@ -618,9 +621,11 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   .mobile-version .mode-toggle,
   .mobile-version .top-toggle { font-size:11px; padding:8px 9px; }
   .mobile-version .notes-toggle,
+  .mobile-version .google-toggle,
   .mobile-version .dict-toggle,
   .mobile-version .dict-test-toggle,
   .mobile-version .love-toggle { min-width:40px; width:40px; height:40px; min-height:40px; }
+  .mobile-version .google-toggle { right:calc(max(10px, env(safe-area-inset-right)) + 150px); }
 }
 
 
