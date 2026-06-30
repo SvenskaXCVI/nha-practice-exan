@@ -1166,7 +1166,7 @@ html.mobile-version body .mode-toggle .mode-text { display:none !important; }
 html.mobile-version body .mode-toggle.is-flashcard .mode-card-b { transform:translate(1px, -1px); }
 html.mobile-version body .theme-toggle::after,
 html.mobile-version body .mode-toggle::after,
-html.mobile-version body .google-toggle::after::after,
+html.mobile-version body .google-toggle::after,
 html.mobile-version body .notes-toggle::after,
 html.mobile-version body .dict-toggle::after,
 html.mobile-version body .top-toggle::after {
@@ -1251,6 +1251,342 @@ html body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-close,
 html.mobile-version body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-close { display:none !important; }
 .dict-extra-mount { display:grid; gap:14px; }
 
+
+/* Modern compact mobile header */
+html.mobile-version header {
+  position:fixed !important;
+  top:calc(8px + env(safe-area-inset-top)) !important;
+  left:max(8px, env(safe-area-inset-left)) !important;
+  right:max(8px, env(safe-area-inset-right)) !important;
+  z-index:54 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  backdrop-filter:none !important;
+  pointer-events:none;
+}
+html.mobile-version .header-inner {
+  max-width:none !important;
+  padding:0 !important;
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:7px !important;
+  background:transparent !important;
+  pointer-events:none;
+}
+html.mobile-version .header-left {
+  pointer-events:auto;
+  display:grid !important;
+  grid-template-columns:auto minmax(0, 1fr) auto !important;
+  gap:7px !important;
+  align-items:center !important;
+  min-width:0;
+}
+html.mobile-version .menu-toggle,
+html.mobile-version .mobile-stats-toggle {
+  width:44px !important;
+  min-width:44px !important;
+  height:44px !important;
+  min-height:44px !important;
+  border-radius:999px !important;
+  padding:0 !important;
+  display:grid !important;
+  place-items:center !important;
+  background:color-mix(in srgb, var(--panel) 88%, transparent) !important;
+  color:var(--ink) !important;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent) !important;
+  box-shadow:0 12px 32px var(--shadow) !important;
+  backdrop-filter:blur(18px) saturate(1.25);
+}
+html.mobile-version .menu-toggle { gap:4px !important; }
+html.mobile-version .menu-toggle span { width:18px !important; height:2px !important; }
+html.mobile-version .mobile-stats-toggle { font-size:0 !important; position:relative; }
+html.mobile-version .mobile-stats-toggle::before {
+  content:"";
+  width:20px;
+  height:20px;
+  border:2px solid currentColor;
+  border-radius:6px;
+  box-sizing:border-box;
+  box-shadow:inset 0 -6px 0 color-mix(in srgb, currentColor 22%, transparent);
+}
+html.mobile-version .mobile-stats-toggle::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:8px;
+  width:18px;
+  height:3px;
+  border-radius:999px;
+  background:var(--accent);
+  transform:translateX(-50%) scaleX(0);
+  opacity:0;
+  transition:transform .18s ease, opacity .18s ease;
+}
+html.mobile-version body.mobile-stats-open .mobile-stats-toggle {
+  color:var(--accent-dark) !important;
+  background:var(--accent-soft) !important;
+}
+html.mobile-version body.mobile-stats-open .mobile-stats-toggle::after {
+  transform:translateX(-50%) scaleX(1);
+  opacity:1;
+}
+html.mobile-version .title-block {
+  min-width:0;
+  min-height:44px;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow:0 12px 32px var(--shadow);
+  backdrop-filter:blur(18px) saturate(1.25);
+  padding:6px 10px;
+  display:grid;
+  align-content:center;
+  gap:2px;
+}
+html.mobile-version h1 {
+  font-size:14px !important;
+  line-height:1.05 !important;
+  margin:0 !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+html.mobile-version .section-label {
+  max-width:100% !important;
+  border:0 !important;
+  background:transparent !important;
+  color:var(--accent-dark) !important;
+  padding:0 !important;
+  font-size:10px !important;
+  line-height:1.05 !important;
+  font-weight:950 !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+html.mobile-version .creator-credit { display:none !important; }
+html.mobile-version .header-right {
+  pointer-events:auto;
+  display:grid !important;
+  gap:7px !important;
+  justify-items:stretch !important;
+}
+html.mobile-version .header-actions {
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  gap:6px !important;
+  width:100%;
+  max-width:100%;
+  margin:0 !important;
+  padding:6px !important;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow:0 12px 32px var(--shadow);
+  backdrop-filter:blur(18px) saturate(1.25);
+  box-sizing:border-box;
+}
+html.mobile-version .header-action {
+  min-width:0 !important;
+  width:auto !important;
+  height:36px !important;
+  min-height:36px !important;
+  border-radius:999px !important;
+  padding:4px 8px !important;
+  display:grid !important;
+  place-items:center !important;
+  align-content:center !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border:0 !important;
+  color:var(--ink) !important;
+  text-align:center !important;
+}
+html.mobile-version .header-action strong {
+  display:block !important;
+  font-size:10.5px !important;
+  line-height:1.05 !important;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+html.mobile-version .header-action span {
+  display:block !important;
+  font-size:8.5px !important;
+  line-height:1.05 !important;
+  margin-top:1px !important;
+  opacity:.82 !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+html.mobile-version .header-action.nav-blue { color:#38bdf8 !important; background:rgba(14,165,233,.12) !important; }
+html.mobile-version .header-action.warning-btn { color:#facc15 !important; background:rgba(234,179,8,.14) !important; }
+html.mobile-version .header-action.danger-btn { color:#fb7185 !important; background:rgba(239,68,68,.13) !important; }
+html.mobile-version .header-action.purple-btn { color:#c084fc !important; background:rgba(147,51,234,.14) !important; }
+html.mobile-version .header-action.hidden { display:none !important; }
+html.mobile-version .header-action:hover:not(:disabled),
+html.mobile-version .header-action:focus-visible:not(:disabled) { box-shadow:0 0 0 3px var(--focus) !important; }
+html.mobile-version .header-action:disabled,
+html.mobile-version .header-action.disabled {
+  opacity:.34 !important;
+  background:transparent !important;
+  color:var(--muted) !important;
+}
+html.mobile-version .stats {
+  width:min(100%, 420px);
+  margin:0 auto;
+  padding:10px !important;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius:24px;
+  background:color-mix(in srgb, var(--panel) 90%, transparent);
+  box-shadow:0 16px 42px var(--shadow);
+  backdrop-filter:blur(18px) saturate(1.25);
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  gap:8px !important;
+}
+html.mobile-version body:not(.mobile-stats-open) .stats { display:none !important; }
+html.mobile-version body.mobile-stats-open .stats { display:grid !important; }
+html.mobile-version .stat {
+  min-width:0 !important;
+  min-height:52px !important;
+  border-radius:16px !important;
+  padding:7px 5px !important;
+  background:color-mix(in srgb, var(--choice) 88%, transparent) !important;
+  border:1px solid color-mix(in srgb, var(--line) 72%, transparent) !important;
+  box-shadow:none !important;
+}
+html.mobile-version .stat strong { font-size:15px !important; line-height:1 !important; }
+html.mobile-version .stat span { font-size:9px !important; }
+html.mobile-version .header-progress {
+  pointer-events:auto;
+  display:block !important;
+  width:100%;
+  margin:0 auto !important;
+  padding:7px 9px;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow:0 12px 32px var(--shadow);
+  backdrop-filter:blur(18px) saturate(1.25);
+  box-sizing:border-box;
+}
+html.mobile-version body.stats-dashboard-mode .header-progress { display:none !important; }
+html.mobile-version body:not(.mobile-stats-open) .header-progress { display:block !important; }
+html.mobile-version .progress-row { gap:8px !important; }
+html.mobile-version .progress-wrap { height:7px !important; background:color-mix(in srgb, var(--line) 75%, transparent) !important; }
+html.mobile-version .progress-percent { font-size:11px !important; min-width:36px !important; }
+html.mobile-version .side-menu-head { align-items:center; }
+html.mobile-version .side-menu-title-row { display:flex; align-items:center; gap:8px; }
+html.mobile-version .side-menu-head .tm-toggle {
+  position:static !important;
+  width:34px !important;
+  min-width:34px !important;
+  height:34px !important;
+  min-height:34px !important;
+  border-radius:999px !important;
+  box-shadow:none !important;
+  background:var(--accent-soft) !important;
+  color:var(--accent-dark) !important;
+  font-size:11px !important;
+}
+html.mobile-version main,
+html.mobile-version body.order-draw-mode main,
+html.mobile-version body.slideshow-mode main {
+  padding-top:calc(var(--header-height, 148px) + 18px) !important;
+}
+html.mobile-version body.slideshow-mode header {
+  position:fixed !important;
+  left:max(8px, env(safe-area-inset-left)) !important;
+  right:max(8px, env(safe-area-inset-right)) !important;
+}
+@media (max-width:380px) {
+  html.mobile-version .menu-toggle,
+  html.mobile-version .mobile-stats-toggle { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
+  html.mobile-version h1 { font-size:13px !important; }
+  html.mobile-version .header-action { padding:4px 6px !important; }
+  html.mobile-version .header-action strong { font-size:9.5px !important; }
+  html.mobile-version .header-action span { font-size:8px !important; }
+}
+
+html.mobile-version body:not(.mobile-stats-open) .header-progress { display:block !important; }
+html.mobile-version .progress-row { gap:8px !important; }
+html.mobile-version .progress-wrap { height:7px !important; background:color-mix(in srgb, var(--line) 75%, transparent) !important; }
+html.mobile-version .progress-percent { font-size:11px !important; min-width:36px !important; }
+html.mobile-version main {
+  padding-top:calc(var(--header-height, 148px) + 18px) !important;
+}
+html.mobile-version body.order-draw-mode main {
+  padding-top:calc(var(--header-height, 148px) + 18px) !important;
+}
+html.mobile-version body.slideshow-mode header {
+  position:fixed !important;
+  left:max(8px, env(safe-area-inset-left)) !important;
+  right:max(8px, env(safe-area-inset-right)) !important;
+}
+html.mobile-version body.slideshow-mode main {
+  padding-top:calc(var(--header-height, 148px) + 18px) !important;
+}
+@media (max-width:380px) {
+  html.mobile-version .header-action { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
+  html.mobile-version .header-action strong { font-size:8.5px !important; max-width:36px; }
+  html.mobile-version .menu-toggle,
+  html.mobile-version .tm-toggle,
+  html.mobile-version .mobile-stats-toggle { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
+  html.mobile-version h1 { font-size:13px !important; }
+}
+
+html.mobile-version .header-action.hidden { display:none !important; }
+html.mobile-version body.stats-dashboard-mode .header-progress { display:none !important; }
+
+html.mobile-version .title-block {
+  grid-template-columns:minmax(88px, 1fr) auto !important;
+  align-items:center !important;
+  gap:8px !important;
+  min-height:48px !important;
+  padding:6px 7px 6px 12px !important;
+}
+html.mobile-version .title-copy { min-width:0; display:grid; gap:2px; }
+html.mobile-version .header-right { pointer-events:auto; display:block !important; }
+html.mobile-version .header-actions {
+  width:auto !important;
+  max-width:min(62vw, 292px) !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  display:flex !important;
+  justify-content:flex-end !important;
+  align-items:center !important;
+  gap:5px !important;
+  overflow-x:auto !important;
+  scrollbar-width:none !important;
+}
+html.mobile-version .header-actions::-webkit-scrollbar { display:none; }
+html.mobile-version .header-action {
+  width:58px !important;
+  min-width:58px !important;
+  height:36px !important;
+  min-height:36px !important;
+  padding:3px 7px !important;
+}
+html.mobile-version .header-action strong { font-size:10px !important; }
+html.mobile-version .header-action span { font-size:7.8px !important; }
+html.mobile-version .header-action.purple-btn { width:64px !important; min-width:64px !important; }
+html.mobile-version .header-action#retakeMissed { width:62px !important; min-width:62px !important; }
+@media (max-width:380px) {
+  html.mobile-version .title-block { grid-template-columns:minmax(76px, 1fr) auto !important; gap:6px !important; padding-left:10px !important; }
+  html.mobile-version .header-actions { max-width:min(60vw, 232px) !important; gap:4px !important; }
+  html.mobile-version .header-action { width:54px !important; min-width:54px !important; height:34px !important; min-height:34px !important; padding:3px 5px !important; }
+  html.mobile-version .header-action strong { font-size:9px !important; }
+  html.mobile-version .header-action span { font-size:7.2px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1260,18 +1596,17 @@ html.mobile-version body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-cl
   <div class="header-inner">
     <div class="header-left">
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open exam menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <button class="tm-toggle" id="tmButton" type="button" aria-label="Open trademark guide">TM</button>
-      <div class="title-block"><h1>NHA Mobile Practice Exam</h1><div class="creator-credit">made by Daddy Nathan</div><div class="section-label" id="sectionLabel">All questions</div></div>
-      <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
-    </div>
-    <div class="header-right">
-      <div class="header-actions">
+      <div class="title-block"><div class="title-copy"><h1>NHA Mobile Practice Exam</h1><div class="section-label" id="sectionLabel">All questions</div></div><div class="header-actions">
         <button class="header-action nav-blue" id="nextUnanswered" type="button"><strong>Next</strong><span>unanswered</span></button>
         <button class="header-action purple-btn hidden" id="nextMissed" type="button"><strong>Next</strong><span>missed</span></button>
         <button class="header-action warning-btn" id="showAnswers" type="button"><strong>Show</strong><span>answers</span></button>
         <button class="header-action danger-btn" id="reset" type="button"><strong>Reset</strong><span>exam</span></button>
         <button class="header-action nav-blue hidden" id="retakeMissed" type="button"><strong>Retake</strong><span>missed</span></button>
-      </div>
+      </div></div>
+      <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
+    </div>
+    <div class="header-right">
+
       <div class="stats" aria-live="polite">
         <div class="stat"><strong id="answered">0</strong><span>answered</span></div>
         <div class="stat"><strong id="correct">0</strong><span>correct</span></div>
@@ -1288,7 +1623,7 @@ html.mobile-version body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-cl
 <div class="menu-backdrop hidden" id="menuBackdrop"></div>
 <aside class="side-menu" id="sideMenu" aria-hidden="true">
   <div class="side-menu-head">
-    <div><strong>Exam Menu</strong><span>Choose a practice view</span></div>
+    <div><div class="side-menu-title-row"><strong>Exam Menu</strong><button class="tm-toggle" id="tmButton" type="button" aria-label="Open trademark guide">TM</button></div><span>Choose a practice view</span></div>
     <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
   </div>
   <select id="filter" class="sr-only" aria-label="Question filter">
@@ -3857,8 +4192,12 @@ function showConsentQuizFinalSplash() {
 function updateToolbarMode() {
   if (!filterEl) return;
   const isReview = !!missedReviewRange(filterEl.value);
+  const showAnswersBtn = document.getElementById('showAnswers');
+  const resetExamBtn = document.getElementById('reset');
   if (retakeMissedBtn) retakeMissedBtn.classList.toggle('hidden', !isReview);
   if (nextMissedBtn) nextMissedBtn.classList.toggle('hidden', !isReview);
+  if (showAnswersBtn) showAnswersBtn.classList.toggle('hidden', isReview);
+  if (resetExamBtn) resetExamBtn.classList.toggle('hidden', isReview);
 }
 function applyFilter() {
   const filter = filterEl.value;
@@ -4587,7 +4926,7 @@ function setMobileStatsOpen(open) {
   document.body.classList.toggle('mobile-stats-open', open);
   if (mobileStatsToggle) {
     mobileStatsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mobileStatsToggle.textContent = open ? 'Hide stats' : 'Stats';
+    mobileStatsToggle.textContent = 'Stats';
   }
   if (typeof updateHeaderHeightVar === 'function') updateHeaderHeightVar();
 }
