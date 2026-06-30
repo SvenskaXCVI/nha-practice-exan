@@ -1206,6 +1206,23 @@ html.mobile-version body .google-panel {
   html.mobile-version body.slideshow-mode .google-toggle { right:54px !important; }
 }
 
+
+
+/* Hide floating controls while exam menu is open */
+html.mobile-version body.menu-open .theme-toggle,
+html.mobile-version body.menu-open .mode-toggle,
+html.mobile-version body.menu-open .top-toggle,
+html.mobile-version body.menu-open .notes-toggle,
+html.mobile-version body.menu-open .google-toggle,
+html.mobile-version body.menu-open .dict-toggle,
+html.mobile-version body.menu-open .dict-test-toggle,
+html.mobile-version body.menu-open .love-toggle,
+html.mobile-version body.menu-open .love-note {
+  opacity:0 !important;
+  pointer-events:none !important;
+  visibility:hidden !important;
+}
+
 </style>
 </head>
 <body>
@@ -1528,12 +1545,14 @@ const updateFromGithubBtn = document.getElementById('updateFromGithub');
 const importSaveFileInput = document.getElementById('importSaveFile');
 const saveTransferStatus = document.getElementById('saveTransferStatus');
 function openMenu() {
+  document.body.classList.add('menu-open');
   sideMenu.classList.add('open');
   sideMenu.setAttribute('aria-hidden', 'false');
   menuBackdrop.classList.remove('hidden');
   menuToggle.setAttribute('aria-expanded', 'true');
 }
 function closeMenu() {
+  document.body.classList.remove('menu-open');
   sideMenu.classList.remove('open');
   sideMenu.setAttribute('aria-hidden', 'true');
   menuBackdrop.classList.add('hidden');
