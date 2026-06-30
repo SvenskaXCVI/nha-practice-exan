@@ -388,7 +388,7 @@ body.slideshow-mode .exam { position:relative; min-height:0; height:100%; align-
 body.slideshow-mode .question-card:not(.current-question), body.slideshow-mode .question-card.hidden { display:none !important; }
 body.slideshow-mode .question-card.current-question { display:block !important; width:100%; max-height:100%; overflow:auto; padding:30px; transform:none; }
 body.slideshow-mode .question-title { font-size:26px; line-height:1.45; }
-body.slideshow-mode .choice { min-height:64px; font-size:19px; grid-template-columns:42px 1fr; padding:16px 18px; }
+body.slideshow-mode .choice { min-height:64px; height:auto; font-size:19px; grid-template-columns:42px minmax(0, 1fr); padding:16px 18px; align-items:center; }
 body.slideshow-mode .feedback { font-size:18px; }
 body.slideshow-mode .definition-box { max-width:100%; }
 body.slideshow-mode .question-card.slide-forward, body.slideshow-mode .common-card.slide-forward { animation:slideInForward .48s cubic-bezier(.22,1,.36,1); will-change:transform, opacity; }
@@ -545,7 +545,11 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .badge { font-size:11px; padding:4px 8px; }
 .mobile-version .define-btn { min-height:38px; padding:8px 12px; }
 .mobile-version .choices { gap:9px; }
-.mobile-version .choice { min-height:52px; grid-template-columns:28px minmax(0, 1fr); gap:8px; padding:11px 10px; border-radius:8px; font-size:14px; }
+.mobile-version .choice { min-height:54px; height:auto; grid-template-columns:28px minmax(0, 1fr); gap:8px; padding:10px 10px; border-radius:8px; font-size:14px; align-items:center; line-height:1.25; overflow:visible; }
+.mobile-version .choice .letter { align-self:center; }
+.mobile-version .choice-text { display:block; min-width:0; align-self:center; line-height:1.25; overflow-wrap:anywhere; word-break:normal; hyphens:auto; }
+.mobile-version .choice.long-choice .choice-text { font-size:.94em; line-height:1.2; }
+.mobile-version .choice.extra-long-choice .choice-text { font-size:.88em; line-height:1.16; }
 .mobile-version .feedback { font-size:14px; }
 .mobile-version .advance-countdown { width:100%; border-radius:8px; justify-content:space-between; }
 .mobile-version .advance-countdown-bar { flex:1 1 auto; width:auto; }
@@ -597,7 +601,7 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version body.slideshow-mode .exam { height:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .mobile-version body.slideshow-mode .question-card, .mobile-version body.slideshow-mode .common-card { width:100%; max-height:calc(100vh - var(--header-height, 154px) - 92px); overflow:auto; padding:16px; }
 .mobile-version body.slideshow-mode .question-title { font-size:18px; }
-.mobile-version body.slideshow-mode .choice { min-height:56px; font-size:15px; }
+.mobile-version body.slideshow-mode .choice { min-height:58px; height:auto; font-size:15px; align-items:center; }
 @media (max-width:390px) {
   .mobile-version .header-actions { grid-template-columns:repeat(3, minmax(0, 1fr)); }
   .mobile-version .stats { grid-template-columns:repeat(3, minmax(0, 1fr)); }
@@ -2113,6 +2117,8 @@ function makeCard(q) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'choice';
+    if (String(option.text || '').length > 115) btn.classList.add('extra-long-choice');
+    else if (String(option.text || '').length > 70) btn.classList.add('long-choice');
     btn.dataset.letter = option.letter;
     btn.innerHTML = '<span class="letter"></span><span class="choice-text"></span>';
     btn.querySelector('.letter').textContent = option.letter + '.';
@@ -3010,6 +3016,8 @@ function makeCommonPracticeCard(q) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'choice';
+    if (String(option.text || '').length > 115) btn.classList.add('extra-long-choice');
+    else if (String(option.text || '').length > 70) btn.classList.add('long-choice');
     btn.dataset.letter = option.letter;
     btn.innerHTML = '<span class="letter"></span><span class="choice-text"></span>';
     btn.querySelector('.letter').textContent = option.letter + '.';
