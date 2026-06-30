@@ -2829,6 +2829,82 @@ html.mobile-version:has(body.dark) body.header-actions-open::before {
   background:linear-gradient(to bottom, rgba(15,15,18,.86) 0%, rgba(32,34,38,.52) 68%, transparent 100%) !important;
 }
 
+
+/* iPhone toolbar icon visibility fix */
+html.mobile-version::after {
+  display:none !important;
+  content:none !important;
+}
+html.mobile-version body::after,
+html.mobile-version body.slideshow-mode::after {
+  content:"" !important;
+  display:block !important;
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:var(--mobile-dock-shell-bottom, calc(12px + env(safe-area-inset-bottom))) !important;
+  inset-block-end:var(--mobile-dock-shell-bottom, calc(12px + env(safe-area-inset-bottom))) !important;
+  transform:translate3d(-50%,0,0) !important;
+  width:min(94vw, 392px) !important;
+  height:64px !important;
+  z-index:88 !important;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent) !important;
+  border-radius:999px !important;
+  background:color-mix(in srgb, var(--panel) 88%, transparent) !important;
+  box-shadow:0 16px 42px var(--shadow) !important;
+  backdrop-filter:blur(18px) saturate(1.25) !important;
+  pointer-events:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+html.mobile-version body.dark::after,
+html.mobile-version body.dark.slideshow-mode::after {
+  background:rgba(15, 23, 42, .88) !important;
+  border-color:rgba(148, 163, 184, .24) !important;
+  box-shadow:0 16px 42px rgba(0,0,0,.48) !important;
+}
+html.mobile-version body.menu-open::after {
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+html.mobile-version body .theme-toggle,
+html.mobile-version body .mode-toggle,
+html.mobile-version body .google-toggle,
+html.mobile-version body .notes-toggle,
+html.mobile-version body .dict-toggle,
+html.mobile-version body .top-toggle,
+html.mobile-version body.slideshow-mode .theme-toggle,
+html.mobile-version body.slideshow-mode .mode-toggle,
+html.mobile-version body.slideshow-mode .google-toggle,
+html.mobile-version body.slideshow-mode .notes-toggle,
+html.mobile-version body.slideshow-mode .dict-toggle,
+html.mobile-version body.slideshow-mode .top-toggle {
+  z-index:120 !important;
+  color:var(--ink) !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+html.mobile-version body.menu-open .theme-toggle,
+html.mobile-version body.menu-open .mode-toggle,
+html.mobile-version body.menu-open .top-toggle,
+html.mobile-version body.menu-open .notes-toggle,
+html.mobile-version body.menu-open .google-toggle,
+html.mobile-version body.menu-open .dict-toggle {
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+html.mobile-version body .dock-icon,
+html.mobile-version body .notes-toggle svg,
+html.mobile-version body .dict-toggle svg,
+html.mobile-version body .google-toggle svg {
+  stroke:currentColor !important;
+  color:currentColor !important;
+}
+html.mobile-version body .google-toggle svg path[fill="currentColor"] {
+  fill:currentColor !important;
+}
+
 </style>
 </head>
 <body>
