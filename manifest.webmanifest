@@ -1252,6 +1252,7 @@ html.mobile-version body .dict-quiz-panel.is-extra-quiz .dict-quiz-head .dict-cl
 .dict-extra-mount { display:grid; gap:14px; }
 
 
+
 /* Modern compact mobile header */
 html.mobile-version header {
   position:fixed !important;
@@ -1270,7 +1271,7 @@ html.mobile-version .header-inner {
   padding:0 !important;
   display:grid !important;
   grid-template-columns:1fr !important;
-  gap:7px !important;
+  gap:6px !important;
   background:transparent !important;
   pointer-events:none;
 }
@@ -1284,10 +1285,10 @@ html.mobile-version .header-left {
 }
 html.mobile-version .menu-toggle,
 html.mobile-version .mobile-stats-toggle {
-  width:44px !important;
-  min-width:44px !important;
-  height:44px !important;
-  min-height:44px !important;
+  width:42px !important;
+  min-width:42px !important;
+  height:42px !important;
+  min-height:42px !important;
   border-radius:999px !important;
   padding:0 !important;
   display:grid !important;
@@ -1303,8 +1304,13 @@ html.mobile-version .menu-toggle span { width:18px !important; height:2px !impor
 html.mobile-version .mobile-stats-toggle { font-size:0 !important; position:relative; }
 html.mobile-version .mobile-stats-toggle::before {
   content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
   width:20px;
   height:20px;
+  margin:0;
   border:2px solid currentColor;
   border-radius:6px;
   box-sizing:border-box;
@@ -1331,26 +1337,61 @@ html.mobile-version body.mobile-stats-open .mobile-stats-toggle::after {
   transform:translateX(-50%) scaleX(1);
   opacity:1;
 }
+html.mobile-version .stats-backdrop {
+  position:fixed;
+  inset:0;
+  z-index:49;
+  background:rgba(2, 8, 12, .34);
+  backdrop-filter:blur(4px);
+}
+html.mobile-version .stats-backdrop.hidden { display:none !important; }
+html.mobile-version body.mobile-stats-open header { z-index:54; }
+html.mobile-version body.mobile-stats-open .stats {
+  position:relative;
+  z-index:56;
+}
+html.mobile-version .stats-context {
+  grid-column:1 / -1;
+  text-align:center;
+  color:var(--accent-dark);
+  font-size:11px;
+  font-weight:950;
+  padding:2px 4px 8px;
+  margin-bottom:2px;
+  border-bottom:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
 html.mobile-version .title-block {
-  min-width:0;
-  min-height:44px;
-  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
-  border-radius:999px;
-  background:color-mix(in srgb, var(--panel) 88%, transparent);
-  box-shadow:0 12px 32px var(--shadow);
+  position:relative !important;
+  min-width:0 !important;
+  min-height:42px !important;
+  border:1px solid color-mix(in srgb, var(--line) 78%, transparent) !important;
+  border-radius:22px !important;
+  background:color-mix(in srgb, var(--panel) 88%, transparent) !important;
+  box-shadow:0 12px 32px var(--shadow) !important;
   backdrop-filter:blur(18px) saturate(1.25);
-  padding:6px 10px;
-  display:grid;
-  align-content:center;
-  gap:2px;
+  padding:7px 9px 9px !important;
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) auto !important;
+  align-items:center !important;
+  gap:7px !important;
+  overflow:hidden !important;
+}
+html.mobile-version .title-copy {
+  min-width:0 !important;
+  display:grid !important;
+  gap:1px !important;
+  text-align:center !important;
+  justify-items:center !important;
 }
 html.mobile-version h1 {
-  font-size:14px !important;
-  line-height:1.05 !important;
+  width:100%;
   margin:0 !important;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  font-size:clamp(11.5px, 3.15vw, 14px) !important;
+  line-height:1.05 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  letter-spacing:0 !important;
 }
 html.mobile-version .section-label {
   max-width:100% !important;
@@ -1358,42 +1399,41 @@ html.mobile-version .section-label {
   background:transparent !important;
   color:var(--accent-dark) !important;
   padding:0 !important;
-  font-size:10px !important;
+  font-size:9.5px !important;
   line-height:1.05 !important;
   font-weight:950 !important;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  text-align:center !important;
 }
 html.mobile-version .creator-credit { display:none !important; }
-html.mobile-version .header-right {
-  pointer-events:auto;
-  display:grid !important;
-  gap:7px !important;
-  justify-items:stretch !important;
-}
 html.mobile-version .header-actions {
-  display:grid !important;
-  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
-  gap:6px !important;
-  width:100%;
-  max-width:100%;
+  width:min(45vw, 184px) !important;
+  min-width:132px !important;
+  max-width:184px !important;
+  display:flex !important;
+  justify-content:flex-end !important;
+  align-items:center !important;
+  gap:4px !important;
+  overflow-x:auto !important;
+  scrollbar-width:none !important;
   margin:0 !important;
-  padding:6px !important;
-  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
-  border-radius:999px;
-  background:color-mix(in srgb, var(--panel) 88%, transparent);
-  box-shadow:0 12px 32px var(--shadow);
-  backdrop-filter:blur(18px) saturate(1.25);
-  box-sizing:border-box;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
 }
+html.mobile-version .header-actions::-webkit-scrollbar { display:none; }
 html.mobile-version .header-action {
-  min-width:0 !important;
-  width:auto !important;
-  height:36px !important;
-  min-height:36px !important;
+  flex:0 0 56px !important;
+  width:56px !important;
+  min-width:56px !important;
+  height:32px !important;
+  min-height:32px !important;
   border-radius:999px !important;
-  padding:4px 8px !important;
+  padding:3px 5px !important;
   display:grid !important;
   place-items:center !important;
   align-content:center !important;
@@ -1405,17 +1445,17 @@ html.mobile-version .header-action {
 }
 html.mobile-version .header-action strong {
   display:block !important;
-  font-size:10.5px !important;
-  line-height:1.05 !important;
+  font-size:9.3px !important;
+  line-height:1.02 !important;
   max-width:100%;
+  white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
-  white-space:nowrap;
 }
 html.mobile-version .header-action span {
   display:block !important;
-  font-size:8.5px !important;
-  line-height:1.05 !important;
+  font-size:7.1px !important;
+  line-height:1.02 !important;
   margin-top:1px !important;
   opacity:.82 !important;
   white-space:nowrap;
@@ -1435,6 +1475,40 @@ html.mobile-version .header-action.disabled {
   background:transparent !important;
   color:var(--muted) !important;
 }
+html.mobile-version .title-block .header-progress {
+  pointer-events:none !important;
+  position:absolute !important;
+  left:10px !important;
+  right:10px !important;
+  bottom:0 !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  display:block !important;
+  height:4px !important;
+  overflow:visible !important;
+}
+html.mobile-version .title-block .progress-row {
+  display:block !important;
+  margin:0 !important;
+  height:4px !important;
+}
+html.mobile-version .title-block .progress-wrap {
+  width:100% !important;
+  height:4px !important;
+  border-radius:999px 999px 0 0 !important;
+  background:color-mix(in srgb, var(--line) 72%, transparent) !important;
+  overflow:hidden !important;
+}
+html.mobile-version .title-block .progress-percent { display:none !important; }
+html.mobile-version .title-block .progress { height:100% !important; }
+html.mobile-version body.stats-dashboard-mode .title-block .header-progress { display:none !important; }
+html.mobile-version .header-right { pointer-events:auto; display:grid !important; gap:6px !important; justify-items:stretch !important; }
 html.mobile-version .stats {
   width:min(100%, 420px);
   margin:0 auto;
@@ -1460,24 +1534,6 @@ html.mobile-version .stat {
 }
 html.mobile-version .stat strong { font-size:15px !important; line-height:1 !important; }
 html.mobile-version .stat span { font-size:9px !important; }
-html.mobile-version .header-progress {
-  pointer-events:auto;
-  display:block !important;
-  width:100%;
-  margin:0 auto !important;
-  padding:7px 9px;
-  border:1px solid color-mix(in srgb, var(--line) 78%, transparent);
-  border-radius:999px;
-  background:color-mix(in srgb, var(--panel) 88%, transparent);
-  box-shadow:0 12px 32px var(--shadow);
-  backdrop-filter:blur(18px) saturate(1.25);
-  box-sizing:border-box;
-}
-html.mobile-version body.stats-dashboard-mode .header-progress { display:none !important; }
-html.mobile-version body:not(.mobile-stats-open) .header-progress { display:block !important; }
-html.mobile-version .progress-row { gap:8px !important; }
-html.mobile-version .progress-wrap { height:7px !important; background:color-mix(in srgb, var(--line) 75%, transparent) !important; }
-html.mobile-version .progress-percent { font-size:11px !important; min-width:36px !important; }
 html.mobile-version .side-menu-head { align-items:center; }
 html.mobile-version .side-menu-title-row { display:flex; align-items:center; gap:8px; }
 html.mobile-version .side-menu-head .tm-toggle {
@@ -1495,96 +1551,26 @@ html.mobile-version .side-menu-head .tm-toggle {
 html.mobile-version main,
 html.mobile-version body.order-draw-mode main,
 html.mobile-version body.slideshow-mode main {
-  padding-top:calc(var(--header-height, 148px) + 18px) !important;
+  padding-top:calc(var(--header-height, 94px) + 14px) !important;
 }
 html.mobile-version body.slideshow-mode header {
   position:fixed !important;
   left:max(8px, env(safe-area-inset-left)) !important;
   right:max(8px, env(safe-area-inset-right)) !important;
 }
-@media (max-width:380px) {
+@media (min-width:430px) {
+  html.mobile-version .header-actions { width:min(42vw, 184px) !important; }
+  html.mobile-version h1 { font-size:14px !important; }
+}
+@media (max-width:390px) {
+  html.mobile-version .header-left { gap:6px !important; }
   html.mobile-version .menu-toggle,
-  html.mobile-version .mobile-stats-toggle { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
-  html.mobile-version h1 { font-size:13px !important; }
-  html.mobile-version .header-action { padding:4px 6px !important; }
-  html.mobile-version .header-action strong { font-size:9.5px !important; }
-  html.mobile-version .header-action span { font-size:8px !important; }
-}
-
-html.mobile-version body:not(.mobile-stats-open) .header-progress { display:block !important; }
-html.mobile-version .progress-row { gap:8px !important; }
-html.mobile-version .progress-wrap { height:7px !important; background:color-mix(in srgb, var(--line) 75%, transparent) !important; }
-html.mobile-version .progress-percent { font-size:11px !important; min-width:36px !important; }
-html.mobile-version main {
-  padding-top:calc(var(--header-height, 148px) + 18px) !important;
-}
-html.mobile-version body.order-draw-mode main {
-  padding-top:calc(var(--header-height, 148px) + 18px) !important;
-}
-html.mobile-version body.slideshow-mode header {
-  position:fixed !important;
-  left:max(8px, env(safe-area-inset-left)) !important;
-  right:max(8px, env(safe-area-inset-right)) !important;
-}
-html.mobile-version body.slideshow-mode main {
-  padding-top:calc(var(--header-height, 148px) + 18px) !important;
-}
-@media (max-width:380px) {
-  html.mobile-version .header-action { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
-  html.mobile-version .header-action strong { font-size:8.5px !important; max-width:36px; }
-  html.mobile-version .menu-toggle,
-  html.mobile-version .tm-toggle,
-  html.mobile-version .mobile-stats-toggle { width:42px !important; min-width:42px !important; height:42px !important; min-height:42px !important; }
-  html.mobile-version h1 { font-size:13px !important; }
-}
-
-html.mobile-version .header-action.hidden { display:none !important; }
-html.mobile-version body.stats-dashboard-mode .header-progress { display:none !important; }
-
-html.mobile-version .title-block {
-  grid-template-columns:minmax(88px, 1fr) auto !important;
-  align-items:center !important;
-  gap:8px !important;
-  min-height:48px !important;
-  padding:6px 7px 6px 12px !important;
-}
-html.mobile-version .title-copy { min-width:0; display:grid; gap:2px; }
-html.mobile-version .header-right { pointer-events:auto; display:block !important; }
-html.mobile-version .header-actions {
-  width:auto !important;
-  max-width:min(62vw, 292px) !important;
-  margin:0 !important;
-  padding:0 !important;
-  border:0 !important;
-  border-radius:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-  backdrop-filter:none !important;
-  display:flex !important;
-  justify-content:flex-end !important;
-  align-items:center !important;
-  gap:5px !important;
-  overflow-x:auto !important;
-  scrollbar-width:none !important;
-}
-html.mobile-version .header-actions::-webkit-scrollbar { display:none; }
-html.mobile-version .header-action {
-  width:58px !important;
-  min-width:58px !important;
-  height:36px !important;
-  min-height:36px !important;
-  padding:3px 7px !important;
-}
-html.mobile-version .header-action strong { font-size:10px !important; }
-html.mobile-version .header-action span { font-size:7.8px !important; }
-html.mobile-version .header-action.purple-btn { width:64px !important; min-width:64px !important; }
-html.mobile-version .header-action#retakeMissed { width:62px !important; min-width:62px !important; }
-@media (max-width:380px) {
-  html.mobile-version .title-block { grid-template-columns:minmax(76px, 1fr) auto !important; gap:6px !important; padding-left:10px !important; }
-  html.mobile-version .header-actions { max-width:min(60vw, 232px) !important; gap:4px !important; }
-  html.mobile-version .header-action { width:54px !important; min-width:54px !important; height:34px !important; min-height:34px !important; padding:3px 5px !important; }
-  html.mobile-version .header-action strong { font-size:9px !important; }
-  html.mobile-version .header-action span { font-size:7.2px !important; }
+  html.mobile-version .mobile-stats-toggle { width:40px !important; min-width:40px !important; height:40px !important; min-height:40px !important; }
+  html.mobile-version .title-block { gap:5px !important; padding:7px 7px 9px !important; }
+  html.mobile-version .header-actions { width:min(43vw, 150px) !important; min-width:118px !important; }
+  html.mobile-version .header-action { flex-basis:52px !important; width:52px !important; min-width:52px !important; height:31px !important; min-height:31px !important; padding:3px 4px !important; }
+  html.mobile-version .header-action strong { font-size:8.6px !important; }
+  html.mobile-version .header-action span { font-size:6.7px !important; }
 }
 
 </style>
@@ -1602,12 +1588,13 @@ html.mobile-version .header-action#retakeMissed { width:62px !important; min-wid
         <button class="header-action warning-btn" id="showAnswers" type="button"><strong>Show</strong><span>answers</span></button>
         <button class="header-action danger-btn" id="reset" type="button"><strong>Reset</strong><span>exam</span></button>
         <button class="header-action nav-blue hidden" id="retakeMissed" type="button"><strong>Retake</strong><span>missed</span></button>
-      </div></div>
+      </div><div class="header-progress"><div class="progress-row"><div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div><div class="progress-percent" id="progressPercent">0%</div></div></div></div>
       <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
     </div>
     <div class="header-right">
 
       <div class="stats" aria-live="polite">
+        <div class="stats-context" id="statsContext">Stats for All questions</div>
         <div class="stat"><strong id="answered">0</strong><span>answered</span></div>
         <div class="stat"><strong id="correct">0</strong><span>correct</span></div>
         <div class="stat"><strong id="missed">0</strong><span>missed</span></div>
@@ -1617,10 +1604,10 @@ html.mobile-version .header-action#retakeMissed { width:62px !important; min-wid
         <div class="stat dict-prof-stat"><strong id="dictProficiency">--</strong><span>dict</span></div>
       </div>
     </div>
-    <div class="header-progress"><div class="progress-row"><div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div><div class="progress-percent" id="progressPercent">0%</div></div></div>
   </div>
 </header>
 <div class="menu-backdrop hidden" id="menuBackdrop"></div>
+<div class="stats-backdrop hidden" id="statsBackdrop"></div>
 <aside class="side-menu" id="sideMenu" aria-hidden="true">
   <div class="side-menu-head">
     <div><div class="side-menu-title-row"><strong>Exam Menu</strong><button class="tm-toggle" id="tmButton" type="button" aria-label="Open trademark guide">TM</button></div><span>Choose a practice view</span></div>
@@ -2080,6 +2067,7 @@ function filterLabel(value) {
 }
 function updateSectionLabel() {
   if (sectionLabelEl && filterEl) sectionLabelEl.textContent = filterLabel(filterEl.value);
+  updateStatsContextLabel();
 }
 function updateMenuState() {
   if (!menuOptions || !filterEl) return;
@@ -4922,8 +4910,17 @@ document.getElementById('loveToggle').addEventListener('click', () => {
   btn.setAttribute('aria-label', hidden ? 'Show encouragement note' : 'Hide encouragement note');
 });
 const mobileStatsToggle = document.getElementById('mobileStatsToggle');
+const statsBackdrop = document.getElementById('statsBackdrop');
+function updateStatsContextLabel() {
+  const statsContextEl = document.getElementById('statsContext');
+  if (!statsContextEl) return;
+  const label = sectionLabelEl ? sectionLabelEl.textContent : 'current section';
+  statsContextEl.textContent = 'Stats for ' + (label || 'current section');
+}
 function setMobileStatsOpen(open) {
   document.body.classList.toggle('mobile-stats-open', open);
+  if (statsBackdrop) statsBackdrop.classList.toggle('hidden', !open);
+  if (open) updateStatsContextLabel();
   if (mobileStatsToggle) {
     mobileStatsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     mobileStatsToggle.textContent = 'Stats';
@@ -4932,6 +4929,7 @@ function setMobileStatsOpen(open) {
 }
 setMobileStatsOpen(false);
 if (mobileStatsToggle) mobileStatsToggle.addEventListener('click', () => setMobileStatsOpen(!document.body.classList.contains('mobile-stats-open')));
+if (statsBackdrop) statsBackdrop.addEventListener('click', () => setMobileStatsOpen(false));
 document.getElementById('themeToggle').addEventListener('click', () => {
   const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
   safeStorage.setItem(themeStorageKey, nextTheme);
