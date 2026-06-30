@@ -243,6 +243,13 @@ body.dark .menu-group-review { border-color:#ef4444; background:rgba(239,68,68,.
 .med-term-row { display:grid; grid-template-columns:minmax(180px,.42fr) minmax(0,1fr); gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel); box-shadow:0 5px 16px var(--shadow); }
 .med-term-name { padding:12px 13px; color:var(--accent-dark); background:var(--accent-soft); font-weight:950; line-height:1.35; border-right:1px solid var(--line); }
 .med-term-definition { padding:12px 13px; color:var(--ink); line-height:1.5; font-weight:700; }
+
+.med-term-row { grid-template-columns:minmax(180px,.34fr) minmax(0,1fr) minmax(148px,.18fr); }
+.med-term-actions { padding:12px 13px; border-left:1px solid var(--line); display:grid; align-items:center; background:color-mix(in srgb, var(--panel) 88%, var(--accent-soft)); }
+.med-term-dict-btn { border:1px solid color-mix(in srgb, var(--accent), var(--line) 45%); background:var(--accent); color:#fff; border-radius:8px; min-height:38px; padding:8px 10px; cursor:pointer; font-size:12px; font-weight:900; line-height:1.15; }
+.med-term-dict-btn:hover { filter:brightness(1.04); box-shadow:0 0 0 3px var(--focus); }
+.med-term-dict-btn.is-added { background:color-mix(in srgb, var(--muted) 34%, var(--panel)); color:var(--muted); border-color:var(--line); }
+@media (max-width: 760px) { .med-term-actions { border-left:0; border-top:1px solid var(--line); } .med-term-dict-btn { width:100%; } }
 .med-term-empty { border:1px dashed var(--line); border-radius:8px; padding:18px; color:var(--muted); background:var(--panel); font-weight:900; text-align:center; }
 @media (max-width: 760px) { .med-term-search { position:static; } .med-term-row { grid-template-columns:1fr; } .med-term-name { border-right:0; border-bottom:1px solid var(--line); } }
 
@@ -3610,7 +3617,11 @@ function updateMedicalTerminologyResults(query = '') {
   const normalized = String(query || '').trim().toLowerCase();
   const matches = medicalTerminologyEntries.filter(item => !normalized || item.term.toLowerCase().includes(normalized) || item.definition.toLowerCase().includes(normalized));
   if (count) count.textContent = matches.length + ' of ' + medicalTerminologyEntries.length + ' entries shown';
-  list.innerHTML = matches.length ? matches.map(item => '<article class="med-term-row"><div class="med-term-name">' + escapeHtml(item.term) + '</div><div class="med-term-definition">' + escapeHtml(item.definition) + '</div></article>').join('') : '<div class="med-term-empty">No terminology entries match that search.</div>';
+  list.innerHTML = matches.length ? matches.map(item => {
+    const index = medicalTerminologyEntries.indexOf(item);
+    const added = typeof medicalTermInDictionary === 'function' && medicalTermInDictionary(item.term);
+    return '<article class="med-term-row"><div class="med-term-name">' + escapeHtml(item.term) + '</div><div class="med-term-definition">' + escapeHtml(item.definition) + '</div><div class="med-term-actions"><button class="med-term-dict-btn' + (added ? ' is-added' : '') + '" type="button" data-med-term-index="' + index + '">' + (added ? 'Added to dictionary' : 'Add to dictionary') + '</button></div></article>';
+  }).join('') : '<div class="med-term-empty">No terminology entries match that search.</div>';
 }
 function renderMedicalTerminology() {
   if (!medicalTerminologyPanelEl) return;
@@ -3623,6 +3634,11 @@ function renderMedicalTerminology() {
       updateMedicalTerminologyResults(medicalTerminologyQuery);
     });
   }
+  medicalTerminologyPanelEl.onclick = event => {
+    const button = event.target.closest('[data-med-term-index]');
+    if (!button) return;
+    toggleMedicalTermDictionary(button.dataset.medTermIndex);
+  };
   updateMedicalTerminologyResults(medicalTerminologyQuery);
 }
 
@@ -4276,6 +4292,7 @@ function removeCustomDictionaryEntry(abbr) {
   renderCustomDictionaryRows();
   if (dictAddStatus) dictAddStatus.textContent = 'Definition deleted';
   updateDictionaryProficiency();
+  if (typeof updateMedicalTerminologyResults === 'function') updateMedicalTerminologyResults(medicalTerminologyQuery);
 }
 function renderCustomDictionaryRows() {
   if (!dictTable) return;
@@ -4290,6 +4307,30 @@ function renderCustomDictionaryRows() {
     );
     dictTable.appendChild(row);
   });
+}
+
+function medicalTermDictionaryIndex(term) {
+  const needle = String(term || '').trim().toLowerCase();
+  return customDictionaryEntries.findIndex(entry => String((entry && entry.abbr) || '').trim().toLowerCase() === needle);
+}
+function medicalTermInDictionary(term) {
+  return medicalTermDictionaryIndex(term) !== -1;
+}
+function toggleMedicalTermDictionary(index) {
+  const item = medicalTerminologyEntries[Number(index)];
+  if (!item) return;
+  const existingIndex = medicalTermDictionaryIndex(item.term);
+  if (existingIndex !== -1) {
+    customDictionaryEntries.splice(existingIndex, 1);
+    if (dictAddStatus) dictAddStatus.textContent = 'Removed from dictionary';
+  } else {
+    addCustomDictionaryEntry({ abbr: item.term, meaning: 'Medical terminology', definition: item.definition, source: 'medical-term' });
+    if (dictAddStatus) dictAddStatus.textContent = 'Added from Medical terminology';
+  }
+  saveCustomDictionaryEntries();
+  renderCustomDictionaryRows();
+  updateDictionaryProficiency();
+  updateMedicalTerminologyResults(medicalTerminologyQuery);
 }
 
 function addCustomDictionaryEntry(entry) {
@@ -4308,6 +4349,7 @@ function addCustomDictionaryEntry(entry) {
   }
   saveCustomDictionaryEntries();
   renderCustomDictionaryRows();
+  if (typeof updateMedicalTerminologyResults === 'function') updateMedicalTerminologyResults(medicalTerminologyQuery);
   return true;
 }
 
