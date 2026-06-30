@@ -443,7 +443,7 @@ body.slideshow-mode .question-card.slide-back, body.slideshow-mode .common-card.
 .dict-entry-delete { background:var(--bad-bg); color:var(--bad); border-color:color-mix(in srgb, var(--bad), var(--line) 45%); }
 .dict-entry-edit:hover, .dict-entry-delete:hover { box-shadow:0 0 0 3px var(--focus); }
 .dict-meaning-cell { display:grid; gap:7px; }
-.dict-manual-badge { display:inline-flex; width:max-content; max-width:100%; border:1px solid color-mix(in srgb, var(--accent), var(--line) 45%); background:var(--accent-soft); color:var(--accent-dark); border-radius:999px; padding:3px 8px; font-size:10px; line-height:1.2; font-weight:900; text-transform:uppercase; }
+.dict-source-note { display:block; margin-top:6px; color:var(--muted); font-size:11px; line-height:1.2; font-weight:800; }
 @media (max-width: 760px) { .dict-toggle { right:8px; width:42px; height:42px; } .dict-test-toggle { right:8px; width:42px; height:42px; top:calc(50% + 54px); } .dict-panel, .dict-quiz-panel { right:56px; width:calc(100vw - 66px); max-height:76vh; } .dict-row { grid-template-columns:1fr; } .dict-add-grid { grid-template-columns:1fr; } .dict-cell { border-right:0; border-bottom:1px solid var(--line); } .dict-cell:last-child { border-bottom:0; } }
 .love-note { position:fixed; left:70px; bottom:70px; z-index:20; max-width:330px; border:1px solid var(--line); background:color-mix(in srgb, var(--panel) 92%, transparent); color:var(--ink); border-radius:8px; padding:12px 13px; box-shadow:0 10px 24px var(--shadow); display:flex; gap:9px; align-items:flex-start; font-size:13px; line-height:1.35; font-weight:700; backdrop-filter:blur(12px); }
 .love-toggle { position:fixed; left:18px; bottom:70px; z-index:21; width:42px; height:42px; border:1px solid var(--line); background:var(--panel); color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.45); border-radius:999px; cursor:pointer; font-size:18px; font-weight:900; box-shadow:0 10px 24px var(--shadow); }
@@ -2323,7 +2323,8 @@ function showDefinitions(q, card) {
     const saved = addCustomDictionaryEntry({
       abbr: cleanTerm,
       meaning: 'Saved from Define',
-      definition: localMeaning
+      definition: localMeaning,
+      source: 'define'
     });
     const status = box.querySelector('.definition-save-status');
     if (status) status.textContent = saved ? 'Added to dictionary' : 'Could not add definition';
@@ -3862,17 +3863,15 @@ function createDictionaryCell(text, extraClass = '') {
 }
 
 function createDictionaryMeaningCell(entry) {
-  const cell = createDictionaryCell(entry.meaning);
-  cell.classList.add('dict-meaning-cell');
-  const badge = document.createElement('span');
-  badge.className = 'dict-manual-badge';
-  badge.textContent = 'Added manually';
-  cell.appendChild(badge);
-  return cell;
+  return createDictionaryCell(entry.meaning);
 }
 function createDictionaryActionCell(entry) {
   const cell = createDictionaryCell(entry.definition);
   cell.classList.add('dict-definition-cell');
+  const sourceNote = document.createElement('span');
+  sourceNote.className = 'dict-source-note';
+  sourceNote.textContent = (entry.source === 'define' || entry.meaning === 'Saved from Define') ? 'Saved from Define' : 'Added manually';
+  cell.appendChild(sourceNote);
   const actions = document.createElement('div');
   actions.className = 'dict-entry-actions';
   const editButton = document.createElement('button');
@@ -3929,13 +3928,15 @@ function addCustomDictionaryEntry(entry) {
   const abbr = String((entry && entry.abbr) || '').trim();
   const meaning = String((entry && entry.meaning) || '').trim();
   const definition = String((entry && entry.definition) || '').trim();
+  const source = entry && entry.source ? String(entry.source) : '';
   if (!abbr || !definition) return false;
   const existing = customDictionaryEntries.find(item => item.abbr.toLowerCase() === abbr.toLowerCase());
   if (existing) {
     existing.meaning = meaning || existing.meaning;
     existing.definition = definition;
+    existing.source = source || existing.source || (existing.meaning === 'Saved from Define' ? 'define' : 'manual');
   } else {
-    customDictionaryEntries.push({ abbr, meaning, definition });
+    customDictionaryEntries.push({ abbr, meaning, definition, source: source || 'manual' });
   }
   saveCustomDictionaryEntries();
   renderCustomDictionaryRows();
@@ -3953,7 +3954,7 @@ if (dictAddButton) dictAddButton.addEventListener('click', () => {
     if (dictAddStatus) dictAddStatus.textContent = 'Add a term and definition';
     return;
   }
-  addCustomDictionaryEntry({ abbr, meaning, definition });
+  addCustomDictionaryEntry({ abbr, meaning, definition, source: 'manual' });
   if (dictAbbrInput) dictAbbrInput.value = '';
   if (dictMeaningInput) dictMeaningInput.value = '';
   if (dictDefinitionInput) dictDefinitionInput.value = '';
