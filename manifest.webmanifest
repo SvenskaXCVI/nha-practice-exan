@@ -401,7 +401,7 @@ body.slideshow-mode .question-card.slide-back, body.slideshow-mode .common-card.
 .notes-editor:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus); }
 .notes-editor:empty::before { content:attr(data-placeholder); color:var(--muted); }
 .notes-status { color:var(--muted); font-size:12px; font-weight:800; min-height:18px; }
-@media (max-width: 640px) { .notes-toggle { left:8px; width:42px; height:42px; } .google-toggle { left:8px; top:calc(50% + 52px); width:42px; height:42px; } .notes-panel { left:56px; width:calc(100vw - 66px); } .notes-editor { min-height:440px; max-height:70vh; } }
+@media (max-width: 640px) { .notes-toggle { left:8px; width:42px; height:42px; } .notes-panel { left:56px; width:calc(100vw - 66px); } .notes-editor { min-height:440px; max-height:70vh; } }
 .dict-toggle { position:fixed; right:18px; top:50%; transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid var(--line); background:var(--accent); color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); }
 .dict-test-toggle { position:fixed; right:18px; top:calc(50% + 58px); transform:translateY(-50%); z-index:22; width:46px; height:46px; border:1px solid var(--line); background:var(--accent); color:white; border-radius:999px; padding:0; display:grid; place-items:center; cursor:pointer; box-shadow:0 10px 24px var(--shadow); font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:0; }
 .dict-test-toggle:hover { box-shadow:0 0 0 3px var(--focus), 0 10px 24px var(--shadow); }
@@ -554,7 +554,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .dict-quiz-choice { min-height:46px; }
 .mobile-version .dict-quiz-complete-actions { grid-template-columns:1fr; }
 .mobile-version .notes-toggle { left:max(8px, env(safe-area-inset-left)); width:42px; height:42px; }
-.mobile-version .google-toggle { left:max(8px, env(safe-area-inset-left)); top:calc(50% + 52px); width:42px; height:42px; }
 .mobile-version .notes-panel { left:58px; right:max(8px, env(safe-area-inset-right)); top:50%; width:auto; max-height:78vh; }
 .mobile-version .notes-editor { min-height:420px; max-height:58vh; }
 .mobile-version .love-toggle { left:max(8px, env(safe-area-inset-left)); bottom:calc(58px + env(safe-area-inset-bottom)); width:40px; height:40px; }
@@ -599,7 +598,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .mode-toggle,
 .mobile-version .top-toggle,
 .mobile-version .notes-toggle,
-.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -612,7 +610,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   z-index:35;
 }
 .mobile-version .notes-toggle,
-.mobile-version .google-toggle,
 .mobile-version .dict-toggle,
 .mobile-version .dict-test-toggle,
 .mobile-version .love-toggle {
@@ -622,7 +619,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 }
 .mobile-version .notes-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .love-toggle { left:calc(max(10px, env(safe-area-inset-left)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
-.mobile-version .google-toggle { left:auto; right:calc(max(10px, env(safe-area-inset-right)) + 58px); bottom:calc(10px + env(safe-area-inset-bottom)); top:auto; transform:none; width:42px; height:42px; }
 .mobile-version .dict-toggle { right:calc(max(10px, env(safe-area-inset-right)) + 52px); bottom:calc(60px + env(safe-area-inset-bottom)); }
 .mobile-version .dict-test-toggle { right:max(10px, env(safe-area-inset-right)); bottom:calc(60px + env(safe-area-inset-bottom)); font-size:11px; }
 .mobile-version .theme-toggle { left:max(10px, env(safe-area-inset-left)); bottom:calc(10px + env(safe-area-inset-bottom)); }
@@ -643,7 +639,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
   .mobile-version .mode-toggle,
   .mobile-version .top-toggle { font-size:11px; padding:8px 9px; }
   .mobile-version .notes-toggle,
-  .mobile-version .google-toggle,
   .mobile-version .dict-toggle,
   .mobile-version .dict-test-toggle,
   .mobile-version .love-toggle { min-width:40px; width:40px; height:40px; min-height:40px; }
@@ -987,6 +982,44 @@ body.dark .brand-logo.sx-logo { color:#fff; }
     padding: 10px;
   }
   .google-frame { min-height: 260px; }
+}
+
+
+
+/* Mobile popup viewport fit */
+.mobile-version .notes-panel,
+.mobile-version .dict-panel,
+.mobile-version .dict-quiz-panel,
+.mobile-version .google-panel {
+  position:fixed;
+  left:max(10px, env(safe-area-inset-left));
+  right:max(10px, env(safe-area-inset-right));
+  top:calc(var(--header-height, 150px) + 8px);
+  bottom:calc(112px + env(safe-area-inset-bottom));
+  width:auto;
+  height:auto;
+  max-width:none;
+  max-height:none;
+  transform:none;
+  overflow:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  box-sizing:border-box;
+  z-index:72;
+}
+.mobile-version .google-panel { display:grid; grid-template-rows:auto minmax(0, 1fr); }
+.mobile-version .google-panel.hidden { display:none; }
+.mobile-version .google-frame-wrap { min-height:0; }
+.mobile-version .google-frame { min-height:0; height:100%; }
+.mobile-version .notes-panel { grid-template-rows:auto auto minmax(180px, 1fr) auto; }
+.mobile-version .notes-editor { min-height:180px; max-height:none; }
+.mobile-version .dict-panel,
+.mobile-version .dict-quiz-panel { padding:12px; }
+@media (max-width:360px) {
+  .mobile-version .notes-panel,
+  .mobile-version .dict-panel,
+  .mobile-version .dict-quiz-panel,
+  .mobile-version .google-panel { bottom:calc(104px + env(safe-area-inset-bottom)); }
 }
 
 </style>
