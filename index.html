@@ -60,6 +60,12 @@ header { position:sticky; top:0; z-index:25; background:var(--header-bg); border
 .menu-toggle { width:38px; height:38px; border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:8px; display:grid; place-content:center; gap:5px; cursor:pointer; box-shadow:0 3px 14px var(--shadow); }
 .menu-toggle span { display:block; width:20px; height:2px; background:currentColor; border-radius:999px; }
 .menu-toggle:hover { border-color:var(--accent); box-shadow:0 0 0 3px var(--focus), 0 3px 14px var(--shadow); }
+.tm-toggle { width:38px; height:38px; border:1px solid var(--line); background:var(--panel); color:var(--accent-dark); border-radius:8px; display:grid; place-items:center; cursor:pointer; box-shadow:0 3px 14px var(--shadow); font-size:12px; font-weight:950; letter-spacing:0; }
+.tm-toggle:hover { border-color:var(--accent); background:var(--accent-soft); box-shadow:0 0 0 3px var(--focus), 0 3px 14px var(--shadow); }
+.tm-list { display:grid; gap:10px; margin:14px 0 0; text-align:left; }
+.tm-item { border:1px solid var(--line); border-radius:8px; padding:11px 12px; background:var(--panel); color:var(--ink); }
+.tm-item strong { color:var(--accent-dark); }
+@media (max-width:720px) { .tm-toggle { width:36px; height:36px; flex:0 0 auto; font-size:11px; } }
 h1 { margin:0; font-size:21px; line-height:1.15; letter-spacing:0; font-weight:800; }
 .title-block { display:grid; gap:4px; min-width:0; }
 .creator-credit { color:var(--muted); font-size:12px; font-weight:800; letter-spacing:0; }
@@ -248,7 +254,7 @@ body.dark .menu-group-review { border-color:#ef4444; background:rgba(239,68,68,.
 .med-term-actions { padding:12px 13px; border-left:1px solid var(--line); display:grid; align-items:center; background:color-mix(in srgb, var(--panel) 88%, var(--accent-soft)); }
 .med-term-dict-btn { border:1px solid color-mix(in srgb, var(--accent), var(--line) 45%); background:var(--accent); color:#fff; border-radius:8px; min-height:38px; padding:8px 10px; cursor:pointer; font-size:12px; font-weight:900; line-height:1.15; }
 .med-term-dict-btn:hover { filter:brightness(1.04); box-shadow:0 0 0 3px var(--focus); }
-.med-term-dict-btn.is-added { background:color-mix(in srgb, var(--muted) 34%, var(--panel)); color:var(--muted); border-color:var(--line); }
+.med-term-dict-btn.is-added { background:#dc2626; color:#fff; border-color:#b91c1c; cursor:pointer; }
 @media (max-width: 760px) { .med-term-actions { border-left:0; border-top:1px solid var(--line); } .med-term-dict-btn { width:100%; } }
 .med-term-empty { border:1px dashed var(--line); border-radius:8px; padding:18px; color:var(--muted); background:var(--panel); font-weight:900; text-align:center; }
 @media (max-width: 760px) { .med-term-search { position:static; } .med-term-row { grid-template-columns:1fr; } .med-term-name { border-right:0; border-bottom:1px solid var(--line); } }
@@ -272,6 +278,9 @@ body.dark .menu-group-review { border-color:#ef4444; background:rgba(239,68,68,.
 .inversion-feedback.good { color:var(--good); }
 .inversion-feedback.review { color:var(--bad); }
 .extra-quiz-countdown .advance-countdown-fill { animation-duration:3s; }
+.advance-lock-note { display:none; margin-left:8px; color:var(--bad); font-weight:950; }
+.advance-countdown.is-locking .advance-lock-note { display:inline-flex; }
+body.answer-scroll-lock .choice, body.answer-scroll-lock .inversion-choice { pointer-events:none; }
 .inversion-actions { display:flex; gap:10px; flex-wrap:wrap; }
 .inversion-next, .inversion-restart { border:1px solid var(--line); border-radius:8px; padding:10px 13px; cursor:pointer; font-weight:900; }
 .inversion-next { background:var(--accent); color:white; }
@@ -365,7 +374,7 @@ body.slideshow-mode .keyboard-legend { display:flex; }
 .legend-item { display:inline-flex; gap:5px; align-items:center; }
 .advance-countdown { margin-top:10px; color:var(--ink); font-size:13px; font-weight:800; display:flex; align-items:center; gap:10px; width:max-content; max-width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:999px; background:var(--panel); box-shadow:0 6px 16px var(--shadow); }
 .advance-countdown-bar { position:relative; display:block; flex:0 0 120px; width:120px; height:8px; overflow:hidden; border-radius:999px; background:color-mix(in srgb, var(--line) 70%, transparent); }
-.advance-countdown-fill { position:absolute; left:0; top:0; bottom:0; width:100%; display:block; background:linear-gradient(90deg, var(--accent), #22c55e); transform-origin:left center; animation:countdownShrink 5s linear forwards; }
+.advance-countdown-fill { position:absolute; left:0; top:0; bottom:0; width:100%; display:block; background:linear-gradient(90deg, var(--accent), #22c55e); transform-origin:left center; animation:countdownShrink 3s linear forwards; }
 @keyframes countdownShrink { from { transform:scaleX(1); } to { transform:scaleX(0); } }
 .confetti-piece { position:fixed; z-index:9999; width:8px; height:12px; border-radius:2px; pointer-events:none; animation:confettiFall 900ms ease-out forwards; }
 @keyframes confettiFall { 0% { transform:translate(0,0) rotate(0deg); opacity:1; } 100% { transform:translate(var(--dx), var(--dy)) rotate(720deg); opacity:0; } }
@@ -1239,6 +1248,7 @@ html.mobile-version body.menu-open .love-note {
   <div class="header-inner">
     <div class="header-left">
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open exam menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="tm-toggle" id="tmButton" type="button" aria-label="Open trademark guide">TM</button>
       <div class="title-block"><h1>NHA Mobile Practice Exam</h1><div class="creator-credit">made by Daddy Nathan</div><div class="section-label" id="sectionLabel">All questions</div></div>
       <button class="mobile-stats-toggle" id="mobileStatsToggle" type="button" aria-expanded="false">Stats</button>
     </div>
@@ -1541,6 +1551,7 @@ const googleClose = document.getElementById('googleClose');
 const googleOpenExternal = document.getElementById('googleOpenExternal');
 const nextMissedBtn = document.getElementById('nextMissed');
 const menuToggle = document.getElementById('menuToggle');
+const tmButton = document.getElementById('tmButton');
 const sideMenu = document.getElementById('sideMenu');
 const menuBackdrop = document.getElementById('menuBackdrop');
 const menuClose = document.getElementById('menuClose');
@@ -1551,6 +1562,15 @@ const importSaveDataBtn = document.getElementById('importSaveData');
 const updateFromGithubBtn = document.getElementById('updateFromGithub');
 const importSaveFileInput = document.getElementById('importSaveFile');
 const saveTransferStatus = document.getElementById('saveTransferStatus');
+function showTrademarkPopup() {
+  const overlay = document.createElement('div');
+  overlay.className = 'exam-finish-overlay';
+  overlay.innerHTML = '<div class="exam-finish-card good" role="dialog" aria-modal="true" aria-label="Feature trademark guide"><h2>Feature Marks</h2><div class="tm-list"><div class="tm-item"><strong>AnswerGuard&trade;</strong> - System set to protect accidental clicks when autoscrolling</div><div class="tm-item"><strong>IMEX&trade;</strong> - Export and Import Functionality for save files</div><div class="tm-item"><strong>TSFA&trade;</strong> - Theme selection for application</div><div class="tm-item"><strong>StatTrack</strong> - Statistical operations for progress tracking</div></div><div class="finish-actions"><button class="secondary" type="button" data-close-tm>Close</button></div></div>';
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay || event.target.closest('[data-close-tm]')) overlay.remove();
+  });
+  document.body.appendChild(overlay);
+}
 function openMenu() {
   document.body.classList.add('menu-open');
   sideMenu.classList.add('open');
@@ -2084,7 +2104,10 @@ function makeCard(q) {
   card.dataset.number = q.number;
   card.innerHTML = '<div class="question-head"><p class="question-title"></p><div class="question-tools"><button class="define-btn" type="button" title="Define selected or complex terms">Define</button><span class="badge">' + q.options.length + ' choices</span></div></div><div class="definition-box hidden"></div><div class="choices"></div><div class="feedback" aria-live="polite"></div><div class="keyboard-legend"><span class="legend-item"><span class="keycap">←</span> previous</span><span class="legend-item"><span class="keycap">→</span> next</span></div>';
   card.querySelector('.question-title').textContent = (q.displayNumber || q.number) + '. ' + q.question;
-  card.querySelector('.define-btn').addEventListener('click', () => showDefinitions(q, card));
+  const defineBtn = card.querySelector('.define-btn');
+  defineBtn.addEventListener('pointerdown', rememberCurrentSelection);
+  defineBtn.addEventListener('touchstart', rememberCurrentSelection, { passive: true });
+  defineBtn.addEventListener('click', () => showDefinitions(q, card));
   const choices = card.querySelector('.choices');
   for (const option of q.options) {
     const btn = document.createElement('button');
@@ -2575,11 +2598,46 @@ function escapeHtml(value) {
 }
 const medicalTerminologyEntries = [{"term":"Arterial Blood Gas (ABG)","definition":"A test that analyzes arterial blood for oxygen, carbon dioxide, bicarbonate content, and blood pH. This test is used to determine the effectiveness of respiration."},{"term":"Accession Number","definition":"A unique number is given for each test request. The accession number identifies a specimen as long as it remains in the laboratory."},{"term":"AFP - Alpha-fetoprotein","definition":"AFP is usually found in the human fetus, but abnormal levels of AFP may indicate a neural tube defect in an infant or another fetal developmental problem. The test is performed on maternal serum. If results are abnormal, a test on the amniotic fluid will be used to confirm the results."},{"term":"Aliquot","definition":"When a specimen is collected, it may need to be divided to run several tests. An aliquot is a fraction of the specimen. Each aliquot has its tube for testing and is labeled with the same information as the original specimen."},{"term":"Antisepsis","definition":"The practice of using antiseptics to eliminate the microorganisms that cause disease."},{"term":"Arrhythmia","definition":"An abnormal rate of muscle contractions in the heart can present as bradycardia (too slow), tachycardia (too fast), or irregular."},{"term":"ASAP - As Soon As Possible","definition":"Used if the results are quickly needed though not to prevent the patient from dying."},{"term":"Asepsis","definition":"The state of being free from disease-causing contaminants, such as bacteria, viruses, fungi, and parasites, by preventing contact with microorganisms. The term asepsis often refers to practices used to promote or induce asepsis in an operative field in surgery or medicine to prevent infection."},{"term":"Aseptic","definition":"Free from contamination caused by harmful bacteria, viruses, or other microorganisms."},{"term":"Autologous Blood Transfusion","definition":"Intraoperative blood salvage, also known as an autologous blood transfusion or cell salvage, is a medical procedure involving recovering blood lost during surgery and reinfusing it into the patient. It is an effective form of autotransfusion."},{"term":"Basilic Vein","definition":"The large vein on the inner side of the biceps that is often chosen for intravenous injections and blood drawings."},{"term":"Battery","definition":"Unprivileged touching of a person by another. When a procedure is performed on a patient, they must consent in full knowledge of the procedure and the risks it may entail (informed consent). Intentional touching of a patient without their permission is battery. The critical element of battery is that the touching is unauthorized though not intended to harm the person; there is a lack of consent."},{"term":"Bleeding Time","definition":"A test was performed to ascertain platelet function. A small incision in the forearm and a special paper is applied to the wound and then timed to see how long it takes the platelets to form a “plug” and stop the bleeding. Aspirin will affect bleeding time results."},{"term":"Bloodborne Infection","definition":"Infection is transmitted from blood to blood."},{"term":"Blood Clot","definition":"The conversion of blood from a liquid to a solid through coagulation. A thrombus is a clot that forms inside a blood vessel. If that clot moves inside the vessel, it is referred to as an embolus (embolism)."},{"term":"Butterfly","definition":"A small needle with two plastic “wings” attached from tabs is used to manipulate the needle when squeezed together, offering better manipulation. A 6”-12”-long plastic tubing is attached. This assembly is then attached to a syringe or Vacutainer holder to draw a blood sample. The angle of entry should be 5 degrees for hand draws."},{"term":"CaviCide","definition":"A convenient, ready-to-use, intermediate-level surface disinfectant is effective against TB, HBV, HCV, viruses (hydrophilic and lipophilic), bacteria (including MRSA and VRE), and fungi. They are used in the Newborn Intensive Care Unit (NICU), operating rooms, isolation rooms, patient care areas, and laboratories. It will also effectively clean and decontaminate critical and semi-critical instrumentation when used as directed."},{"term":"CDC","definition":"Centers for Disease Control and Prevention."},{"term":"C. Diff - Clostridium Difficile","definition":"“C. Diff” is a good bacteria found in all things. When we take antibiotics, “C. Diff” can be triggered into rapid growth which can result in colitis, an inflammation of the colon."},{"term":"Chain of Custody","definition":"The chain of custody refers to tracking every individual who has had access to or possession of something. It can also refer to tracking samples used in criminal proceedings such as DUI cases or other illegal activity in medicine. Chain of custody guidelines also apply to drug screenings, forensic studies, blood alcohol tests, and paternity testing."},{"term":"Circulation","definition":"The movement of fluid in a regular or circuitous course. Although the noun “circulation” does not necessarily refer to blood circulation, for all practical purposes, here it does. Heart failure is an example of a problem with circulation."},{"term":"Citrate","definition":"A compound intermediate in the citric acid cycle (Krebs cycle). Citrate chelates (binds) calcium ions, preventing blood clotting and, thus, is an effective anticoagulant."},{"term":"CLIA - The Clinical Laboratory Improvement Amendments of 1988","definition":"CLIA are federal regulatory standards that apply to all clinical laboratory testing performed on humans in the United States, except for clinical trials and basic research. A clinical laboratory is defined by CLIA as any facility which performs laboratory testing on specimens obtained from humans to provide information for health assessment and the diagnosis, prevention, or treatment of disease. Each facility is given a unique number. All Medicare claims for laboratory services must include the CLIA number for the laboratory."},{"term":"CLIA Requirements for Waived Testing","definition":"All facilities in the United States that perform laboratory testing on human specimens for health assessment or the diagnosis, prevention, or treatment of disease are regulated under CLIA. - Tests can be waived under CLIA if they are determined to be “simple tests with an insignificant risk of an erroneous result.” Eight trials were included in the 1992 CLIA regulations (a ninth test subsequently was added) as meeting these criteria. - The FDA Modernization Act of 1997 clarified that tests cleared by the FDA for home use are waived automatically. An additional route to waiver exists through a process in which the FDA evaluates studies and other information submitted by manufacturers to demonstrate that a test meets the waiver criteria of being simple and having a low risk for error. - Approximately 1,500 test systems representing at least 76 analytes are waived under CLIA."},{"term":"CLSI - The Clinical and Laboratory Standards Institute","definition":"CLSI is a volunteer-driven, membership-supported, not-for-profit standards development organization that promotes the development and use of voluntary laboratory consensus standards and guidelines within the healthcare community."},{"term":"Coagulation Factors","definition":"A group of plasma protein substances (Factor I-XIII) is contained in the plasma, which acts together to bring about blood coagulation."},{"term":"Complete Blood Count","definition":"The number of red blood cells, white blood cells, and platelets (per cubic milliliter) present in a patient’s blood sample is the complete blood count. Also included are the hematocrit, hemoglobin concentration, and the differential. This test is most commonly done on the blood."},{"term":"Contamination","definition":"Soiling or pollution by inferior material, as by introducing organisms into a wound."},{"term":"Coumadin","definition":"The trademark for the preparation of warfarin sodium."},{"term":"Creatinine Clearance","definition":"A 24-hour urine and serum test that is both a blood and urine collection. The blood test has no fasting requirements but is preferably collected when the urine collection is completed. The creatinine 24-hour urine test requires the patient to void urine at 0800 and discard the specimen. Then collect all urine in the following 24 hours, ending with the final collection at 0800 the following day. Specimens must be handled and stored (refrigerated) correctly. It is essential to stay hydrated during the period of specimen collection. Avoid exercise before and during the period of specimen collection."},{"term":"C-Reactive Protein (CRP)","definition":"CRP is a blood test marker for inflammation in the body. CRP is produced in the liver, and its level is measured by testing the blood. CRP is classified as an acute-phase reactant, which means its levels will rise in response to inflammation. This test can be drawn in a serum separator tube or lavender-top tube, depending on whether serum or plasma is required for the test."},{"term":"Cyanotic","definition":"Bluish skin color due to lack of oxygen."},{"term":"Cystitis","definition":"Inflammation of the urinary bladder. It is often caused by infection and usually accompanied by frequent, painful urination."},{"term":"D-Dimer","definition":"This test uses a light blue sodium citrate tube. This test is used to help rule out the presence of an inappropriate blood clot (thrombus). Some of the conditions that the D-dimer test helps rule out include deep vein thrombosis (DVT) and pulmonary embolism (PE)."},{"term":"Defamation of Character","definition":"Intentional injury to another person’s reputation, name, or character through spoken (slander) or written (libel) words."},{"term":"Diaphoresis","definition":"This is the medical term used to describe excessive, abnormal sweating in relation to your environment and activity level. It tends to affect your entire body rather than a part of your body. This condition is also sometimes called secondary hyperhidrosis. Hyperhidrosis, or primary hyperhidrosis, is also associated with profuse sweating, though it’s thought to be a nervous system disorder. With primary hyperhidrosis, sweating is typically limited to select body parts, such as your hands or feet. Diaphoresis is usually a symptom of an underlying health condition. Some conditions can be life-threatening and require immediate medical attention. Certain medications can also cause diaphoresis."},{"term":"Differential","definition":"A count was made on a stained blood smear of the proportion of the various leukocytes (WBCs) and expressed as a percentage. A differential is a normal part of a complete blood count (CBC)."},{"term":"Diurnal Variations","definition":"The measuring of a body’s ability to metabolize certain substances. Changes in the patient’s condition should be monitored over the next 24 hours."},{"term":"DNR - Do Not Resuscitate","definition":"“No codes” should be called for a patient who has a DNR. No heroic measures should be taken to revive the patient if the patient stops breathing."},{"term":"Ecchymosis","definition":"Skin discoloration that is caused by a bruise (contusion)."},{"term":"EDTA - Ethylenediaminetetraacetate","definition":"A calcium-binding agent that is used as an anticoagulant for laboratory blood specimens."},{"term":"Electrolyte","definition":"A substance that will acquire the capacity to conduct electricity when put into solution. Electrolytes include sodium, potassium, chloride, calcium, and phosphate. Informally called “lytes.”"},{"term":"Embolus","definition":"A blood vessel’s sudden blockage by a blood clot or some other obstruction that has been transported through blood vessels and lodged at a site too small for passage. Examples of emboli are a detached blood clot, a clump of bacteria, or other foreign material such as air, in contrast to a thrombus."},{"term":"EMLA - Eutectic Mixture of Local Anesthetic","definition":"EMLA is usually a topical spray that briefly anesthetizes the skin before puncturing."},{"term":"Endocrine System","definition":"The endocrine system functions in the regulation of body activities. The endocrine system acts through chemical messengers called hormones that influence growth, development, and metabolic activities. The action of the endocrine system is measured in minutes, hours, or weeks. The endocrine system works with the nervous system to maintain homeostasis in the body."},{"term":"Ethanol","definition":"Another name for alcohol in blood testing, such as a blood ethanol test or a blood alcohol test. Also referred to as ETOH."},{"term":"Eyewash Station","definition":"A unit that attaches to a water supply and provides a gentle stream of water. It is used for emergency irrigation to remove contaminants from the ocular area. Eyewash stations are a necessary backup to minimize the effects of accidental exposure to chemicals and other irritants."},{"term":"Fahrenheit and Celsius","definition":"Fahrenheit into Celsius is C = (F - 32) x 5/9 and Celsius into Fahrenheit is F = (C x 9/5) + 32."},{"term":"Fibrillation","definition":"Rapid, inefficient contraction of muscle fibers of the heart caused by disruption of nerve impulses."},{"term":"Fibrin","definition":"The protein formed during normal blood clotting is the essence of the clot."},{"term":"Fibrinogen","definition":"The protein from which fibrin is formed or generated in normal blood clotting."},{"term":"Fibrin Strands","definition":"Forms in a centrifuged blood sample when the blood was not allowed to clot for 30 minutes before centrifugation."},{"term":"Flash","definition":"In venipuncture, a small amount of blood appears in the neck of a syringe or a butterfly’s tubing. This is a sign that the vein is accessed correctly."},{"term":"Fomite","definition":"An inanimate object that transports microorganisms."},{"term":"Formed Elements","definition":"Red Blood Cells, White Blood Cells, and Platelets."},{"term":"Galactosemia","definition":"A rare genetic metabolic disorder that affects an individual’s metabolizing of the sugar galactose properly. Galactosemia follows an autosomal recessive mode of inheritance, meaning that the child must inherit one defective gene from each parent to show the disease. The frequency is about 1 in every 60,000 births, so approximately 75 cases in the 4 million births in the United States per year."},{"term":"Gauge","definition":"Needle diameters are measured by gauge. The larger the needle diameter, the smaller the gauge. For example, a large diameter needle (16 gauge) may be used for hemodialysis, whereas a smaller needle (23 gauge) would draw blood for laboratory testing."},{"term":"Geriatrics","definition":"The branch of medicine that deals with the diseases, infirmities, and care of aged persons."},{"term":"Germicide","definition":"An agent that kills pathogenic microorganisms."},{"term":"Glucose","definition":"This sugar is measured in blood and urine specimens to determine the presence or absence of diabetes. Glucose is the end product of carbohydrate metabolism and is the chief energy source for all living organisms. Patients with diabetes use a glucose meter to measure their blood sugar anywhere from 1 to 5 times daily."},{"term":"Glucose Meter - aka Glucometer","definition":"A device that individuals with diabetes use to measure the amount of sugar in their bloodstream. A phlebotomy technician should perform a quality control test on a glucometer every day; the glucometer guarantees that readings are accurate and consistent."},{"term":"Good Samaritan Law","definition":"This law deals with the rendering of first aid by healthcare professionals at the scene of an accident or sudden injury. It encourages healthcare professionals to provide medical care within the scope of their training without fear of being sued for negligence."},{"term":"Gram","definition":"The primary metric unit of weight."},{"term":"Growth Hormone","definition":"Growth hormone (GH) stimulates amino acids used for protein synthesis and causes lipolysis to provide catabolism of fatty acids. It is sometimes abused to stimulate muscle growth and catabolize fat."},{"term":"HbA1c","definition":"The hemoglobin A1c (HbA1c) test indicates the average blood sugar level over 2-3 months. It is customarily drawn in a lavender tube."},{"term":"H.I.P.A.A. - The Health Insurance Portability and Accountability Act of 1996","definition":"This federal law’s primary goal is to make it easier for people to keep health insurance, protect the confidentiality and security of healthcare information, and help the healthcare industry control administrative costs. Personal health information (PHI), also referred to as protected health information, generally refers to demographic information, medical history, test and laboratory results, insurance information, and other data that a healthcare professional collects to identify an individual and determine appropriate care. - It is essential regarding HIPAA policy to get all consent and acknowledgment in writing. In accordance with HIPAA, the patient has a right to their information remaining private and protected. - For example, you cannot fulfill that request if law enforcement asked for information, samples, specimens, etc., regarding a patient without a warrant."},{"term":"Helicobacter Pylori - H. Pylori","definition":"A breath test (carbon isotope-urea breath test, or urea breath test)."},{"term":"Hematocrit","definition":"The total red blood cell volume ratio to the total blood volume expressed as a percentage."},{"term":"Hematoma","definition":"A localized collection of blood within tissues due to leakage from the wall of a blood vessel produces a bluish discoloration (ecchymosis) and pain. If you see a hematoma forming, release the tourniquet, remove the needle, and apply pressure."},{"term":"Hemochron Signature Elite","definition":"A device used for POCT (point-of-care testing) regarding PT/INR is the Hemochron Signature Elite. It is a comprehensive point-of-care coagulation monitoring system. This is not the industry standard, and practitioners may use an alternative."},{"term":"Hemoconcentration","definition":"A decrease in the blood (plasma) fluid, thus increasing concentration. An increase in hematocrit numbers determines hemoconcentration. This condition is caused by the filtration of plasma into body tissues and is often created by dehydration."},{"term":"Hemoglobin","definition":"The oxygen-carrying pigment of the red blood cells."},{"term":"Hemoglobinuria","definition":"Excretion of free hemoglobin in the urine."},{"term":"Hemolytic Anemia","definition":"Reduction in red cells due to excessive destruction in the body. A condition in which red blood cells are destroyed and removed from the bloodstream before their average lifespan is over."},{"term":"Hemolyze / Hemolysis","definition":"The breaking of red blood cell membranes which releases free hemoglobin into the circulating blood. In phlebotomy, this is usually the result of using a smaller needle than should have been used. There can also be too much suction from a large tube or the draw needle against the vein wall. These cause the cells to have a smaller than normal entry point into the needle, breaking as they force into the needle. This may also occur when the alcohol at the insertion site has not been allowed to dry completely before blood collection."},{"term":"Hemostasis","definition":"The arrest of bleeding, whether it be by normal vasoconstriction (the vessel walls closing temporarily), by an abnormal obstruction such as a plaque, or by coagulation or surgical means such as ligation."},{"term":"Heparin","definition":"An anticoagulant that acts to inhibit several coagulation factors, especially factor Xa. Heparin forms in the liver. The purpose of heparin is to prevent coagulation. The three types of heparin are ammonium, sodium, and lithium. Ammonium heparin is used for hematocrit determinations and is found in capillary tubes. Sodium heparin and lithium heparin are used in evacuated tubes. Make sure that the heparin used is not what is being tested. For example, heparin is used for electrolyte testing, but sodium is a commonly tested electrolyte; thus, sodium heparin would not be appropriate for heparin to test for electrolytes. It is crucial to mix heparin tubes properly to prevent microclots."},{"term":"Hepatitis D Virus","definition":"Hepatitis D virus is usually acquired with HBV as a co-infection or superinfection. Signs and symptoms include jaundice, fatigue, abdominal pain, loss of appetite, nausea, vomiting, joint pain, or dark (tea-colored) urine. Transmission occurs when blood from an infected person enters the body of a person who is not immune. This can occur through sharing drugs, needles, or “works” when “shooting” drugs, through needle sticks or sharps exposures on the job, or from an infected mother to her baby during birth."},{"term":"Homeostasis","definition":"The tendency of an organism (the human body) or a cell to regulate its internal conditions. The body provides a system of feedback controls to stabilize health and functioning, regardless of the externally changing needs."},{"term":"Hyperglycemia","definition":"Abnormally high blood sugar level."},{"term":"Hypoglycemia","definition":"Abnormally low blood sugar level."},{"term":"Iatrogenic","definition":"Refers to any effect on a person resulting from any activity of one or more persons acting as healthcare professionals or promoting products or services as beneficial to health that does not support a goal of the person affected."},{"term":"Iatrogenic Anemia","definition":"Anemia is a condition marked by a deficiency of red blood cells or hemoglobin in the blood, resulting in poor skin color and weariness. Iatrogenic anemia describes anemia resulting from repeated blood collection for diagnostic testing. The key to preventing iatrogenic anemia is blood conservation. It may be achieved by avoiding taking blood samples from a patient unless absolutely necessary, collecting only the minimum volume required to perform a diagnostic test, reducing blood sampling frequency, and using small blood volume containers. Removal of more than 10% of these patients’ blood can be life-threatening."},{"term":"Calculate Volume to Avoid Iatrogenic Anemia","definition":"Part 1: 1. Anemia can lead to shortness of breath, fatigue, and a need for blood transfusions. 2. Geriatric and underweight pediatric patients are the most vulnerable. 3. Understand the implications of drawing too much blood in a short time frame. 4. If requests seem excessive, check with the nurse. Part 2: 1. Draw no more than 10% of blood volume for infants. 2. Convert weight to kilograms (kg) to begin volume calculation. 3. Draw no more than 100 mL for adults. Part 3: 1. Calculate infant blood volume. 2. Multiply kilograms by 100 to get volume in milliliters. 3. Document the amount of blood collected in each tube. 4. Draw minimum requires an amount. Part 4: 1. Communicate regularly with supervisor and laboratory manager. 2. Discuss concerns with superiors."},{"term":"Idiopathic Anemia","definition":"A type of anemia in which the patient’s blood marrow stops making new red blood cells."},{"term":"Impermeable","definition":"Does not allow the passage of liquids."},{"term":"Indirect Infection","definition":"Infection that is transmitted through body fluids to blood."},{"term":"Informed Consent","definition":"This gives the patient adequate information concerning the method, risk, and consequences of a specific procedure, including its risks, expected outcomes, and alternatives."},{"term":"Inoculate","definition":"To implant a disease agent or antigen in a person. This is how a vaccine stimulates disease resistance."},{"term":"Invasion of Privacy","definition":"Releasing medical records without the patient’s knowledge and permission. Layperson’s Terms This means using words that someone who is not an expert can understand."},{"term":"Lipemic","definition":"The serum and plasma portions appear milky after blood is spun and separated in a centrifuge. Hyperlipidemia would cause the blood to be lipemic. Samples are most likely to be lipemic if the patient was not fasting before collection."},{"term":"LIS - Laboratory Information System","definition":"An LIS is a laboratory information system. Usually the LIS is used to order tests, print labels for specimens, and enter test results. An LIS is customized to specific laboratory requirements."},{"term":"Liter","definition":"The primary metric unit of volume."},{"term":"Lymphedema","definition":"A type of swelling which occurs in lymphatic tissue when excess fluid collects in the arms or legs because the lymph nodes or vessels are blocked or removed. Regarding phlebotomy, this can be a significant complication of mastectomies."},{"term":"Meter","definition":"The primary metric unit of distance."},{"term":"Military Time","definition":"Also known as 24-hour time, or the 24-hour clock, wherein 1 pm is 1300 hours and 5 pm is 1700 hours. All specimens noted in military time should be tracked until the patient completes the system. The timing system you may use will vary by facility, but you should always use a standard for all patients in the clinical setting. For example, writing 09:00 on a patient sample is 9:00 am, writing 21:00 is 9 pm. If this gets misread and mislabeled when a sample is taken or received, it could cause discrepancies and potentially life-threatening issues. MSDS - Material Safety Data Sheet (currently called the SDS: Safety Data Sheet) A document that contains information on the potential health effects of exposure to chemicals or other potentially dangerous substances and explains safe working procedures when handling chemical products. It includes hazard evaluations on the use, storage, handling, and emergency procedures related to that material. It is intended to tell the product’s hazards, how to use the product safely, what to expect if the recommendations are not followed, how to recognize symptoms of overexposure, and what to do if such incidents occur."},{"term":"Multi-Sample Adapter","definition":"A device that is used with a butterfly and Vacutainer holder allowing for the withdrawal of multiple blood tubes during venipuncture."},{"term":"Murmur","definition":"The noise between normal heart sounds caused by blood flow through a heart valve."},{"term":"N95 Respirator Mask","definition":"An N95 mask is a respiratory protective device designed to achieve a close facial fit and efficient filtration of airborne particles. The “N95” designation means that the respirator blocks at least 95% of tiny (0.3 microns) test particles when subjected to careful testing. The CDC requires the technician to wear an N95 respirator mask when working with active tuberculosis patients."},{"term":"NCCLS - National Center for Clinical Laboratory Standards","definition":"This agency is a national organization that establishes standards for phlebotomy procedures."},{"term":"Negligence","definition":"Failure to exercise the standard of care that a reasonable person would give under similar circumstances. Also, someone suffering injury because of another’s failure to live up to a required duty of care. The four elements of negligence (4 D’s) are: 1. Duty: duty of care. 2. Derelict: breach of duty of care. 3. Direct cause: legally recognizable injury occurs as a result of the breach of duty of care. 4. Damage: the wrongful activity must have caused injury or harm."},{"term":"Neonatal / Neonate","definition":"Of, relating to, or affecting the newborn and especially the human infant during the first month after birth."},{"term":"Nosocomial Infection","definition":"Healthcare setting acquired infections. NPO - “non per os” The Latin phrase “non per os” means nothing by mouth. Patients are not allowed food or drink, including water. This restriction is placed on a patient before and after a procedure."},{"term":"Oncology","definition":"The study and treatment of cancer."},{"term":"O&P - Ova & Parasite","definition":"This test detects parasites’ presence in a stool sample and helps diagnose infection in the digestive tract."},{"term":"OSHA - The Occupational Safety and Health Administration","definition":"An agency of the US government that is under the Department of Labor with the responsibility of ensuring safety at work and a healthful work environment. OSHA’s mission is to prevent work-related injuries, illnesses, and deaths."},{"term":"Oxyhemoglobin","definition":"Hemoglobin has been bound with oxygen in the lungs for transport to cells in the body. In the cells, oxygen is exchanged for carbon dioxide."},{"term":"Palpate","definition":"To examine or feel using the fingers of the non-dominant hand. In venipuncture, this technique is used to “feel” veins rebound with the slight application of finger pressure. The technique is used to help determine the size, depth, and direction of a vein. In arterial punctures, this technique is used to determine the position and depth of an artery."},{"term":"Pathogen","definition":"Any microorganism that produces disease."},{"term":"Pathogenic","definition":"The capability of producing disease."},{"term":"Patient Confidentiality","definition":"The critical concept of HIPAA. All patients have a right to privacy, and all information should remain privileged. Discuss patient information only with the physician or office personnel who need certain information to do their job. Obtain a signed consent form to release medical information to the insurance company or other individuals."},{"term":"Pernicious Anemia","definition":"Occurs when red blood cells (erythrocytes) in the body lack the ability to absorb Vitamin B12."},{"term":"Peripheral Blood","definition":"Blood is obtained at a distance from the heart, such as the fingertip, heel pad, earlobe, or antecubital vein."},{"term":"Petechiae","definition":"These tiny, non-raised, red spots appear on the skin from capillaries rupturing due to the tourniquet being on for too long or too tight."},{"term":"Phlebitis","definition":"Inflammation of a vein as a result of repeated venipuncture on that vein."},{"term":"Pipette","definition":"A glass or transparent plastic tube is used to accurately transport small amounts of liquid."},{"term":"Plasma","definition":"The fluid portion of the blood in which the cellular components are suspended. Plasma is different from serum."},{"term":"Platelet","definition":"Also known as a thrombocyte. A particulate component of the blood, approximately 2-4 microns in diameter, that is known for its blood coagulation involvement. This structure, which has no nucleus or DNA, is formed by breaking off from the parent cell’s cytoplasm, known as a megakaryocyte in the bone marrow. Under normal conditions, platelets will aggregate at a break in vascular integrity site, forming a clot’s beginning stages. Normal platelet counts range from 150,000-450,000/cm3."},{"term":"Point-of-Care Testing (POCT)","definition":"Diagnostic testing at or near the site of patient care. The driving notion behind POCT is to bring the test conveniently and immediately to the patient. POCT increases the likelihood that the patient will receive the results in a timely manner."},{"term":"Quality Assurance","definition":"Quality assurance (QC) is defined as a program that guarantees quality patient care by tracking outcomes through scheduled audits. Hospital areas look at the appropriateness, applicability, and timeliness of patient care. A QC program is a continuous program established by the healthcare facility, which will provide guidelines, protocols, and continuing education for their employees to show ongoing competence."},{"term":"Quality Control","definition":"Quality control (QC) is defined as the steps or procedures we do to ensure quality assurance. Examples include checking expiration dates, monitoring glucose monitors, keeping log sheets of refrigerator temperatures, and calibrating instruments."},{"term":"Quality Control Testing","definition":"Performing QC testing procedures ensure that the test performs as expected and alerts the user when problems occur. QC testing is designed to detect issues that might arise because of operator error, reagent or test kit deterioration, instrument malfunction, or improper environmental conditions."},{"term":"QNS - Quantity Not Sufficient","definition":"Occurs when drawing blood and you do not get enough blood for the lab to perform the test or tests indicated on the requisition form."},{"term":"RAST - Radioallergosorbent Test","definition":"RAST is an abbreviation for the radio-allergo-sorbent test. This test is used in the detection of allergies, such as a peanut allergy."},{"term":"Red Blood Cells (RBCs)","definition":"One of the solid components of the blood is usually a biconcave disc without a nucleus - the blood component containing hemoglobin. Hemoglobin is responsible for oxygen and carbon dioxide exchange. A red blood cell count is performed as part of a complete blood count and ranges from 4,500,000 to 5,000,000 RBCs per cubic millimeter."},{"term":"Sclerosis","definition":"A hardening, especially from inflammation and certain disease states. Though sclerosis may occur in many areas of the body, it is most often associated with blood vessels."},{"term":"Septicemia","definition":"A systemic infection associated with pathogenic organisms introduced during venipuncture."},{"term":"Serum","definition":"The clear liquid portion of blood that separates after clotting has taken place. After clotting has occurred, the serum is fibrinogen deficient. Contrast this to plasma."},{"term":"Sphygmomanometer","definition":"A device is placed on a patient’s arm which, when inflated, cuts off all blood flow to the arm. A stethoscope is placed on the arm in the antecubital fossa, and pressure is slowly released. As the blood begins to flow, a determination is made based on sounds in the stethoscope and “bumps” on the sphygmomanometer to determine systolic and diastolic blood pressure. Systolic is the pressure in the arteries, and diastolic is the pressure in the veins. - This is not an example of a VAD - Vascular Access Device."},{"term":"STAT","definition":"From the Latin word “statim,” this term means immediately. It describes the need for a specimen or test to be done immediately in response to critical situations with the possibility of the test results preventing a patient’s death."},{"term":"Thrombophlebitis","definition":"Inflammation of a vein with the formation of a clot."},{"term":"Thrombus","definition":"A blood clot is usually formed due to insufficient pressure applied after the withdrawal of a needle."},{"term":"Tort","definition":"An injury or wrong committed, with or without force, to another’s person or property for which civil liability may be enforced."},{"term":"Tourniquet","definition":"A constrictive band is placed over an extremity to distend veins for blood aspiration or intravenous injections regarding venipuncture. A tourniquet may be rubber, latex, or other synthetic elastic material. A blood pressure cuff may be used."},{"term":"Trauma","definition":"The probing of the needle causes an injury to underlying tissues."},{"term":"Tumor Markers","definition":"A tumor marker is a substance sometimes found in the blood, other body fluids, or tissues. A high tumor marker level may indicate that a specific type of cancer is in the body. Examples of tumor markers include CA 125 (ovarian cancer), CA 15-3 (breast cancer), CEA (ovarian, lung, breast, pancreas, and gastrointestinal tract cancers), and PSA (prostate cancer). Tumor markers are sometimes called biomarkers."},{"term":"Universal Precautions","definition":"The name describes a prevention strategy in which all blood and potentially infectious materials are treated as infectious regardless of the source individual’s perceived status. In other words, whether or not you think the blood or body fluid is infected with bloodborne pathogens, you treat it as if it is. This approach is used in all situations where exposure to blood or potentially infectious materials is possible. Engineering and work practice controls are always used when exposure may occur."},{"term":"Vacutainer","definition":"Vacutainer is a federally and internationally registered trademark owned by BD (Becton, Dickinson, and Company) used to connect a complete system of tubes, needles, needle holders, and safety devices in blood collection. The Vacutainer evacuated tube, for example, automatically aspirates the correct amount of blood into a tube. It is used instead of a syringe. Although BD owns the Vacutainer trademark, it has become so widely used to describe similar blood collection tubes and devices that it has become a generically used term. A phlebotomist should examine anticoagulated collection tubes for their expiration date for quality control concerns. Any tube used to obtain a sample should be disposed of in the sharps container, whether successful or not."},{"term":"Vacutainer Holder","definition":"A cylindrical-shaped holder accepts a Vacutainer tube on one end and a Vacutainer needle on the other. The holder, tube, and needle comprise the Vacutainer System which is used to draw multiple blood tubes with one venipuncture."},{"term":"Vacutainer Needle","definition":"The needle is used to attach to a Vacutainer holder. The needle has a male thread on one end which screws into the holder. The threaded end also has a large gauge needle enclosed by a rubber sheath. This needle will puncture the stopper of a Vacutainer tube allowing blood to enter the tube. Upon withdrawal of this needle from the tube, the rubber sheath covers the needle bevel stopping blood flow. Thus, any number of tubes may be drawn with only a single venipuncture."},{"term":"Vacutainer System","definition":"Combining a Vacutainer holder, needle, and sample tube allows for a more automated blood-drawing method. When a multi-sample needle is used, the system will allow for the aspiration of any number of sample tubes with only one venipuncture."},{"term":"VAD - Vascular Access Device","definition":"Any device used to gain access to a vein or artery such as a needle, IV catheter, central line, or PICC line (peripherally inserted central catheter)."},{"term":"Verbal Consent","definition":"When a person reads a verbal version of a consent form, such as an information sheet, they give their verbal consent in place of written consent to participate."},{"term":"White Cell Count","definition":"The number of white blood cells (leukocytes) found in the peripheral blood and measured per cubic milliliter. See also complete blood count."},{"term":"Whole Blood","definition":"Blood from which none of the elements have been removed. It is usually referred to as that blood collected from a donor and anticoagulated for blood replenishment for a recipient."}];
 let medicalTerminologyQuery = "";
+let lastDefineSelection = "";
+function normalizeDefineTerm(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+function rememberCurrentSelection() {
+  const text = window.getSelection ? window.getSelection().toString().trim() : '';
+  if (text) lastDefineSelection = text.slice(0, 120);
+  return lastDefineSelection;
+}
+if (typeof document !== 'undefined') {
+  document.addEventListener('selectionchange', () => rememberCurrentSelection());
+}
+function lookupSavedDefinition(term) {
+  const clean = normalizeDefineTerm(term);
+  if (!clean) return '';
+  if (Array.isArray(customDictionaryEntries)) {
+    const custom = customDictionaryEntries.find(entry => normalizeDefineTerm(entry && entry.abbr) === clean);
+    if (custom && custom.definition) return custom.definition;
+  }
+  const exact = medicalTerminologyEntries.find(entry => normalizeDefineTerm(entry.term) === clean || normalizeDefineTerm(entry.term).split(' ').includes(clean));
+  if (exact && exact.definition) return exact.definition;
+  const partial = medicalTerminologyEntries.find(entry => normalizeDefineTerm(entry.term).includes(clean) || clean.includes(normalizeDefineTerm(entry.term)));
+  if (partial && partial.definition) return partial.definition;
+  return '';
+}
+function selectedDefineText() {
+  const live = window.getSelection ? window.getSelection().toString().trim() : '';
+  if (live) {
+    lastDefineSelection = live.slice(0, 120);
+    return lastDefineSelection;
+  }
+  return lastDefineSelection;
+}
 
 function simpleDefinition(term) {
   const original = String(term).trim();
   const cleaned = original.toLowerCase().replace(/[^a-z0-9- ]/g, '').replace(/s+/g, ' ').trim();
   if (!cleaned) return 'No term was selected.';
+  const savedDefinition = lookupSavedDefinition(original);
+  if (savedDefinition) return savedDefinition;
   if (glossary[cleaned]) return glossary[cleaned];
   if (commonWordDefinitions[cleaned]) return commonWordDefinitions[cleaned];
   const singular = cleaned.replace(/s$/, '');
@@ -2632,8 +2690,7 @@ function importantTerms(text) {
 }
 function showDefinitions(q, card) {
   const box = card.querySelector('.definition-box');
-  const selection = window.getSelection ? window.getSelection().toString().trim() : '';
-  const term = selection || prompt('Highlight a word first, or type the word/abbreviation you want defined:');
+  const term = selectedDefineText() || prompt('Highlight a word first, or type the word/abbreviation you want defined:');
   if (!term || !term.trim()) {
     box.classList.remove('hidden');
     box.innerHTML = '<button class="definition-close" type="button" aria-label="Close definition">&times;</button><strong>Definition:</strong> Highlight a word or abbreviation, then press Define.';
@@ -2641,16 +2698,13 @@ function showDefinitions(q, card) {
     return;
   }
   const cleanTerm = term.trim().slice(0, 100);
-  const queryUrl = 'https://www.google.com/search?q=' + encodeURIComponent('define ' + cleanTerm);
-  const iframeUrl = 'https://www.google.com/search?igu=1&q=' + encodeURIComponent('define ' + cleanTerm);
   const localMeaning = simpleDefinition(cleanTerm);
   box.classList.remove('hidden');
   box.innerHTML = '<button class="definition-close" type="button" aria-label="Close definition">&times;</button>'
     + '<strong>' + escapeHtml(cleanTerm) + '</strong>'
     + '<p>' + escapeHtml(localMeaning) + '</p>'
     + '<div class="definition-actions"><button class="definition-save" type="button">Add to dictionary</button><span class="definition-save-status"></span></div>'
-    + '<iframe class="definition-frame" title="Google definition for ' + escapeHtml(cleanTerm) + '" src="' + iframeUrl + '"></iframe>'
-    + '<div class="definition-source">Google definition preview is enlarged for easier reading. <a target="_blank" rel="noopener" href="' + queryUrl + '">Open full Google result</a></div>';
+    + '<div class="definition-source">Definition is shown inside the exam and can be saved to the dictionary.</div>';
   box.querySelector('.definition-close').addEventListener('click', () => box.classList.add('hidden'));
   var definitionSaveButton = box.querySelector('.definition-save');
   if (definitionSaveButton) definitionSaveButton.addEventListener('click', () => {
@@ -2796,37 +2850,64 @@ function moveCurrentQuestion(direction) {
 }
 let advanceTimer = null;
 let advanceInterval = null;
+let answerScrollLockTimer = null;
 let slideshowHoldCard = null;
-function scheduleAutoAdvance(currentCard, mode = 'main') {
-  if (!currentCard || !currentCard.isConnected) return;
+function isAnswerScrollLocked() {
+  return document.body.classList.contains('answer-scroll-lock');
+}
+function clearAnswerScrollLock() {
+  if (answerScrollLockTimer) clearTimeout(answerScrollLockTimer);
+  answerScrollLockTimer = null;
+  document.body.classList.remove('answer-scroll-lock');
+  document.querySelectorAll('.advance-countdown.is-locking').forEach(item => item.classList.remove('is-locking'));
+}
+function beginAnswerScrollLock(countdown, duration = 850) {
+  document.body.classList.add('answer-scroll-lock');
+  if (countdown) countdown.classList.add('is-locking');
+  if (answerScrollLockTimer) clearTimeout(answerScrollLockTimer);
+  answerScrollLockTimer = setTimeout(clearAnswerScrollLock, duration);
+}
+function cancelAutoAdvance() {
   if (advanceTimer) clearTimeout(advanceTimer);
   if (advanceInterval) clearInterval(advanceInterval);
+  advanceTimer = null;
+  advanceInterval = null;
   document.querySelectorAll('.advance-countdown').forEach(item => item.remove());
+}
+function scheduleAutoAdvance(currentCard, mode = 'main') {
+  if (!currentCard || !currentCard.isConnected) return;
+  cancelAutoAdvance();
   const feedback = currentCard.querySelector('.feedback');
   if (!feedback) return;
   const countdown = document.createElement('div');
   countdown.className = 'advance-countdown';
-  countdown.innerHTML = '<span>Next question in <strong>5</strong>s</span><span class="advance-countdown-bar" aria-hidden="true"><span class="advance-countdown-fill"></span></span>';
+  countdown.innerHTML = '<span>Next question in <strong>3</strong>s <span class="advance-lock-note">answers locked</span></span><span class="advance-countdown-bar" aria-hidden="true"><span class="advance-countdown-fill"></span></span>';
   feedback.insertAdjacentElement('afterend', countdown);
   const numberEl = countdown.querySelector('strong');
-  let remaining = 5;
+  let remaining = 3;
   advanceInterval = setInterval(() => {
     remaining -= 1;
     if (numberEl) numberEl.textContent = Math.max(remaining, 0);
     if (remaining <= 0 && advanceInterval) clearInterval(advanceInterval);
   }, 1000);
   advanceTimer = setTimeout(() => {
+    beginAnswerScrollLock(countdown);
     if (advanceInterval) clearInterval(advanceInterval);
     advanceInterval = null;
     advanceTimer = null;
-    if (countdown.isConnected) countdown.remove();
     slideshowHoldCard = null;
     let next = mode === 'common' ? nextCommonPracticeCard(currentCard) : nextAnswerableQuestionCard(currentCard);
     if (!next && document.body.classList.contains('slideshow-mode')) next = nextVisibleQuestionCard(currentCard);
     scrollToCard(next, 'forward');
-  }, 5000);
+    setTimeout(() => {
+      if (countdown.isConnected) countdown.remove();
+      clearAnswerScrollLock();
+    }, 900);
+  }, 3000);
 }
 function choose(q, letter, card) {
+  if (isAnswerScrollLocked()) return;
+  cancelAutoAdvance();
   const currentFilter = filterEl ? filterEl.value : 'all';
   const isMissedReview = !!missedReviewRange(currentFilter);
   const previous = state.get(q.number);
@@ -2914,6 +2995,8 @@ function makeCommonPracticeCard(q) {
   defineButton.title = 'Define selected or complex terms';
   const definitionBox = document.createElement('div');
   definitionBox.className = 'definition-box hidden';
+  defineButton.addEventListener('pointerdown', rememberCurrentSelection);
+  defineButton.addEventListener('touchstart', rememberCurrentSelection, { passive: true });
   defineButton.addEventListener('click', () => showDefinitions(q, card));
   const meta = document.createElement('p');
   meta.className = 'common-meta';
@@ -2947,6 +3030,8 @@ function makeCommonPracticeCard(q) {
   return card;
 }
 function answerCommonPractice(q, letter, card) {
+  if (isAnswerScrollLocked()) return;
+  cancelAutoAdvance();
   const stats = statsFor(q.number);
   const correct = letter === q.answer;
   recordAnswerTiming(q.number);
@@ -3331,6 +3416,7 @@ let consentQuizScore = 0;
 let consentQuizChoices = [];
 let consentQuizResults = [];
 function clearInversionAutoAdvance() {
+  clearAnswerScrollLock();
   if (inversionAutoAdvanceTimer) {
     clearTimeout(inversionAutoAdvanceTimer);
     inversionAutoAdvanceTimer = null;
@@ -3339,12 +3425,15 @@ function clearInversionAutoAdvance() {
 function scheduleInversionAutoAdvance(nextFn = nextInversionQuestion) {
   clearInversionAutoAdvance();
   inversionAutoAdvanceTimer = setTimeout(() => {
+    const countdown = orderDrawPanelEl ? orderDrawPanelEl.querySelector('.extra-quiz-countdown') : null;
+    beginAnswerScrollLock(countdown);
     inversionAutoAdvanceTimer = null;
     nextFn();
+    setTimeout(clearAnswerScrollLock, 900);
   }, 3000);
 }
 function extraQuizCountdownMarkup(answered) {
-  return answered ? '<div class="advance-countdown extra-quiz-countdown"><span>Next question in <strong>3</strong>s</span><span class="advance-countdown-bar" aria-hidden="true"><span class="advance-countdown-fill"></span></span></div>' : '';
+  return answered ? '<div class="advance-countdown extra-quiz-countdown"><span>Next question in <strong>3</strong>s <span class="advance-lock-note">answers locked</span></span><span class="advance-countdown-bar" aria-hidden="true"><span class="advance-countdown-fill"></span></span></div>' : '';
 }
 function shuffleList(list) {
   const copy = list.slice();
@@ -3570,6 +3659,8 @@ function renderInversionQuiz() {
   if (restartButton) restartButton.addEventListener('click', resetInversionQuiz);
 }
 function handleInversionChoice(event) {
+  if (isAnswerScrollLocked()) return;
+  clearInversionAutoAdvance();
   if (inversionQuizResults[inversionQuizIndex]) return;
   const item = inversionQuizOrder[inversionQuizIndex];
   const selected = event.currentTarget.dataset.inversionChoice;
@@ -3620,8 +3711,15 @@ function updateMedicalTerminologyResults(query = '') {
   list.innerHTML = matches.length ? matches.map(item => {
     const index = medicalTerminologyEntries.indexOf(item);
     const added = typeof medicalTermInDictionary === 'function' && medicalTermInDictionary(item.term);
-    return '<article class="med-term-row"><div class="med-term-name">' + escapeHtml(item.term) + '</div><div class="med-term-definition">' + escapeHtml(item.definition) + '</div><div class="med-term-actions"><button class="med-term-dict-btn' + (added ? ' is-added' : '') + '" type="button" data-med-term-index="' + index + '">' + (added ? 'Added to dictionary' : 'Add to dictionary') + '</button></div></article>';
+    return '<article class="med-term-row"><div class="med-term-name">' + escapeHtml(item.term) + '</div><div class="med-term-definition">' + escapeHtml(item.definition) + '</div><div class="med-term-actions"><button class="med-term-dict-btn' + (added ? ' is-added' : '') + '" type="button" data-med-term-index="' + index + '">' + (added ? 'Remove definition' : 'Add to dictionary') + '</button></div></article>';
   }).join('') : '<div class="med-term-empty">No terminology entries match that search.</div>';
+  list.querySelectorAll('[data-med-term-index]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleMedicalTermDictionary(button.dataset.medTermIndex, button);
+    });
+  });
 }
 function renderMedicalTerminology() {
   if (!medicalTerminologyPanelEl) return;
@@ -3634,11 +3732,6 @@ function renderMedicalTerminology() {
       updateMedicalTerminologyResults(medicalTerminologyQuery);
     });
   }
-  medicalTerminologyPanelEl.onclick = event => {
-    const button = event.target.closest('[data-med-term-index]');
-    if (!button) return;
-    toggleMedicalTermDictionary(button.dataset.medTermIndex);
-  };
   updateMedicalTerminologyResults(medicalTerminologyQuery);
 }
 
@@ -3697,6 +3790,8 @@ function renderConsentQuiz() {
   if (restartButton) restartButton.addEventListener('click', resetConsentQuiz);
 }
 function handleConsentChoice(event) {
+  if (isAnswerScrollLocked()) return;
+  clearInversionAutoAdvance();
   if (consentQuizResults[consentQuizIndex]) return;
   const item = consentQuizOrder[consentQuizIndex];
   const selected = event.currentTarget.dataset.consentChoice;
@@ -3885,6 +3980,7 @@ document.getElementById('reset').addEventListener('click', event => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 menuToggle.addEventListener('click', openMenu);
+if (tmButton) tmButton.addEventListener('click', showTrademarkPopup);
 menuClose.addEventListener('click', closeMenu);
 menuBackdrop.addEventListener('click', closeMenu);
 if (exportSaveDataBtn) exportSaveDataBtn.addEventListener('click', () => exportSaveData());
@@ -4316,15 +4412,28 @@ function medicalTermDictionaryIndex(term) {
 function medicalTermInDictionary(term) {
   return medicalTermDictionaryIndex(term) !== -1;
 }
-function toggleMedicalTermDictionary(index) {
+function toggleMedicalTermDictionary(index, sourceButton) {
   const item = medicalTerminologyEntries[Number(index)];
   if (!item) return;
   const existingIndex = medicalTermDictionaryIndex(item.term);
   if (existingIndex !== -1) {
     customDictionaryEntries.splice(existingIndex, 1);
+    if (sourceButton) {
+      sourceButton.classList.remove('is-added');
+      sourceButton.textContent = 'Add to dictionary';
+    }
     if (dictAddStatus) dictAddStatus.textContent = 'Removed from dictionary';
   } else {
-    addCustomDictionaryEntry({ abbr: item.term, meaning: 'Medical terminology', definition: item.definition, source: 'medical-term' });
+    customDictionaryEntries.push({
+      abbr: item.term,
+      meaning: 'Medical terminology',
+      definition: item.definition,
+      source: 'medical-term'
+    });
+    if (sourceButton) {
+      sourceButton.classList.add('is-added');
+      sourceButton.textContent = 'Remove definition';
+    }
     if (dictAddStatus) dictAddStatus.textContent = 'Added from Medical terminology';
   }
   saveCustomDictionaryEntries();
