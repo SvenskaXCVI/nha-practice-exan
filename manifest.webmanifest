@@ -511,7 +511,6 @@ body.dark .definition-frame { filter:invert(.92) hue-rotate(180deg); }
 .mobile-version .header-action { min-width:0; min-height:36px; padding:5px 4px; border-radius:8px; }
 .mobile-version .header-action strong { font-size:12px; }
 .mobile-version .header-action span { font-size:9px; }
-.mobile-version #retakeMissed:not(.hidden), .mobile-version #nextMissed:not(.hidden) { grid-column:1 / -1; }
 .mobile-version .stats { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:6px; justify-content:stretch; }
 .mobile-version .stat { min-width:0; min-height:34px; padding:5px 4px; border-radius:8px; box-shadow:0 2px 10px var(--shadow); }
 .mobile-version .stat strong { font-size:13px; }
