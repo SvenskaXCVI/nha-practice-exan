@@ -2941,6 +2941,174 @@ html.mobile-version .med-term-panel {
   -webkit-overflow-scrolling:auto !important;
 }
 
+
+/* UI pill theme selector */
+.chrome-theme-swatches { display:grid; grid-template-columns:repeat(6, 1fr); gap:8px; justify-items:center; align-items:center; }
+.chrome-theme-swatch { width:26px; height:26px; border-radius:999px; border:2px solid var(--line); cursor:pointer; box-shadow:0 3px 12px var(--shadow); background:var(--chrome-swatch, var(--panel)); }
+.chrome-theme-swatch.active { border-color:var(--ink); box-shadow:0 0 0 3px var(--focus), 0 3px 12px var(--shadow); }
+.chrome-theme-swatch[data-chrome-theme="auto"] { --chrome-swatch:linear-gradient(135deg, #f8fafc 0 48%, #101820 52% 100%); }
+.chrome-theme-swatch[data-chrome-theme="light"] { --chrome-swatch:#f8fafc; }
+.chrome-theme-swatch[data-chrome-theme="dark"] { --chrome-swatch:#101820; }
+.chrome-theme-swatch[data-chrome-theme="sage"] { --chrome-swatch:#dff4e8; }
+.chrome-theme-swatch[data-chrome-theme="sky"] { --chrome-swatch:#dff3ff; }
+.chrome-theme-swatch[data-chrome-theme="violet"] { --chrome-swatch:#eee7ff; }
+.chrome-theme-swatch[data-chrome-theme="rose"] { --chrome-swatch:#ffe4ee; }
+.chrome-theme-swatch[data-chrome-theme="amber"] { --chrome-swatch:#fff1c7; }
+.chrome-theme-swatch[data-chrome-theme="slate"] { --chrome-swatch:#27313a; }
+body {
+  --chrome-panel:color-mix(in srgb, var(--panel) 86%, transparent);
+  --chrome-line:color-mix(in srgb, var(--line) 72%, transparent);
+  --chrome-ink:var(--ink);
+  --chrome-soft:var(--accent-soft);
+}
+body.chrome-ui-light { --chrome-panel:rgba(248,250,252,.94); --chrome-line:rgba(148,163,184,.42); --chrome-ink:#172033; --chrome-soft:rgba(226,232,240,.72); }
+body.chrome-ui-dark { --chrome-panel:rgba(15,23,42,.90); --chrome-line:rgba(148,163,184,.28); --chrome-ink:#f8fafc; --chrome-soft:rgba(51,65,85,.74); }
+body.chrome-ui-sage { --chrome-panel:rgba(226,246,235,.94); --chrome-line:rgba(74,124,89,.34); --chrome-ink:#153926; --chrome-soft:rgba(194,232,209,.82); }
+body.chrome-ui-sky { --chrome-panel:rgba(224,244,255,.94); --chrome-line:rgba(14,116,144,.32); --chrome-ink:#103344; --chrome-soft:rgba(186,230,253,.78); }
+body.chrome-ui-violet { --chrome-panel:rgba(241,233,255,.94); --chrome-line:rgba(124,58,237,.28); --chrome-ink:#2d1959; --chrome-soft:rgba(221,214,254,.78); }
+body.chrome-ui-rose { --chrome-panel:rgba(255,232,241,.94); --chrome-line:rgba(190,24,93,.26); --chrome-ink:#531329; --chrome-soft:rgba(251,207,232,.78); }
+body.chrome-ui-amber { --chrome-panel:rgba(255,244,207,.94); --chrome-line:rgba(180,83,9,.28); --chrome-ink:#4a2c05; --chrome-soft:rgba(254,215,170,.76); }
+body.chrome-ui-slate { --chrome-panel:rgba(39,49,58,.92); --chrome-line:rgba(203,213,225,.24); --chrome-ink:#f8fafc; --chrome-soft:rgba(71,85,105,.76); }
+html.mobile-version body[class*="chrome-ui-"] .title-block,
+html.mobile-version body[class*="chrome-ui-"] .header-actions,
+html.mobile-version body[class*="chrome-ui-"] .mobile-stats-toggle,
+html.mobile-version body[class*="chrome-ui-"] .menu-toggle {
+  background:var(--chrome-panel) !important;
+  border-color:var(--chrome-line) !important;
+  color:var(--chrome-ink) !important;
+}
+html.mobile-version body[class*="chrome-ui-"]::after { background:var(--chrome-panel) !important; border-color:var(--chrome-line) !important; }
+html.mobile-version body[class*="chrome-ui-"] .theme-toggle,
+html.mobile-version body[class*="chrome-ui-"] .mode-toggle,
+html.mobile-version body[class*="chrome-ui-"] .google-toggle,
+html.mobile-version body[class*="chrome-ui-"] .notes-toggle,
+html.mobile-version body[class*="chrome-ui-"] .dict-toggle,
+html.mobile-version body[class*="chrome-ui-"] .top-toggle { color:var(--chrome-ink) !important; }
+html.mobile-version body[class*="chrome-ui-"] .theme-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .mode-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .google-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .notes-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .dict-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .top-toggle:hover,
+html.mobile-version body[class*="chrome-ui-"] .theme-toggle.active,
+html.mobile-version body[class*="chrome-ui-"] .mode-toggle.active,
+html.mobile-version body[class*="chrome-ui-"] .google-toggle.active,
+html.mobile-version body[class*="chrome-ui-"] .notes-toggle.active,
+html.mobile-version body[class*="chrome-ui-"] .dict-toggle.active { background:var(--chrome-soft) !important; color:var(--chrome-ink) !important; }
+
+body {
+  --chrome-menu-panel:var(--chrome-panel);
+  --chrome-menu-card:color-mix(in srgb, var(--chrome-panel) 62%, #0f172a 38%);
+  --chrome-menu-card-active:color-mix(in srgb, var(--chrome-panel) 50%, #0f172a 50%);
+  --chrome-menu-card-ink:#f8fafc;
+}
+body.chrome-ui-light { --chrome-menu-card:#4b5864; --chrome-menu-card-active:#34424f; }
+body.chrome-ui-dark { --chrome-menu-card:#101820; --chrome-menu-card-active:#0b1118; }
+body.chrome-ui-sage { --chrome-menu-card:#465c55; --chrome-menu-card-active:#32483f; }
+body.chrome-ui-sky { --chrome-menu-card:#335f74; --chrome-menu-card-active:#24495b; }
+body.chrome-ui-violet { --chrome-menu-card:#37245c; --chrome-menu-card-active:#281946; }
+body.chrome-ui-rose { --chrome-menu-card:#653347; --chrome-menu-card-active:#4d2334; }
+body.chrome-ui-amber { --chrome-menu-card:#674f25; --chrome-menu-card-active:#4d3917; }
+body.chrome-ui-slate { --chrome-menu-card:#1e293b; --chrome-menu-card-active:#111827; }
+body[class*="chrome-ui-"] .title-block h1,
+body[class*="chrome-ui-"] .title-block .section-label {
+  color:var(--chrome-ink) !important;
+}
+body[class*="chrome-ui-"] .title-block .section-label {
+  background:color-mix(in srgb, var(--chrome-soft) 72%, transparent) !important;
+  border:1px solid color-mix(in srgb, var(--chrome-ink) 16%, transparent) !important;
+}
+body[class*="chrome-ui-"] .mode-toggle.nav-blue,
+body[class*="chrome-ui-"] .top-toggle.nav-blue {
+  background:transparent !important;
+  color:var(--chrome-ink) !important;
+}
+body[class*="chrome-ui-"] .mode-toggle svg,
+body[class*="chrome-ui-"] .top-toggle svg {
+  color:var(--chrome-ink) !important;
+  stroke:currentColor !important;
+}
+body[class*="chrome-ui-"] .mode-toggle:hover,
+body[class*="chrome-ui-"] .top-toggle:hover,
+body[class*="chrome-ui-"] .mode-toggle.active,
+body[class*="chrome-ui-"] .top-toggle.active {
+  background:var(--chrome-soft) !important;
+  color:var(--chrome-ink) !important;
+}
+body[class*="chrome-ui-"] .side-menu {
+  background:var(--chrome-menu-panel) !important;
+  border-color:var(--chrome-line) !important;
+  color:var(--chrome-ink) !important;
+}
+body[class*="chrome-ui-"] .side-menu-head,
+body[class*="chrome-ui-"] .menu-group,
+body[class*="chrome-ui-"] .save-transfer,
+body[class*="chrome-ui-"] .theme-picker {
+  background:color-mix(in srgb, var(--chrome-panel) 82%, transparent) !important;
+  border-color:var(--chrome-line) !important;
+  color:var(--chrome-ink) !important;
+}
+body[class*="chrome-ui-"] .side-menu-head span,
+body[class*="chrome-ui-"] .theme-picker-title {
+  color:color-mix(in srgb, var(--chrome-ink) 72%, transparent) !important;
+}
+body[class*="chrome-ui-"] .menu-options button,
+body[class*="chrome-ui-"] .save-transfer-btn,
+body[class*="chrome-ui-"] .side-menu-head .tm-toggle,
+body[class*="chrome-ui-"] .menu-close {
+  background:var(--chrome-menu-card) !important;
+  border-color:color-mix(in srgb, var(--chrome-line) 72%, var(--chrome-menu-card)) !important;
+  color:var(--chrome-menu-card-ink) !important;
+}
+body[class*="chrome-ui-"] .menu-options button span {
+  color:color-mix(in srgb, var(--chrome-menu-card-ink) 76%, transparent) !important;
+}
+body[class*="chrome-ui-"] .menu-options button:hover,
+body[class*="chrome-ui-"] .menu-options button.active,
+body[class*="chrome-ui-"] .save-transfer-btn:hover,
+body[class*="chrome-ui-"] .side-menu-head .tm-toggle:hover,
+body[class*="chrome-ui-"] .menu-close:hover {
+  background:var(--chrome-menu-card-active) !important;
+  border-color:color-mix(in srgb, var(--chrome-line) 62%, var(--chrome-ink)) !important;
+  color:var(--chrome-menu-card-ink) !important;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--chrome-ink) 12%, transparent), 0 8px 22px color-mix(in srgb, var(--chrome-menu-card-active) 30%, transparent) !important;
+}
+.mode-toggle.nav-blue,
+.top-toggle.nav-blue,
+body[class*="chrome-ui-"] .mode-toggle.nav-blue,
+body[class*="chrome-ui-"] .top-toggle.nav-blue,
+body[class*="chrome-ui-"] .top-toggle.nav-blue.active {
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+.mode-toggle.nav-blue:hover,
+.top-toggle.nav-blue:hover,
+body.slideshow-mode .mode-toggle.nav-blue,
+body[class*="chrome-ui-"].slideshow-mode .mode-toggle.nav-blue {
+  background:var(--chrome-soft, var(--accent-soft)) !important;
+  color:var(--chrome-ink, var(--accent-dark)) !important;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--chrome-ink, var(--accent)) 24%, transparent) !important;
+}
+body[class*="chrome-ui-"] .menu-group-general { border-color:#38bdf8 !important; }
+body[class*="chrome-ui-"] .menu-group-exams { border-color:#f59e0b !important; }
+body[class*="chrome-ui-"] .menu-group-review { border-color:#ef4444 !important; }
+.title-block .section-label,
+body[class*="chrome-ui-"] .title-block .section-label,
+html.mobile-version .title-block .section-label {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  min-height:18px !important;
+  padding:3px 10px !important;
+  border-radius:999px !important;
+  line-height:1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
 </style>
 </head>
 <body>
@@ -3035,6 +3203,20 @@ html.mobile-version .med-term-panel {
       <button class="theme-swatch" type="button" data-accent="green" aria-label="Green theme"></button>
       <button class="theme-swatch" type="button" data-accent="lightblue" aria-label="Light blue theme"></button>
       <button class="theme-swatch" type="button" data-accent="orange" aria-label="Orange theme"></button>
+    </div>
+  </section>
+  <section class="theme-picker chrome-theme-picker" aria-label="UI pill theme color">
+    <span class="theme-picker-title">UI pill theme</span>
+    <div class="chrome-theme-swatches" id="chromeThemeSwatches">
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="auto" aria-label="Automatic UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="light" aria-label="Light UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="dark" aria-label="Dark UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="sage" aria-label="Sage UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="sky" aria-label="Sky UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="violet" aria-label="Violet UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="rose" aria-label="Rose UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="amber" aria-label="Amber UI theme"></button>
+      <button class="chrome-theme-swatch" type="button" data-chrome-theme="slate" aria-label="Slate UI theme"></button>
     </div>
   </section>
 </aside>
@@ -3153,6 +3335,7 @@ const themeStorageKey = 'nhaPracticeThemeV1';
 const notesStorageKey = 'nhaPracticeNotesV1';
 const dictStorageKey = 'nhaPracticeDictionaryV1';
 const accentStorageKey = 'nhaPracticeAccentThemeV1';
+const chromeThemeStorageKey = 'nhaPracticeChromeThemeV1';
 const modeStorageKey = 'nhaPracticeDisplayModeV1';
 function applyTheme(theme) {
   const dark = theme === 'dark';
@@ -3174,6 +3357,15 @@ function applyAccentTheme(accent) {
   document.querySelectorAll('.theme-swatch').forEach(button => button.classList.toggle('active', button.dataset.accent === selected));
 }
 applyAccentTheme(safeStorage.getItem(accentStorageKey) || 'green');
+function applyChromeTheme(theme) {
+  const allowed = ['auto', 'light', 'dark', 'sage', 'sky', 'violet', 'rose', 'amber', 'slate'];
+  const selected = allowed.includes(theme) ? theme : 'auto';
+  for (const item of allowed) {
+    if (item !== 'auto') document.body.classList.toggle('chrome-ui-' + item, item === selected);
+  }
+  document.querySelectorAll('.chrome-theme-swatch').forEach(button => button.classList.toggle('active', button.dataset.chromeTheme === selected));
+}
+applyChromeTheme(safeStorage.getItem(chromeThemeStorageKey) || 'auto');
 function applyDisplayMode(mode) {
   const slideshow = mode === 'slideshow';
   document.body.classList.toggle('slideshow-mode', slideshow);
@@ -4586,6 +4778,7 @@ function cancelAutoAdvance() {
 function scheduleAutoAdvance(currentCard, mode = 'main') {
   if (!currentCard || !currentCard.isConnected) return;
   cancelAutoAdvance();
+  if (!document.body.classList.contains('slideshow-mode')) return;
   const feedback = currentCard.querySelector('.feedback');
   if (!feedback) return;
   const countdown = document.createElement('div');
@@ -5745,6 +5938,13 @@ if (themeSwatchesEl) themeSwatchesEl.addEventListener('click', event => {
   if (!button) return;
   safeStorage.setItem(accentStorageKey, button.dataset.accent);
   applyAccentTheme(button.dataset.accent);
+});
+var chromeThemeSwatchesEl = document.getElementById('chromeThemeSwatches');
+if (chromeThemeSwatchesEl) chromeThemeSwatchesEl.addEventListener('click', event => {
+  const button = event.target.closest('[data-chrome-theme]');
+  if (!button) return;
+  safeStorage.setItem(chromeThemeStorageKey, button.dataset.chromeTheme);
+  applyChromeTheme(button.dataset.chromeTheme);
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') closeMenu();
