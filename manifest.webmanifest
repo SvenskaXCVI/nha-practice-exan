@@ -3169,6 +3169,29 @@ html.mobile-version body.header-actions-open .title-block {
 html.mobile-version body.header-actions-open .header-actions {
   padding:2px 4px 0 !important;
 }
+html.mobile-version body[class*="chrome-ui-"] .title-block:hover,
+html.mobile-version body[class*="chrome-ui-"] .title-block:focus-visible,
+html.mobile-version body[class*="chrome-ui-"].header-actions-open .title-block,
+html.mobile-version:has(body.dark) body[class*="chrome-ui-"].header-actions-open .title-block,
+html.mobile-version:has(body.dark) body[class*="chrome-ui-"] .title-block:hover,
+html.mobile-version:has(body.dark) body[class*="chrome-ui-"] .title-block:focus-visible {
+  background:var(--chrome-panel) !important;
+  border-color:var(--chrome-line) !important;
+  color:var(--chrome-ink) !important;
+  box-shadow:0 16px 42px var(--shadow), inset 0 0 0 1px color-mix(in srgb, var(--chrome-ink) 5%, transparent) !important;
+}
+html.mobile-version body[class*="chrome-ui-"] .header-action.warning-btn {
+  color:#7c4a03 !important;
+  background:linear-gradient(180deg, rgba(255,247,214,.96), rgba(253,230,138,.82)) !important;
+  border-color:rgba(202,138,4,.46) !important;
+}
+html.mobile-version body.dark[class*="chrome-ui-"] .header-action.warning-btn,
+html.mobile-version body.chrome-ui-dark .header-action.warning-btn,
+html.mobile-version body.chrome-ui-slate .header-action.warning-btn {
+  color:#fef3c7 !important;
+  background:rgba(146,64,14,.44) !important;
+  border-color:rgba(250,204,21,.42) !important;
+}
 
 </style>
 </head>
