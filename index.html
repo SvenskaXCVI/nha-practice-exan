@@ -3147,6 +3147,28 @@ html.mobile-version body[class*="chrome-ui-"] .dict-toggle svg path[fill="curren
 html.mobile-version body[class*="chrome-ui-"] .side-menu::before {
   background:linear-gradient(to bottom, color-mix(in srgb, var(--chrome-panel) 96%, transparent) 0%, color-mix(in srgb, var(--chrome-panel) 68%, transparent) 58%, transparent 100%) !important;
 }
+html.mobile-version .title-block .header-actions,
+html.mobile-version body[class*="chrome-ui-"] .title-block .header-actions,
+html.mobile-version body.header-actions-open .title-block .header-actions,
+html.mobile-version body[class*="chrome-ui-"].header-actions-open .title-block .header-actions {
+  background:transparent !important;
+  background-color:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+html.mobile-version .title-block .header-actions::before,
+html.mobile-version .title-block .header-actions::after,
+html.mobile-version body.header-actions-open .title-copy::after {
+  display:none !important;
+  content:none !important;
+}
+html.mobile-version body.header-actions-open .title-block {
+  background:var(--chrome-panel, color-mix(in srgb, var(--panel) 88%, transparent)) !important;
+}
+html.mobile-version body.header-actions-open .header-actions {
+  padding:2px 4px 0 !important;
+}
 
 </style>
 </head>
